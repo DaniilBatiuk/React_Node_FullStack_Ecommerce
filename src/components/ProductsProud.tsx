@@ -1,5 +1,5 @@
 import React from "react";
-import ProductCard from "./UI/ProductCard/ProductCard";
+import ProductCard from "./ProductCard";
 import chair1 from '../photos/chair1.jpg';
 import chair2 from '../photos/chair2.jpg';
 import sofa2 from '../photos/sofa2.jpg';

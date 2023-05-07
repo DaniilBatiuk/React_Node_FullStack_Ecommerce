@@ -1,5 +1,5 @@
-import React, { } from "react";
-import ProductCard from "./UI/ProductCard/ProductCard";
+import React, { useEffect } from "react";
+import ProductCard from "./ProductCard";
 import chair3 from '../photos/chair3.jpg';
 import chair4 from '../photos/chair4.jpg';
 import sofa1 from '../photos/sofa1.jpg';
@@ -28,29 +28,36 @@ const Trending: React.FC = () => {
         { photo: table1, title: "Table HT-001 D100 White", price: 230.99 },
         { photo: table4, title: "Corner table 120x80 Black", price: 225.99 }
     ];
-    const Scroll = (e: React.WheelEvent<HTMLDivElement>) => {
-        e.currentTarget.scrollLeft += e.deltaY;
-    };
-    const ScrollLeft = () => {
+
+    useEffect(() => {
         const scrollConteiner = document.getElementById("scrollConteiner") as HTMLDivElement;
-        scrollConteiner.scrollLeft -= scrollConteiner.offsetWidth;
-    };
-    
-    const ScrollRight = () => {
-        const scrollConteiner = document.getElementById("scrollConteiner") as HTMLDivElement;
-        scrollConteiner.scrollLeft += scrollConteiner.offsetWidth;
-    };
+        const scrollLeftButton = document.getElementById("scrollLeftButton") as HTMLButtonElement;
+        const scrollRightButton = document.getElementById("scrollRightButton") as HTMLButtonElement;
+        if (scrollConteiner) {
+            scrollConteiner.addEventListener("wheel", (e) => {
+                e.preventDefault();
+                scrollConteiner.scrollLeft += e.deltaY;
+            });
+            scrollLeftButton.addEventListener("click", () => {
+                scrollConteiner.scrollLeft -= scrollConteiner.offsetWidth;
+            });
+            scrollRightButton.addEventListener("click", () => {
+                scrollConteiner.scrollLeft += scrollConteiner.offsetWidth;
+            });
+        }
+    }, []);
+
     return (
         <section className="trending">
             <div className="trending__container">
                 <div className="trending__title__buttons">
                     <div className="trending__title title">Trending Now</div>
                     <div className="trending__buttons">
-                        <button className="trending__button" onClick={ScrollLeft}>&#129128;</button>
-                        <button className="trending__button" onClick={ScrollRight}>&#129130;</button>
+                        <button className="trending__button" id="scrollLeftButton">&#129128;</button>
+                        <button className="trending__button" id="scrollRightButton">&#129130;</button>
                     </div>
                 </div>
-                <div className="trending__items" id="scrollConteiner" onWheel={Scroll}>
+                <div className="trending__items" id="scrollConteiner">
                     {productList.map((elem) => (
                         <ProductCard key={elem.title} product={elem} />
                     ))}
