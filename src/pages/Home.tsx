@@ -17,16 +17,16 @@ const Home: React.FC = () => {
             photo: living1,
             title: "Creative harmonious living",
             description:
-                "RAOUF Products are all made to standard sizes so that you can mix and match them freely",
+                "Products are all made to standard sizes so that you can mix and match them freely",
             items: {
                 flexDirection: "row",
             },
         },
         {
             photo: living2,
-            title: "Creative harmonious living",
+            title: "Comfortable design",
             description:
-                "RAOUF Products are all made to standard sizes so that you can mix and match them freely",
+                "Any thing in the right combination can make your room more comfortable.",
             items: {
                 flexDirection: "row-reverse",
             },

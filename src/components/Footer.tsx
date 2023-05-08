@@ -4,19 +4,10 @@ const Footer: React.FC = () => {
     return (
         <footer className="footer">
             <div className="footer__container">
-
-                <div className="footer__header">
-                    <div className="footer__text">Get connected with us on social networks:</div>
-                    <div className="footer__links">
-                        <a href="https://github.com/DaniilBatiuk" target="_blank" rel="noreferrer" className="fa fa-github" />
-                        <a href="https://www.linkedin.com/in/daniil-batiuk-59a923271/" target="_blank" rel="noreferrer" className="fa fa-linkedin-square" />
-                        <a href="https://www.instagram.com/danil_batyuk/" target="_blank" rel="noreferrer" className="fa fa-instagram" />
-                    </div>
-                </div>
                 <div className="footer__main main-footer">
                     <div className="main-footer__column">
-                        <div className="main-footer__label label">ABOUT ECOMMERCE</div>
-                        <div className="main-footer__text">This online store was created to train my programming skills in FuullStack applications. I will be glad to your advice.</div>
+                        <div className="main-footer__label label">ABOUT PROJECT</div>
+                        <div className="main-footer__text">This online store was created to train my programming skills in FuullStack applications. It provides a comfortable design for browsing products and adding products to the cart. The user can add, delete and change his products. I tried to use the most popular technologies today. I only learn and don't know much so I will be glad to your advice.</div>
                     </div>
                     <div className="main-footer__column">
                         <div className="main-footer__label label">SKILL USE</div>
@@ -38,6 +29,11 @@ const Footer: React.FC = () => {
                             <div className="contacts__contact fa fa-home"> Kremenchug, UA</div>
                             <div className="contacts__contact fa fa-envelope"> example@gmail.com</div>
                             <div className="contacts__contact fa fa-phone"> +38-(068)-905-06-93</div>
+                            <div className="footer__links">
+                                <a href="https://github.com/DaniilBatiuk" target="_blank" rel="noreferrer" className="fa fa-github" />
+                                <a href="https://www.linkedin.com/in/daniil-batiuk-59a923271/" target="_blank" rel="noreferrer" className="fa fa-linkedin-square" />
+                                <a href="https://www.instagram.com/danil_batyuk/" target="_blank" rel="noreferrer" className="fa fa-instagram" />
+                            </div>
                         </div>
                     </div>
                 </div>
