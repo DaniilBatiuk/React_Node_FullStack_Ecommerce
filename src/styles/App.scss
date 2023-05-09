@@ -1,5 +1,5 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
-
+@import "Variables.scss";
 *,
 *::before,
 *::after {
@@ -102,7 +102,7 @@ button {
 }
 
 .gallery {
-  margin:100px 0px;
+  margin:$marginButtomNotPhone 0px;
 }
 
 @media (min-width:558px) {
@@ -137,11 +137,10 @@ button {
 
 @media (max-width:558px) {
   .gallery__image__text {
-    font-size: 37px;
+    font-size: $titleFontSize;
   }
-
   .gallery {
-    margin-bottom: 50px;
+    margin-bottom: $marginButtomPhone;
   }
 }
 
@@ -194,12 +193,12 @@ button {
 
 .menu__link {
   display: block;
-  font-size: 20px;
+  font-size: $CommonFontSize;
   line-height: 1.62;
 }
 
 .cart-header__text {
-  font-size: 20px;
+  font-size: $CommonFontSize;;
   line-height: 1.55;
 }
 
@@ -211,7 +210,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: $CommonFontSize;
   font-weight: 600;
 }
 
@@ -293,15 +292,13 @@ button {
   }
 
   .menu-open .icon-menu::before {
-    top: calc(50%-1px);
     transform-origin: bottom right;
     transform: rotate(-45deg) translateX(3px);
   }
 
   .menu-open .icon-menu::after {
-    bottom: calc(50%-1px);
     transform-origin: top right;
-    transform: rotate(45deg) translateX(3px);
+    transform: rotate(45deg) translateX(4px);
 
   }
 
@@ -345,7 +342,7 @@ button {
 
 .title {
   font-weight: 700;
-  font-size: 34px;
+  font-size: $titleFontSize;
 }
 
 .products-proud__row {
@@ -388,11 +385,11 @@ button {
   gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   margin-top: 50px;
-  margin-bottom: 100px;
+  margin-bottom: $marginButtomNotPhone;
 }
 
 .products-card__name {
-  font-size: 20px;
+  font-size: $CommonFontSize;
   margin-bottom: 20px;
   height: 25px;
   font-weight: 600;
@@ -405,18 +402,18 @@ button {
 
 @media (max-width:558px) {
   .title {
-    font-size: 28px;
+    font-size: $titleFontSizePhone;
   }
 
   .products-proud__items {
-    margin-bottom: 50px;
+    margin-bottom: $marginButtomPhone;
     margin-top: 20px;
   }
 }
 
 /* -------------------------------trending now------------------------------- */
 .trending {
-  margin-bottom: 100px;
+  margin-bottom: $marginButtomNotPhone;
 }
 
 .trending__items {
@@ -464,7 +461,7 @@ button {
   color: white;
   width: 45px;
   height: 45px;
-  font-size: 20px;
+  font-size: $CommonFontSize;
 }
 
 @media (max-width:1199.98px) {
@@ -491,7 +488,7 @@ button {
   }
 
   .trending {
-    margin-bottom: 50px;
+    margin-bottom: $marginButtomPhone;
   }
 
   .trending__items {
@@ -506,7 +503,7 @@ button {
 /* -------------------------------living------------------------------- */
 
 .living {
-  margin-bottom: 100px;
+  margin-bottom: $marginButtomNotPhone;
 }
 
 .living__items {
@@ -545,7 +542,7 @@ button {
 }
 
 .living__decription {
-  font-size: 20px;
+  font-size: $CommonFontSize;
   margin: 20px;
 }
 
@@ -554,7 +551,7 @@ button {
   color: white;
   width: 140px;
   height: 45px;
-  font-size: 23px;
+  font-size: $CommonFontSize + 2;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -570,7 +567,7 @@ button {
 
 @media (max-width:575.98px) {
   .living {
-    margin-bottom: 50px;
+    margin-bottom: $marginButtomPhone;
   }
 }
 
@@ -602,7 +599,7 @@ button {
 /* -------------------------------footer------------------------------- */
 .footer {
   background-color: black;
-  font-size: 20px;
+  font-size: $CommonFontSize;
 }
 
 .footer__container {
@@ -620,7 +617,7 @@ button {
 
 .label {
   font-weight: 700;
-  font-size: 34px;
+  font-size: $titleFontSize;
   text-align: center;
 }
 
@@ -669,7 +666,7 @@ button {
 
 @media (max-width:575.98px) {
   .label {
-    font-size: 28px;
+    font-size: $titleFontSizePhone;
   }
   .main-footer {
     flex-direction: column;

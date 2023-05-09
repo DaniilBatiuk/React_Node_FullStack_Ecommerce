@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/App.css";
+import "../styles/App.scss";
 import Gallery from "../components/Gallery";
 import ProductsProud from "../components/ProductsProud";
 import Trending from "../components/Trending";
