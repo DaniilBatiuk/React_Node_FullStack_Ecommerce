@@ -14,31 +14,31 @@ const Gallery: React.FC = () => {
         <div className="gallery__items">
           <button className="gallery__item gallery__item_big">
             <img src={gallery1} alt="" />
-            <div className="gallery__image__text">
+            <div className="gallery__image-text">
               Live Comfortably
             </div>
           </button>
           <button className="gallery__item gallery__item">
             <img src={gallery2} alt="" />
-            <div className="gallery__image__text">
+            <div className="gallery__image-text">
               Chair
             </div>
           </button>
           <button className="gallery__item gallery__item">
             <img src={gallery3} alt="" />
-            <div className="gallery__image__text">
+            <div className="gallery__image-text">
               Nightstand
             </div>
           </button>
           <button className="gallery__item gallery__item">
             <img src={gallery4} alt="" />
-            <div className="gallery__image__text">
+            <div className="gallery__image-text">
               Sofa
             </div>
           </button>
           <button className="gallery__item gallery__item">
             <img src={gallery5} alt="" />
-            <div className="gallery__image__text">
+            <div className="gallery__image-text">
               Table
             </div>
           </button>

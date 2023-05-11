@@ -11,6 +11,7 @@ import nightstand5 from '../photos/nightstand5.jpg';
 import table1 from '../photos/table1.jpg';
 import table4 from '../photos/table4.jpg';
 import { Product } from "../types/types";
+import Title from "./Title";
 
 
 
@@ -50,8 +51,8 @@ const Trending: React.FC = () => {
     return (
         <section className="trending">
             <div className="trending__container">
-                <div className="trending__title__buttons">
-                    <div className="trending__title title">Trending Now</div>
+                <div className="trending__title-buttons">
+                    <Title titleText="Trending Now" classNames="trending__title"></Title>
                     <div className="trending__buttons">
                         <button className="trending__button" id="scrollLeftButton">&#129128;</button>
                         <button className="trending__button" id="scrollRightButton">&#129130;</button>

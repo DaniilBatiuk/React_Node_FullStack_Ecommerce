@@ -13,3 +13,14 @@ export interface Product {
     title: string;
     price: number;
 }
+
+
+export interface TitleText {
+    titleText: string;
+    classNames: string;
+}
+
+export interface ProductAndTitleText {
+    product: Product[];
+    titleText: TitleText;
+}
