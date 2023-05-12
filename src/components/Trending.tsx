@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
 import ProductCard from "./ProductCard";
-import chair3 from '../photos/chair3.jpg';
-import chair4 from '../photos/chair4.jpg';
-import sofa1 from '../photos/sofa1.jpg';
-import sofa4 from '../photos/sofa4.jpg';
-import sofa5 from '../photos/sofa5.jpg';
-import nightstand1 from '../photos/nightstand1.jpg';
-import nightstand4 from '../photos/nightstand4.jpg';
-import nightstand5 from '../photos/nightstand5.jpg';
-import table1 from '../photos/table1.jpg';
-import table4 from '../photos/table4.jpg';
+import chair3 from '../assets/photos/chair3.jpg';
+import chair4 from '../assets/photos/chair4.jpg';
+import sofa1 from '../assets/photos/sofa1.jpg';
+import sofa4 from '../assets/photos/sofa4.jpg';
+import sofa5 from '../assets/photos/sofa5.jpg';
+import nightstand1 from '../assets/photos/nightstand1.jpg';
+import nightstand4 from '../assets/photos/nightstand4.jpg';
+import nightstand5 from '../assets/photos/nightstand5.jpg';
+import table1 from '../assets/photos/table1.jpg';
+import table4 from '../assets/photos/table4.jpg';
 import { Product } from "../types/types";
 import Title from "./Title";
-
+import "../styles/Trending.scss";
 
 
 const Trending: React.FC = () => {

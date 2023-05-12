@@ -1,20 +1,19 @@
 import React from "react";
-import "../styles/App.scss";
 import Gallery from "../components/Gallery";
 import ProductsList from "../components/ProductsList";
 import Trending from "../components/Trending";
 import Living from "../components/Living";
-import living1 from '../photos/living1.jpg';
-import living2 from '../photos/living2.jpg';
+import living1 from '../assets/photos/living1.jpg';
+import living2 from '../assets/photos/living2.jpg';
 import { LivingInfo, Product, ProductAndTitleText } from "../types/types";
-import chair1 from '../photos/chair1.jpg';
-import chair2 from '../photos/chair2.jpg';
-import sofa2 from '../photos/sofa2.jpg';
-import sofa3 from '../photos/sofa3.jpg';
-import nightstand2 from '../photos/nightstand2.jpg';
-import nightstand3 from '../photos/nightstand3.jpg';
-import table1 from '../photos/table1.jpg';
-import table4 from '../photos/table4.jpg';
+import chair1 from '../assets/photos/chair1.jpg';
+import chair2 from '../assets/photos/chair2.jpg';
+import sofa2 from '../assets/photos/sofa2.jpg';
+import sofa3 from '../assets/photos/sofa3.jpg';
+import nightstand2 from '../assets/photos/nightstand2.jpg';
+import nightstand3 from '../assets/photos/nightstand3.jpg';
+import table1 from '../assets/photos/table1.jpg';
+import table4 from '../assets/photos/table4.jpg';
 
 
 

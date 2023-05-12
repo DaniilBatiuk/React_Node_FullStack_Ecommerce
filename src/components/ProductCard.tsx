@@ -1,6 +1,6 @@
 import React from "react";
 import { Product } from "../types/types";
-
+import "../styles/ProductCard.scss";
 interface ProductProps {
     product: Product;
 }

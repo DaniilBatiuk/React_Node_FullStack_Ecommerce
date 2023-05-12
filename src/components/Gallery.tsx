@@ -1,9 +1,10 @@
 import React from "react";
-import gallery1 from '../photos/gallery1.jpg';
-import gallery2 from '../photos/gallery2.jpg';
-import gallery3 from '../photos/gallery3.jpg';
-import gallery4 from '../photos/gallery4.jpg';
-import gallery5 from '../photos/gallery5.jpg';
+import gallery1 from '../assets/photos/gallery1.jpg';
+import gallery2 from '../assets/photos/gallery2.jpg';
+import gallery3 from '../assets/photos/gallery3.jpg';
+import gallery4 from '../assets/photos/gallery4.jpg';
+import gallery5 from '../assets/photos/gallery5.jpg';
+import "../styles/Gallery.scss";
 
 
 

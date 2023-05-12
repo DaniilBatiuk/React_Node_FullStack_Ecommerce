@@ -1,0 +1,90 @@
+@import "Variables.scss";
+
+.living {
+    margin-bottom: $marginButtomNotPhone;
+  
+    &__items {
+      display: flex;
+      position: relative;
+    }
+  
+    &__text {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+      padding: 50px;
+    }
+  
+    &__decription {
+      font-size: $CommonFontSize;
+      margin: 20px;
+    }
+  
+    &__button {
+      background-color: black;
+      color: white;
+      width: 140px;
+      height: 45px;
+      font-size: $CommonFontSize + 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    &__button:hover {
+      color: white;
+    }
+  
+    &__image {
+      position: relative;
+      background-color: lightgray;
+      padding: 0px 0px 55% 0px;
+      min-height: 550px;
+      width: 50%;
+    }
+  
+    &__image img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+      animation: slide-in 1s forwards;
+    }
+  }
+  
+  
+  @media (max-width:575.98px) {
+    .living {
+      margin-bottom: $marginButtomPhone;
+    }
+  }
+  
+  @media (max-width:767.98px) {
+    .living__text {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      color: white;
+      padding: 0px;
+      font-weight: bold;
+      user-select: none;
+      width: 100%;
+      top: 0;
+      z-index: 1;
+    }
+  
+    .living__image {
+      width: 100%;
+      filter: brightness(0.8);
+    }
+  
+    .living__button {
+      position: absolute;
+      bottom: 10%;
+    }
+  }

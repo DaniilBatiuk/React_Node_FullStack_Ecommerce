@@ -2,10 +2,12 @@ import React from "react";
 import ProductCard from "./ProductCard";
 import {ProductAndTitleText } from "../types/types";
 import Title from "./Title";
+import "../styles/ProductList.scss";
 
 interface ProductsListProps {
     productAndTitleText: ProductAndTitleText;
 }
+
 const ProductsList: React.FC<ProductsListProps> = ({ productAndTitleText }: ProductsListProps) => {
     return (
 

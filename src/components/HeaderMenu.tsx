@@ -1,7 +1,7 @@
 import React from "react";
-import logo from "../photos/logo.jpg";
+import logo from "../assets/photos/logo.jpg";
 import { Link } from "react-router-dom";
-
+import "../styles/Header.scss";
 const HeaderMenu: React.FC = () => {
 
     const ShowMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -10,21 +10,26 @@ const HeaderMenu: React.FC = () => {
             document.documentElement.classList.toggle('menu-open');
         }
     }
+
+    const ScrollUp = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     return (
         <header className="header">
             <div className="header__container">
                 <div className="header__content">
-                    <Link to="/" className="header__logo">
+                    <Link to="/" className="header__logo" onClick={ScrollUp}>
                         <img src={logo} alt="" />
                     </Link>
                     <nav className="header__menu menu">
                         <div className="menu__body">
                             <ul className="menu__list">
                                 <li>
-                                    <Link to="/Categories" className="menu__link">Categories</Link>
+                                    <Link to="/Categories" className="menu__link" onClick={ScrollUp}>Categories</Link>
                                 </li>
                                 <li>
-                                    <Link to="/" className="menu__link">Product page</Link>
+                                    <Link to="/" className="menu__link" onClick={ScrollUp}>Product page</Link>
                                 </li>
                             </ul>
                         </div>
