@@ -1,89 +1,89 @@
 @import "Variables.scss";
 
 .trending {
-    margin-bottom: $marginButtomNotPhone;
-  
-    &__title-buttons {
-      display: flex;
-      justify-content: space-between;
-    }
-  
-    &__buttons {
-      width: 110px;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-    }
-  
-    &__button:last-child {
-      margin-left: 10px;
-    }
-  
-    &__button {
-      background-color: black;
-      color: white;
-      width: 45px;
-      height: 45px;
-      font-size: $CommonFontSize;
-    }
-  
-    &__items {
-      display: flex;
-      overflow-x: scroll;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      margin-top: 50px;
-    }
-  
-    &__items * {
-      min-width: 20%;
-    }
-  
-    &__items::-webkit-scrollbar {
-      display: block;
-      width: 10px;
-      overflow: auto;
-      height: 5px;
-      background-color: lightgray
-    }
-  
-    &__items::-webkit-scrollbar-thumb {
-      background: gray;
-    }
+  margin-bottom: $marginButtomNotPhone;
+
+  &__title-buttons {
+    display: flex;
+    justify-content: space-between;
   }
-  
-  @media (max-width:1199.98px) {
-    .trending__items * {
-      min-width: 25%;
-    }
+
+  &__buttons {
+    width: 110px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
   }
-  
-  @media (max-width:991.98px) {
-    .trending__items * {
-      min-width: 33%;
-    }
+
+  &__button:last-child {
+    margin-left: 10px;
   }
-  
-  @media (max-width:767.98px) {
-    .trending__items * {
-      min-width: 50%;
-    }
+
+  &__button {
+    background-color: black;
+    color: white;
+    width: 45px;
+    height: 45px;
+    font-size: $CommonFontSize;
   }
-  
-  @media (max-width:575.98px) {
-    .trending__items * {
-      min-width: 100%;
-    }
-  
-    .trending {
-      margin-bottom: $marginButtomPhone;
-    }
-  
-    .trending__items {
-      display: flex;
-      overflow-x: scroll;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      margin-top: 20px;
-    }
+
+  &__items {
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 50px;
   }
+
+  &__items * {
+    min-width: 20%;
+  }
+
+  &__items::-webkit-scrollbar {
+    display: block;
+    width: 10px;
+    overflow: auto;
+    height: 5px;
+    background-color: lightgray
+  }
+
+  &__items::-webkit-scrollbar-thumb {
+    background: gray;
+  }
+}
+
+@media (max-width:1199.98px) {
+  .trending__items * {
+    min-width: 25%;
+  }
+}
+
+@media (max-width:991.98px) {
+  .trending__items * {
+    min-width: 33%;
+  }
+}
+
+@media (max-width:767.98px) {
+  .trending__items * {
+    min-width: 50%;
+  }
+}
+
+@media (max-width:575.98px) {
+  .trending__items * {
+    min-width: 100%;
+  }
+
+  .trending {
+    margin-bottom: $marginButtomPhone;
+  }
+
+  .trending__items {
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 20px;
+  }
+}

@@ -1,64 +1,68 @@
 @import "Variables.scss";
 
 .category-nav {
-    margin-top: $marginButtomNotPhone + 50;
-    margin-bottom: $marginButtomNotPhone;
+  margin-top: $marginButtomNotPhone + 50;
+  margin-bottom: $marginButtomNotPhone;
+
+  &__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0px;
+  }
+
+  &__link {
+    font-size: $CommonFontSize;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__title {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__list {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+}
+
+.navigation-list {
+  &__item {
+    border: 2px solid rgb(212, 208, 208);
+    transition: border 0.3s ease-in-out;
+    font-size: $CommonFontSize;
+    padding: 10px;
+
+    &:hover {
+      border: 2px solid black;
+    }
+  }
+}
+
+
+@media (max-width:575.98px) {
+  .category-nav {
+    margin-top: $marginButtomPhone + 50;
+    margin-bottom: $marginButtomPhone;
+
     &__header {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 50px 0px;
+      flex-direction: column;
+      gap: 10px;
     }
-  
+
     &__link {
-      font-size: $CommonFontSize;
-  
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  
-    &__title {
-      flex: 1 1 auto;
-      display: flex;
-      justify-content: center;
-    }
-  
-    &__list {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
+      align-self: flex-start;
     }
   }
-  
-  .navigation-list {
-    &__item {
-      border: 2px solid rgb(212, 208, 208);
-      transition: border 0.3s ease-in-out;
-      font-size: $CommonFontSize;
-      padding: 10px;
-  
-      &:hover {
-        border: 2px solid black;
-      }
-    }
+
+  .navigation-list__item {
+    font-size: $LittleCommonFontSize;
   }
-  
-  
-  @media (max-width:575.98px) {
-    .category-nav {
-      margin-top: $marginButtomPhone + 50;
-      margin-bottom: $marginButtomPhone;
-      &__header {
-        flex-direction: column;
-        gap: 10px;
-      }
-      &__link {
-        align-self: flex-start;
-      }
-    }
-    .navigation-list__item{
-      font-size: $LittleCommonFontSize;
-    }
-  }
+}
