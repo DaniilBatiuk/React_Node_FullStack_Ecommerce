@@ -15,3 +15,10 @@ export const productInfoValidation = [
     body('title').isLength({ min: 3 }),
     body('description').isLength({ min: 3 }),
 ]
+
+export const registerValidation = [
+    body('email', 'Email error').isEmail(),
+    body('password', 'password error').isLength({ min: 5 }),
+    body('fullName', 'fullName error').isLength({ min: 3 }),
+]
+
