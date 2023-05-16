@@ -6,17 +6,19 @@ import { validationResult } from 'express-validator'
 import dotenv from 'dotenv';
 dotenv.config();
 
-import { productValidation, typeValidation, productInfoValidation, registerValidation } from './validations.js';
+import { productCreateValidation, typeCreateValidation, registerValidation, loginValidation } from './validations.js';
 
 import TypeModel from './models/Type.js'
 import ProductModel from './models/Product.js'
-import ProductInfoModel from './models/ProductInfo.js'
 import UserModel from './models/User.js'
 
-import checkAuth from './utils/checkAuth.js'
+import checkAuthMiddleware from './middleware/checkAuthMiddleware.js'
+
 import User from './models/User.js';
 
 import * as UserController from './controllers/UserController.js'
+import * as ProductController from './controllers/ProductController.js'
+import * as TypeController from './controllers/TypeController.js'
 
 const PORT = process.env.PORT || 5000
 
@@ -29,65 +31,29 @@ const app = express();
 app.use(express.json());
 
 
-app.post('/auth/login', UserController.login);
+app.post('/auth/login', loginValidation, UserController.login);
 app.post('/auth/register', registerValidation, UserController.register);
-app.get('/auth/me', checkAuth, UserController.getMe);
+app.get('/auth/me', checkAuthMiddleware, UserController.getMe);
 
 
-app.post('/product/type', typeValidation, async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        console.log(errors.array());
-        return res.status(400).json(errors.array());
-    }
-
-    const doc = new TypeModel({
-        name: req.body.name,
-    });
-
-    const type = await doc.save();
-
-    res.json(type);
-});
-
-app.post('/product/product', productValidation, async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        console.log(errors.array());
-        return res.status(400).json(errors.array());
-    }
-
-    const doc = new ProductModel({
-        title: req.body.title,
-        price: req.body.price,
-        rating: req.body.rating,
-        img: req.body.img,
-        type: req.body.type,
-    });
-
-    const type = await doc.save();
-
-    res.json(type);
-});
+//app.get('/type', TypeController.getAll);
+//app.get('/type/:id', TypeController.getOne);
+app.post('/type', checkAuthMiddleware, typeCreateValidation, TypeController.create);
+//app.delete('/type/:id', TypeController.remove);
+//app.patch('/type', TypeController.update);
 
 
-app.post('/product/productInfo', productInfoValidation, async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        console.log(errors.array());
-        return res.status(400).json(errors.array());
-    }
+//app.get('/product', productCreateValidation,ProductController.getAll);
+//app.get('/product/:id', productCreateValidation,ProductController.getOne);
+app.post('/product', checkAuthMiddleware, TypeController.getIdByName, productCreateValidation, ProductController.create);
+//app.delete('/product:id', productCreateValidation,ProductController.remove);
+//app.patch('/product', productCreateValidation,ProductController.update);
 
-    const doc = new ProductInfoModel({
-        product_id: req.body.product_id,
-        title: req.body.title,
-        description: req.body.description,
-    });
 
-    const type = await doc.save();
 
-    res.json(type);
-});
+
+
+
 
 
 

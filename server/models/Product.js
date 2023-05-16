@@ -11,17 +11,34 @@ const ProductSchema = new mongoose.Schema({
     },
     rating: {
         type: Number,
-        required: false
+        required: false,
+        default: 0
     },
     img: [{
         type: String,
         required: false
     }],
+    characteristic: [{
+        title: {
+            type: String,
+            required: true,
+        },
+        description: {
+            type: String,
+            required: true,
+        }
+    }],
     type: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Type',
         required: true
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
+    
 });
 
 export default mongoose.model('Product', ProductSchema);
