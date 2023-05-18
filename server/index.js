@@ -1,24 +1,15 @@
 import express from 'express';
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
-import { validationResult } from 'express-validator'
+import multer from 'multer';
 import dotenv from 'dotenv';
 dotenv.config();
 
 import { productCreateValidation, typeCreateValidation, registerValidation, loginValidation } from './validations.js';
 
-import TypeModel from './models/Type.js'
-import ProductModel from './models/Product.js'
-import UserModel from './models/User.js'
+import { checkAuthMiddleware, handlerValidationErrorsMiddleware } from './middleware/index.js'
 
-import checkAuthMiddleware from './middleware/checkAuthMiddleware.js'
+import { UserController, ProductController, TypeController } from './controllers/index.js'
 
-import User from './models/User.js';
-
-import * as UserController from './controllers/UserController.js'
-import * as ProductController from './controllers/ProductController.js'
-import * as TypeController from './controllers/TypeController.js'
 
 const PORT = process.env.PORT || 5000
 
@@ -28,29 +19,44 @@ mongoose.connect(process.env.MONGOOSE_CONNECTION)
 
 const app = express();
 
+const storage = multer.diskStorage({
+    destination: (_, __, cb) => {
+        cb(null, 'uploads');
+    },
+    filename: (_, file, cb) => {
+        cb(null, file.originalname);
+    },
+});
+
+const upload = multer({ storage });
+
+
 app.use(express.json());
+app.use('/uploads', express.static('uploads'));
 
-
-app.post('/auth/login', loginValidation, UserController.login);
-app.post('/auth/register', registerValidation, UserController.register);
+app.post('/auth/login', loginValidation, handlerValidationErrorsMiddleware, UserController.login);
+app.post('/auth/register', registerValidation, handlerValidationErrorsMiddleware, UserController.register);
 app.get('/auth/me', checkAuthMiddleware, UserController.getMe);
 
 
-//app.get('/type', TypeController.getAll);
-//app.get('/type/:id', TypeController.getOne);
-app.post('/type', checkAuthMiddleware, typeCreateValidation, TypeController.create);
-//app.delete('/type/:id', TypeController.remove);
-//app.patch('/type', TypeController.update);
+app.get('/type', TypeController.getAll);
+app.get('/type/:id', TypeController.getOne);
+app.post('/type', checkAuthMiddleware, typeCreateValidation, handlerValidationErrorsMiddleware, TypeController.create);
+app.delete('/type/:id', checkAuthMiddleware, TypeController.remove);
+app.patch('/type/:id', checkAuthMiddleware, typeCreateValidation, handlerValidationErrorsMiddleware, TypeController.update);
 
 
-//app.get('/product', productCreateValidation,ProductController.getAll);
-//app.get('/product/:id', productCreateValidation,ProductController.getOne);
-app.post('/product', checkAuthMiddleware, TypeController.getIdByName, productCreateValidation, ProductController.create);
-//app.delete('/product:id', productCreateValidation,ProductController.remove);
-//app.patch('/product', productCreateValidation,ProductController.update);
+app.get('/product', ProductController.getAll);
+app.get('/product/:id', ProductController.getOne);
+app.post('/product', checkAuthMiddleware, TypeController.getIdByName, productCreateValidation, handlerValidationErrorsMiddleware, ProductController.create);
+app.delete('/product/:id', checkAuthMiddleware, ProductController.remove);
+app.patch('/product/:id', checkAuthMiddleware, TypeController.getIdByName, productCreateValidation, handlerValidationErrorsMiddleware, ProductController.update);
 
-
-
+app.post('/upload', checkAuthMiddleware, upload.single('image'), (req, res) => {
+    res.json({
+        url: `/uploads/${req.file.originalname}`,
+    });
+});
 
 
 
