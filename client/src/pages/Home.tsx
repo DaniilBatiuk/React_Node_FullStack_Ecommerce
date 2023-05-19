@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Gallery from "../components/Gallery";
 import ProductsList from "../components/ProductsList";
 import Trending from "../components/Trending";
@@ -14,10 +14,10 @@ import nightstand2 from '../assets/photos/nightstand2.jpg';
 import nightstand3 from '../assets/photos/nightstand3.jpg';
 import table1 from '../assets/photos/table1.jpg';
 import table4 from '../assets/photos/table4.jpg';
-
-
+import axios from '../axios';
 
 const Home: React.FC = () => {
+
     const livingList: LivingInfo[] = [
         {
             photo: living1,
@@ -57,6 +57,7 @@ const Home: React.FC = () => {
             classNames: "products-proud__title"
         }
     };
+
 
     return (
         <>

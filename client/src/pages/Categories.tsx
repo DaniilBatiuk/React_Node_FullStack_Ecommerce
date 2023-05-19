@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CategoryNav from "../components/CategoryNav";
 import ProductsList from "../components/ProductsList";
 import chair1 from '../assets/photos/chair1.jpg';
@@ -18,6 +18,8 @@ import nightstand1 from '../assets/photos/nightstand1.jpg';
 import nightstand4 from '../assets/photos/nightstand4.jpg';
 import nightstand5 from '../assets/photos/nightstand5.jpg';
 import { Product, ProductAndTitleText } from "../types/types";
+import axios from "../axios";
+
 
 const Categories: React.FC = () => {
 
@@ -48,6 +50,9 @@ const Categories: React.FC = () => {
     { photo: table1, title: "Table HT-001 D100 White", price: 230.99 },
     { photo: table4, title: "Corner table 120x80 Black", price: 225.99 }
   ];
+
+
+
 
   const productAndTitleText: ProductAndTitleText = {
     product: productList,
