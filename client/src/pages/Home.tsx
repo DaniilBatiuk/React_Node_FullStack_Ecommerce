@@ -1,20 +1,11 @@
 import React, { useEffect } from "react";
 import Gallery from "../components/Gallery";
-import ProductsList from "../components/ProductsList";
 import Trending from "../components/Trending";
 import Living from "../components/Living";
 import living1 from '../assets/photos/living1.jpg';
 import living2 from '../assets/photos/living2.jpg';
-import { LivingInfo, Product, ProductAndTitleText } from "../types/types";
-import chair1 from '../assets/photos/chair1.jpg';
-import chair2 from '../assets/photos/chair2.jpg';
-import sofa2 from '../assets/photos/sofa2.jpg';
-import sofa3 from '../assets/photos/sofa3.jpg';
-import nightstand2 from '../assets/photos/nightstand2.jpg';
-import nightstand3 from '../assets/photos/nightstand3.jpg';
-import table1 from '../assets/photos/table1.jpg';
-import table4 from '../assets/photos/table4.jpg';
-import axios from '../axios';
+import { LivingInfo } from "../types/types";
+import ProductsProud from "../components/ProductsProud";
 
 const Home: React.FC = () => {
 
@@ -39,30 +30,12 @@ const Home: React.FC = () => {
         },
     ];
 
-    const productList: Product[] = [
-        { photo: chair1, title: "Chair M-45 Mustard corduroy", price: 88.99 },
-        { photo: chair2, title: "Semi-bar chair B-125 Emerald corduroy", price: 70.99 },
-        { photo: sofa2, title: "Corner sofa Loft Green", price: 1250.99 },
-        { photo: sofa3, title: "Sofa Martin Jasmine 91", price: 1011.99 },
-        { photo: nightstand2, title: "Asgard sideboard 1 chipboard Alaska", price: 155.99 },
-        { photo: nightstand3, title: "Bedside table Canelli 1 50 Black", price: 450.99 },
-        { photo: table1, title: "Table HT-001 D100 White", price: 230.99 },
-        { photo: table4, title: "Corner table 120x80 Black", price: 225.99 }
-    ];
-
-    const productAndTitleText: ProductAndTitleText = {
-        product: productList,
-        titleText: {
-            titleText: "Products we are proud of",
-            classNames: "products-proud__title"
-        }
-    };
 
 
     return (
         <>
             <Gallery></Gallery>
-            <ProductsList productAndTitleText={productAndTitleText}></ProductsList>
+            <ProductsProud></ProductsProud>
             <Living livingInfo={livingList[0]}></Living>
             <Trending></Trending>
             <Living livingInfo={livingList[1]}></Living>

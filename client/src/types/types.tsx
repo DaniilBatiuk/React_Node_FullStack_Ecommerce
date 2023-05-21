@@ -9,9 +9,11 @@ export interface LivingInfo {
 
 
 export interface Product {
-    photo: string;
+    _id: string;
     title: string;
     price: number;
+    img: string[];
+    characteristic: Characteristic[];
 }
 
 
@@ -23,4 +25,9 @@ export interface TitleText {
 export interface ProductAndTitleText {
     product: Product[];
     titleText: TitleText;
+}
+
+export interface Characteristic {
+    title: string,
+    description: string,
 }

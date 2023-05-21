@@ -9,7 +9,7 @@ const ProductCard: React.FC<ProductProps> = ({ product }: ProductProps) => {
     return (
         <div className="products-card__item">
             <div className="products-card__image">
-                <img src={product?.photo} alt="" />
+                <img src={`http://localhost:4000${product?.img[0]}`} alt="" />
             </div>
             <div className="products-card__body">
                 <div className="products-card__name">{product?.title}</div>

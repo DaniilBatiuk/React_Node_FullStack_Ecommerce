@@ -74,3 +74,14 @@ button {
 .main {
   flex: 1 1 auto;
 }
+
+.title {
+  font-weight: 700;
+  font-size: $titleFontSize;
+}
+
+@media (max-width:558px) {
+  .title {
+    font-size: $titleFontSizePhone;
+  }
+}
