@@ -53,13 +53,6 @@
   }
 }
 
-@media (min-width:767px) {
-  .gallery__item_big {
-    grid-column: span 2;
-    grid-row: span 2;
-  }
-}
-
 @media (max-width:767px) {
   .gallery__image-text {
     font-size: $titleFontSize;
@@ -69,5 +62,12 @@
 @media (max-width:558px) {
   .gallery {
     margin-bottom: $marginButtomPhone;
+  }
+}
+
+@media (min-width:558px) {
+  .gallery__item_big {
+    grid-column: span 2;
+    grid-row: span 2;
   }
 }

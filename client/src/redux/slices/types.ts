@@ -1,20 +1,20 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../axios';
 
-export const fetchTypes = createAsyncThunk('type/fetchTypes', async () => {
-    const { data } = await axios.get('/type');
+export const fetchTypes = createAsyncThunk<Type[]>('type/fetchTypes', async () => {
+    const { data } = await axios.get<Type[]>('/type');
     return data;
 });
 
 
-export interface TypeState {
+export interface Type {
     _id: string;
     name: string;
     __v: number;
 }
 
 export interface TypesState {
-    types: TypeState[];
+    types: Type[];
 }
 
 
@@ -27,12 +27,17 @@ export const typeSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
+      builder.addCase(fetchTypes.pending, (state) => {
+        state.types = [];
+      });
       builder.addCase(fetchTypes.fulfilled, (state, action) => {
         state.types = action.payload;
+      });
+      builder.addCase(fetchTypes.rejected, (state) => {
+        state.types = [];
       });
     },
   });
 
-export const { } = typeSlice.actions
 
-export default typeSlice.reducer
+export default typeSlice.reducer;

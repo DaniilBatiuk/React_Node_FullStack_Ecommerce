@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import ProductCard from "./ProductCard";
-import { Product } from "../types/types";
 import "../styles/Trending.scss";
-import axios from "../axios";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 
 const Trending: React.FC = () => {
@@ -24,17 +24,8 @@ const Trending: React.FC = () => {
             });
         }
     }, []);
-    const [products, setProducts] = useState<Product[]>([]);
+    const { products } = useSelector((state: RootState) => state.product);
 
-    useEffect(() => {
-        axios.get('/product')
-            .then((res) => {
-                setProducts(res.data);
-            })
-            .catch((err) => {
-                console.warn(err);
-            });
-    }, []);
     return (
         <section className="trending">
             <div className="trending__container">
@@ -46,8 +37,10 @@ const Trending: React.FC = () => {
                     </div>
                 </div>
                 <div className="trending__items" id="scrollConteiner">
-                    {products.map((elem) =>
-                        <ProductCard key={elem._id} product={elem} />
+                    {(products.length !== 0) && (
+                        products.map((elem) => (
+                            <ProductCard key={elem._id} product={elem} />
+                        ))
                     )}
                 </div>
             </div>

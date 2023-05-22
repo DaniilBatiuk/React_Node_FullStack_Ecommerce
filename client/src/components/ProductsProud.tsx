@@ -1,22 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import ProductCard from "./ProductCard";
-import { Product } from "../types/types";
 import "../styles/ProductList.scss";
-import axios from "../axios";
+import { useSelector } from "react-redux";
+import { fetchProducts } from "../redux/slices/products";
+import { RootState, useAppDispatch } from "../redux/store";
 
 
 const ProductsProud: React.FC = () => {
-    const [products, setProducts] = useState<Product[]>([]);
+    const dispatch = useAppDispatch();
+    const { products } = useSelector((state: RootState) => state.product);
 
     useEffect(() => {
-        axios.get('/product')
-            .then((res) => {
-                setProducts(res.data);
-            })
-            .catch((err) => {
-                console.warn(err);
-            });
-    }, []);
+        dispatch(fetchProducts());
+    }, [dispatch]);
+
     return (
 
         <section className="products-proud">
@@ -24,10 +21,11 @@ const ProductsProud: React.FC = () => {
                 <div className="title products-proud__title">Products we are proud of</div>
 
                 <div className="products-proud__items">
-                    {products.slice(0, 8).map((elem) =>
-                        <ProductCard key={elem._id} product={elem} />
+                    {(products.length !== 0) && (
+                        products.slice(0, 8).map((elem) => (
+                            <ProductCard key={elem._id} product={elem} />
+                        ))
                     )}
-
                 </div>
             </div>
         </section>

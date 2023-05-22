@@ -1,31 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import ProductCard from "./ProductCard";
-import { Product } from "../types/types";
 import "../styles/ProductList.scss";
-import axios from "../axios";
+import { useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "../redux/store";
+import { fetchProducts } from "../redux/slices/products";
 
 
 
 
 const ProductsList: React.FC = () => {
-    const [products, setProducts] = useState<Product[]>([]);
+    const dispatch = useAppDispatch();
+    const { products } = useSelector((state: RootState) => state.product);
 
     useEffect(() => {
-        axios.get('/product')
-            .then((res) => {
-                setProducts(res.data);
-            })
-            .catch((err) => {
-                console.warn(err);
-            });
-    }, []);
+        dispatch(fetchProducts());
+    }, [dispatch]);
 
     return (
         <section className="products-proud">
             <div className="products-proud__container">
                 <div className="products-proud__items">
-                    {products.map((elem) =>
-                        <ProductCard key={elem._id} product={elem} />
+                    {(products.length !== 0) && (
+                        products.map((elem) => (
+                            <ProductCard key={elem._id} product={elem} />
+                        ))
                     )}
                 </div>
             </div>
