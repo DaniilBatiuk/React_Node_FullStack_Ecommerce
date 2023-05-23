@@ -78,10 +78,7 @@ button {
 .title {
   font-weight: 700;
   font-size: $titleFontSize;
-}
-
-@media (max-width:558px) {
-  .title {
+  @media (max-width:558px) {
     font-size: $titleFontSizePhone;
   }
 }

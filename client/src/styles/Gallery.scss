@@ -37,6 +37,14 @@
     font-size: 42px;
     font-weight: bold;
     user-select: none;
+
+    @media (max-width:767px) {
+      font-size: $titleFontSize;
+    }
+  }
+
+  @media (max-width:558px) {
+    margin-bottom: $marginButtomPhone;
   }
 }
 
@@ -50,18 +58,6 @@
   100% {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@media (max-width:767px) {
-  .gallery__image-text {
-    font-size: $titleFontSize;
-  }
-}
-
-@media (max-width:558px) {
-  .gallery {
-    margin-bottom: $marginButtomPhone;
   }
 }
 

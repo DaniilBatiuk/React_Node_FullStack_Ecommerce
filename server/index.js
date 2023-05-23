@@ -49,8 +49,9 @@ app.delete('/type/:id', checkAuthMiddleware, TypeController.remove);
 app.patch('/type/:id', checkAuthMiddleware, typeCreateValidation, handlerValidationErrorsMiddleware, TypeController.update);
 
 
-app.get('/product', ProductController.getAll);
 app.get('/product/:id', ProductController.getOne);
+app.get('/product/type/:type', ProductController.getAllByType);
+app.get('/product', ProductController.getAll);
 app.post('/product', checkAuthMiddleware, TypeController.getIdByName, productCreateValidation, handlerValidationErrorsMiddleware, ProductController.create);
 app.delete('/product/:id', checkAuthMiddleware, ProductController.remove);
 app.patch('/product/:id', checkAuthMiddleware, TypeController.getIdByName, productCreateValidation, handlerValidationErrorsMiddleware, ProductController.update);

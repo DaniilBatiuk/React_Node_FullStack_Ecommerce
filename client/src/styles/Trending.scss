@@ -33,10 +33,34 @@
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     margin-top: 50px;
+
+    @media (max-width:575.98px) {
+      display: flex;
+      overflow-x: scroll;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 20px;
+    }
   }
 
   &__items * {
     min-width: 20%;
+
+    @media (max-width:1199.98px) {
+      min-width: 25%;
+    }
+
+    @media (max-width:991.98px) {
+      min-width: 33%;
+    }
+
+    @media (max-width:767.98px) {
+      min-width: 50%;
+    }
+
+    @media (max-width:575.98px) {
+      min-width: 100%;
+    }
   }
 
   &__items::-webkit-scrollbar {
@@ -50,40 +74,8 @@
   &__items::-webkit-scrollbar-thumb {
     background: gray;
   }
-}
 
-@media (max-width:1199.98px) {
-  .trending__items * {
-    min-width: 25%;
-  }
-}
-
-@media (max-width:991.98px) {
-  .trending__items * {
-    min-width: 33%;
-  }
-}
-
-@media (max-width:767.98px) {
-  .trending__items * {
-    min-width: 50%;
-  }
-}
-
-@media (max-width:575.98px) {
-  .trending__items * {
-    min-width: 100%;
-  }
-
-  .trending {
+  @media (max-width:575.98px) {
     margin-bottom: $marginButtomPhone;
-  }
-
-  .trending__items {
-    display: flex;
-    overflow-x: scroll;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    margin-top: 20px;
   }
 }

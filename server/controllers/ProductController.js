@@ -1,5 +1,3 @@
-
-
 import ProductModel from '../models/Product.js'
 
 
@@ -37,19 +35,19 @@ export const getAll = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'Can not get products',
+            message: 'Can not get all products',
         });
     }
 };
 
 
-export const getOne = async (req, res) => {
+export const getAllByType = async (req, res) => {
     try {
-        const productId = req.params.id;
-        const product = await ProductModel.findOne({ _id: productId });
-        if (!product) {
+        const typeId = req.params.type;
+        const product = await ProductModel.find({ type: typeId }).populate(['user', 'type']).exec();
+        if (!product || product.length == 0) {
             return res.status(404).json({
-                message: 'Can not get product',
+                message: 'Can not get products by type',
             });
         }
         res.json(product);
@@ -57,11 +55,29 @@ export const getOne = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'Can not get product',
+            message: 'Can not get products by type',
         });
     }
 };
 
+export const getOne = async (req, res) => {
+    try {
+        const productId = req.params.id;
+        const product = await ProductModel.findOne({ _id: productId });
+        if (!product) {
+            return res.status(404).json({
+                message: 'Can not get product by id',
+            });
+        }
+        res.json(product);
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: 'Can not get product by id',
+        });
+    }
+};
 
 export const remove = async (req, res) => {
     try {

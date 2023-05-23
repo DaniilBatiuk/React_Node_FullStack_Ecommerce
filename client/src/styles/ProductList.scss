@@ -8,12 +8,22 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     margin-top: 50px;
     margin-bottom: $marginButtomNotPhone;
-  }
-}
 
-@media (max-width:558px) {
-  .products-proud__items {
-    margin-bottom: $marginButtomPhone;
-    margin-top: 20px;
+    @media (max-width: 558px) {
+      margin-bottom: $marginButtomPhone;
+      margin-top: 20px;
+    }
+
+    @media (min-width: 566.98px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 836.98px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (min-width: 1106.98px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 }

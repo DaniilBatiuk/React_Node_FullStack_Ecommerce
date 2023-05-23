@@ -55,26 +55,24 @@
     width: 60px;
     height: 60px;
   }
+
+  @media (max-width:575.98px) {
+    flex-direction: column;
+  }
 }
 
 .label {
   font-weight: 700;
   font-size: $titleFontSize;
   text-align: center;
+
+  @media (max-width:575.98px) {
+    font-size: $titleFontSizePhone;
+  }
 }
 
 .contacts {
   display: flex;
   flex-direction: column;
   gap: 30px;
-}
-
-@media (max-width:575.98px) {
-  .label {
-    font-size: $titleFontSizePhone;
-  }
-
-  .main-footer {
-    flex-direction: column;
-  }
 }
