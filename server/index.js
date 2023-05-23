@@ -12,7 +12,6 @@ import { checkAuthMiddleware, handlerValidationErrorsMiddleware } from './middle
 
 import { UserController, ProductController, TypeController } from './controllers/index.js'
 
-
 const PORT = process.env.PORT || 5000
 
 mongoose.connect(process.env.MONGOOSE_CONNECTION)
