@@ -32,8 +32,16 @@ const Trending: React.FC = () => {
                 <div className="trending__title-buttons">
                     <div className="trending__title title">Trending Now</div>
                     <div className="trending__buttons">
-                        <button className="trending__button" id="scrollLeftButton">&#129128;</button>
-                        <button className="trending__button" id="scrollRightButton">&#129130;</button>
+                        <button className="trending__button" id="scrollLeftButton">
+                            <svg className="strelka-left-4" viewBox="0 0 100 85">
+                                <polygon points="58.263,0.056 100,41.85 58.263,83.641 30.662,83.641 62.438,51.866 0,51.866 0,31.611 62.213,31.611 30.605,0 58.263,0.056" ></polygon>
+                            </svg>
+                        </button>
+                        <button className="trending__button" id="scrollRightButton">
+                            <svg className="strelka-right-4" viewBox="0 0 100 85">
+                                <polygon points="58.263,0.056 100,41.85 58.263,83.641 30.662,83.641 62.438,51.866 0,51.866 0,31.611 62.213,31.611 30.605,0 58.263,0.056" ></polygon>
+                            </svg>
+                        </button>
                     </div>
                 </div>
                 <div className="trending__items" id="scrollConteiner">

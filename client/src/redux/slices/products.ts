@@ -24,7 +24,8 @@ const initialState: ProductsState = {
 export const productSlice = createSlice({
   name: 'product',
   initialState,
-  reducers: {},
+  reducers: {
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.pending, (state) => {
       state.products = [];
@@ -46,5 +47,6 @@ export const productSlice = createSlice({
     });
   },
 });
+
 
 export default productSlice.reducer;

@@ -19,12 +19,23 @@
     margin-left: 10px;
   }
 
+  &__button:first-child {
+    transform: rotate(180deg);
+  }
+
   &__button {
     background-color: black;
-    color: white;
     width: 45px;
     height: 45px;
     font-size: $CommonFontSize;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    svg {
+      fill: white;
+      width: 20px;
+    }
   }
 
   &__items {

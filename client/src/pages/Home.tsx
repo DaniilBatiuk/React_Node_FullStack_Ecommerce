@@ -6,6 +6,10 @@ import living1 from '../assets/photos/living1.jpg';
 import living2 from '../assets/photos/living2.jpg';
 import { LivingInfo } from "../types/types";
 import ProductsProud from "../components/ProductsProud";
+import { useAppDispatch } from "../redux/store";
+import { setTypeName } from "../redux/slices/types";
+import { fetchProducts } from "../redux/slices/products";
+
 
 const Home: React.FC = () => {
 
@@ -30,8 +34,14 @@ const Home: React.FC = () => {
         },
     ];
 
+    const dispatch = useAppDispatch();
 
+    useEffect(() => {
+        dispatch(setTypeName("All"));
+        dispatch(fetchProducts());
+    }, [dispatch]);
 
+    
     return (
         <>
             <Gallery></Gallery>

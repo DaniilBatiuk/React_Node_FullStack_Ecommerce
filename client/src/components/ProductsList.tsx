@@ -1,20 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ProductCard from "./ProductCard";
 import "../styles/ProductList.scss";
 import { useSelector } from "react-redux";
-import { RootState, useAppDispatch } from "../redux/store";
-import { fetchProducts } from "../redux/slices/products";
+import { RootState } from "../redux/store";
 
 
 
 
 const ProductsList: React.FC = () => {
-    const dispatch = useAppDispatch();
     const { products } = useSelector((state: RootState) => state.product);
-
-    useEffect(() => {
-        dispatch(fetchProducts());
-    }, [dispatch]);
 
     return (
         <section className="products-proud">

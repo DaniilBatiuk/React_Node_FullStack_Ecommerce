@@ -2,8 +2,9 @@ import React from "react";
 import logo from "../assets/photos/logo.jpg";
 import { Link } from "react-router-dom";
 import "../styles/Header.scss";
-const HeaderMenu: React.FC = () => {
 
+const HeaderMenu: React.FC = () => {
+    
     const ShowMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
         const targetItem = e.target as Element;
         if (targetItem.closest('.icon-menu')) {
