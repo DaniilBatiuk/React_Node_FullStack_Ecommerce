@@ -1,13 +1,14 @@
 import React from "react";
 import { Product } from "../types/types";
 import "../styles/ProductCard.scss";
+import { Link } from "react-router-dom";
 interface ProductProps {
     product: Product;
 }
-
 const ProductCard: React.FC<ProductProps> = ({ product }: ProductProps) => {
+
     return (
-        <div className="products-card__item">
+        <Link to={`/Product/${product._id}`} className="products-card__item">
             <div className="products-card__image">
                 <img src={`http://localhost:4000${product?.img[0]}`} alt="" />
             </div>
@@ -15,7 +16,7 @@ const ProductCard: React.FC<ProductProps> = ({ product }: ProductProps) => {
                 <div className="products-card__name">{product?.title}</div>
                 <div className="products-card__price">{product?.price}$</div>
             </div>
-        </div>
+        </Link>
     );
 }
 

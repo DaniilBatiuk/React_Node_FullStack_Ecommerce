@@ -1,0 +1,108 @@
+@import "Variables.scss";
+
+.product {
+    margin-top: $marginButtomNotPhone;
+    margin-bottom: $marginButtomNotPhone;
+
+    &__container {}
+
+    &__title {
+        text-align: center;
+    }
+
+    &__main {
+        margin: $marginButtomPhone 0px;
+        display: flex;
+        @media (max-width: 575.98px) {
+            margin-bottom: $marginButtomPhone;
+            margin-top: $marginButtomPhone;
+        }
+    }
+
+    &__photos {
+        width: 40%;
+        margin-right: 10%;
+        @media (max-width: 767.98px) {
+            width: 45%;
+            margin-right: 5%;
+        }
+    }
+
+    &__description {
+        width: 50%;
+    }
+
+    @media (max-width:575.98px) {
+        margin-top: $marginButtomPhone + 50;
+        margin-bottom: $marginButtomPhone;
+    }
+}
+
+.photos {
+    &__main {}
+
+    &__main-photo {
+        position: relative;
+        background-color: lightgray;
+        padding: 90px 0px 80% 0px;
+        margin: 0px 0px 20px 0px;
+    }
+
+    &__main-photo img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+    }
+
+    &__all {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    &__litle-photo {
+        position: relative;
+        background-color: lightgray;
+        padding: 70px 0px 20% 0px;
+        width: 33%;
+        border: 3px solid rgb(240, 236, 236);
+        transition: border 0.3s ease-in-out;
+
+        &:hover {
+            border: 3px solid black;
+        }
+
+        @media (max-width: 767.98px) {
+            padding: 50px 0px 20% 0px;
+        }
+
+    }
+
+    &__litle-photo img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+    }
+}
+
+.description {
+
+    &__text {
+        font-size: $CommonFontSize;
+    }
+
+    &__quantity {}
+
+    &__buttons {}
+
+    &__button-add {}
+
+    &__button-buy-now {}
+}

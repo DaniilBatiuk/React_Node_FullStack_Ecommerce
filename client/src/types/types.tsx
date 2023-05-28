@@ -12,6 +12,7 @@ export interface Product {
     _id: string;
     title: string;
     price: number;
+    rating: number;
     img: string[];
     characteristic: Characteristic[];
 }
