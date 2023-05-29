@@ -7,8 +7,13 @@ interface ProductProps {
 }
 const ProductCard: React.FC<ProductProps> = ({ product }: ProductProps) => {
 
+
+    const ScrollUp = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     return (
-        <Link to={`/Product/${product._id}`} className="products-card__item">
+        <Link to={`/Product/${product._id}`} className="products-card__item" onClick={ScrollUp}>
             <div className="products-card__image">
                 <img src={`http://localhost:4000${product?.img[0]}`} alt="" />
             </div>

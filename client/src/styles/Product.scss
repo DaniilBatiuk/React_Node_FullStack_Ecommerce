@@ -4,7 +4,9 @@
     margin-top: $marginButtomNotPhone;
     margin-bottom: $marginButtomNotPhone;
 
-    &__container {}
+    &__container {
+        max-width: 991.98px;
+    }
 
     &__title {
         text-align: center;
@@ -13,23 +15,37 @@
     &__main {
         margin: $marginButtomPhone 0px;
         display: flex;
+
         @media (max-width: 575.98px) {
             margin-bottom: $marginButtomPhone;
             margin-top: $marginButtomPhone;
+            flex-wrap: wrap;
         }
     }
 
     &__photos {
         width: 40%;
         margin-right: 10%;
+
         @media (max-width: 767.98px) {
             width: 45%;
             margin-right: 5%;
+        }
+
+        @media (max-width: 575.98px) {
+            width: 100%;
+            margin-right: 0%;
         }
     }
 
     &__description {
         width: 50%;
+        margin-top: $marginButtomPhone;
+
+        @media (max-width: 575.98px) {
+            width: 100%;
+            margin-top: $marginButtomPhone;
+        }
     }
 
     @media (max-width:575.98px) {
@@ -96,13 +112,80 @@
 
     &__text {
         font-size: $CommonFontSize;
+
+        @media (max-width:767.98px) {
+            font-size: $LittleCommonFontSize;
+        }
     }
 
-    &__quantity {}
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+        font-size: $CommonFontSize;
+        font-weight: 700;
+        height: 50px;
 
-    &__buttons {}
+        @media (max-width:767.98px) {
+            font-size: $LittleCommonFontSize;
+        }
+    }
 
-    &__button-add {}
+    &__button-add {
+        width: 45%;
+        border: 2px solid black;
+    }
 
-    &__button-buy-now {}
+    &__button-buy-now {
+        width: 45%;
+        background-color: rgb(196, 29, 29);
+        color: white;
+    }
+}
+
+.quantity {
+    font-size: $CommonFontSize + 4px;
+    display: flex;
+    justify-content: space-between;
+    margin: $marginButtomPhone 20px;
+    align-items: center;
+
+    @media (max-width:767.98px) {
+        font-size: $LittleCommonFontSize + 2px;
+        margin: $marginButtomPhone 0px;
+    }
+
+    &__name {
+        font-weight: 700;
+    }
+
+    &__block {
+        display: flex;
+        width: 150px;
+        height: 50px;
+        border: 2px solid black;
+    }
+
+    &__button {
+        width: 32%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 5px;
+        font-weight: 700;
+    }
+
+    &__text {
+        width: 36%;
+        border-left: 2px solid black;
+        border-right: 2px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 5px;
+        font-weight: 500;
+    }
+
+    &__price {
+        font-weight: 700;
+    }
 }
