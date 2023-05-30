@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { LivingInfo } from "../types/types";
 import "../styles/Living.scss";
+import { ScrollUp } from "../utils/functions";
 
 
 interface LivingProps {
@@ -9,12 +10,6 @@ interface LivingProps {
 }
 
 const Living: React.FC<LivingProps> = ({ livingInfo }: LivingProps) => {
-
-
-    const ScrollUp = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
 
     return (
         <section className="living">

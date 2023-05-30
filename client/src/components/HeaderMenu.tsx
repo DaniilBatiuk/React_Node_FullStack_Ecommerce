@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../assets/photos/logo.jpg";
 import { Link } from "react-router-dom";
 import "../styles/Header.scss";
+import { ScrollUp } from "../utils/functions";
 
 const HeaderMenu: React.FC = () => {
     
@@ -10,10 +11,6 @@ const HeaderMenu: React.FC = () => {
         if (targetItem.closest('.icon-menu')) {
             document.documentElement.classList.toggle('menu-open');
         }
-    }
-
-    const ScrollUp = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     return (

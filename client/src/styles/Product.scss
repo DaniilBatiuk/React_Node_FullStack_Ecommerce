@@ -55,8 +55,6 @@
 }
 
 .photos {
-    &__main {}
-
     &__main-photo {
         position: relative;
         background-color: lightgray;
@@ -110,12 +108,13 @@
 
 .description {
 
-    &__text {
-        font-size: $CommonFontSize;
+    &__characteristic {
+        font-size: $CommonFontSize + 3px;
 
         @media (max-width:767.98px) {
-            font-size: $LittleCommonFontSize;
+            font-size: $LittleCommonFontSize + 3px;
         }
+
     }
 
     &__buttons {
@@ -187,5 +186,19 @@
 
     &__price {
         font-weight: 700;
+        min-width: 70px;
+        text-align: left;
+    }
+}
+
+.characteristic {
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        margin: 5px 0px;
+    }
+
+    &__description {
+        word-wrap: break-word;
     }
 }

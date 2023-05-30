@@ -21,7 +21,7 @@ const ProductSelect: React.FC = () => {
             .catch((err) => {
                 console.warn(err);
             })
-    }, []);
+    }, [id]);
 
     return (
         <section className="product">
@@ -45,7 +45,16 @@ const ProductSelect: React.FC = () => {
                         </div>
                     </div>
                     <div className="product__description description">
-                        <div className="description__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque libero tenetur, natus eligendi adipisci tempore. Nulla error rem voluptate iste iure, officia omnis placeat possimus laborum perspiciatis. Repellat, voluptatum quibusdam.</div>
+                        <div className="description__characteristic characteristic">
+                            {(product?.img.length !== 0) && (
+                                product?.characteristic.map((elem) => (
+                                    <div className="characteristic__item">
+                                        <div>{elem.title}:</div>
+                                        <div className="characteristic__description">{elem.description}</div>
+                                    </div>
+                                ))
+                            )}
+                        </div>
                         <div className="description__quantity quantity">
                             <div className="quantity__name">Quantity</div>
                             <div className="quantity__block">

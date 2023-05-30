@@ -2,15 +2,11 @@ import React from "react";
 import { Product } from "../types/types";
 import "../styles/ProductCard.scss";
 import { Link } from "react-router-dom";
+import { ScrollUp } from "../utils/functions";
 interface ProductProps {
     product: Product;
 }
 const ProductCard: React.FC<ProductProps> = ({ product }: ProductProps) => {
-
-
-    const ScrollUp = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
 
     return (
         <Link to={`/Product/${product._id}`} className="products-card__item" onClick={ScrollUp}>

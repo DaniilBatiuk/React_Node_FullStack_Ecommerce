@@ -10,6 +10,7 @@ import { RootState, useAppDispatch } from "../redux/store";
 import { fetchProductsByType } from "../redux/slices/products";
 import { Type, setTypeName } from "../redux/slices/types";
 import { useSelector } from "react-redux";
+import { ScrollUp } from "../utils/functions";
 
 const galleryImages = [
   gallery0,
@@ -22,10 +23,6 @@ const galleryImages = [
 const Gallery: React.FC = () => {
   const { types } = useSelector((state: RootState) => state.type);
   const dispatch = useAppDispatch();
-
-  const ScrollUp = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
 
   const SelectByType = (type: Type) => {
     dispatch(fetchProductsByType(type._id));
