@@ -33,12 +33,14 @@ const Gallery: React.FC = () => {
     <section className="main__gallery gallery">
       <div className="gallery__container">
         <div className="gallery__items">
-          <Link to="/Categories" className="gallery__item gallery__item_big" onClick={() => { ScrollUp(); dispatch(setTypeName("All")); }}>
-            <img src={gallery} alt="" />
-            <div className="gallery__image-text">
-              Live Comfortably
-            </div>
-          </Link>
+          {(types.length !== 0) && (
+            <Link to="/Categories" className="gallery__item gallery__item_big" onClick={() => { ScrollUp(); dispatch(setTypeName("All")); }}>
+              <img src={gallery} alt="" />
+              <div className="gallery__image-text">
+                Live Comfortably
+              </div>
+            </Link>
+          )}
           {(types.length !== 0) && (
             types.slice(0, 4).map((type, i) => (
               <Link to="/Categories" className="gallery__item gallery__item" key={type._id} onClick={() => { ScrollUp(); SelectByType(type); }}>
@@ -49,6 +51,7 @@ const Gallery: React.FC = () => {
               </Link>
             ))
           )}
+
         </div>
       </div>
     </section>

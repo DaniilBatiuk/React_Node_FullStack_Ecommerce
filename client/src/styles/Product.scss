@@ -195,10 +195,16 @@
     &__item {
         display: flex;
         justify-content: space-between;
-        margin: 5px 0px;
+        margin: 10px 0px;
     }
 
     &__description {
         word-wrap: break-word;
+    }
+    &__text{
+        text-align: center;
+        font-size: $CommonFontSize + 5px;
+        font-weight: 700;
+        margin-bottom: 20px;
     }
 }
