@@ -11,10 +11,11 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-      dispatch(fetchProducts());
-      dispatch(fetchTypes());
+    dispatch(fetchProducts());
+    dispatch(fetchTypes());
   }, [dispatch]);
-  
+
+
   return (
     <>
       <HeaderMenu />

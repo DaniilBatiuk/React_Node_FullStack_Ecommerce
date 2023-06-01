@@ -1,0 +1,18 @@
+@import "../../../../styles/Variables.scss";
+
+.my-button {
+    width: 100%;
+    padding: 10px 0px;
+    margin-top: 30px;
+    border-radius: 7px;
+    border: 2px solid black;
+    background-color: inherit;
+    font-size: $CommonFontSize + 4;
+    font-weight: 600;
+    transition: 0.3s;
+
+    &:hover {
+        color: white;
+        background-color: black;
+    }
+}

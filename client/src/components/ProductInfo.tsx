@@ -1,7 +1,7 @@
 import axios from '../axios';
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "../styles/Product.scss";
+import "../styles/ProductInfo.scss";
 import { Product } from '../types/types';
 
 const ProductInfo: React.FC = () => {
@@ -21,7 +21,7 @@ const ProductInfo: React.FC = () => {
             .catch((err) => {
                 console.warn(err);
             })
-    }, [id]);
+    }, []);
 
     return (
         <section className="product">

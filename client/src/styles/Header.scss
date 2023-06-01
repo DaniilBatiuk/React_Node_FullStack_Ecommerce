@@ -46,6 +46,7 @@
     display: block;
     font-size: $CommonFontSize;
     line-height: 1.62;
+    cursor: pointer;
   }
 
   &__link:hover {
@@ -193,5 +194,21 @@
 
   .menu__link {
     font-size: 34px;
+  }
+}
+
+
+.modal {
+  font-size: $CommonFontSize;
+
+  &__title {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  &__label {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: 600;
   }
 }
