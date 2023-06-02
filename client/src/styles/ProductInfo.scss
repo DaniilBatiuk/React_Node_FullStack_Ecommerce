@@ -132,12 +132,23 @@
     &__button-add {
         width: 45%;
         border: 2px solid black;
+        transition: 0.3s;
+
+        &:hover {
+            color: white;
+            background-color: black;
+        }
     }
 
     &__button-buy-now {
         width: 45%;
         background-color: rgb(196, 29, 29);
         color: white;
+        transition: 0.3s;
+
+        &:hover {
+            background-color: rgb(150, 13, 13);
+        }
     }
 }
 
@@ -171,6 +182,12 @@
         align-items: center;
         padding-bottom: 5px;
         font-weight: 700;
+        transition: 0.3s;
+
+        &:hover {
+            color: white;
+            background-color: black;
+        }
     }
 
     &__text {

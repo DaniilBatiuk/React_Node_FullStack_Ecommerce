@@ -16,8 +16,8 @@ const HeaderMenu: React.FC = () => {
         }
     }
 
-    const [modalActive, setModalActive] = useState(false);
-
+    const [modalSignInActive, setModalSignInActive] = useState(false);
+    const [modalSignUpActive, setModalSignUpActive] = useState(false);
 
     return (
         <>
@@ -34,7 +34,10 @@ const HeaderMenu: React.FC = () => {
                                         <Link to="/Categories" className="menu__link" onClick={ScrollUp}>Categories</Link>
                                     </li>
                                     <li>
-                                        <div className="menu__link" onClick={() => setModalActive(true)}>Log In</div>
+                                        <div className="menu__link" onClick={() => setModalSignInActive(true)}>Sign In</div>
+                                    </li>
+                                    <li>
+                                        <div className="menu__link menu__link-border" onClick={() => setModalSignUpActive(true)}>Sign Up</div>
                                     </li>
                                 </ul>
                             </div>
@@ -49,13 +52,25 @@ const HeaderMenu: React.FC = () => {
                     </div>
                 </div>
             </header>
-            <Modal active={modalActive} setActive={setModalActive}>
+            <Modal active={modalSignInActive} setActive={setModalSignInActive}>
                 <div className="modal__title title">Sign In</div>
                 <div className="modal__label">Email adress</div>
                 <MyInput type="text" placeholder="Enter email" />
                 <div className="modal__label">Password</div>
                 <MyInput type="text" placeholder="Enter password" />
                 <MyButton type="submit" value="Sing In" />
+            </Modal>
+            <Modal active={modalSignUpActive} setActive={setModalSignUpActive}>
+                <div className="modal__title title">Sign Up</div>
+                <div className="modal__label">Full name</div>
+                <MyInput type="text" placeholder="Enter full name" />
+                <div className="modal__label">Email adress</div>
+                <MyInput type="text" placeholder="Enter email" />
+                <div className="modal__label">Password</div>
+                <MyInput type="text" placeholder="Enter password" />
+                <div className="modal__label">Confirm Password</div>
+                <MyInput type="text" placeholder="Enter password" />
+                <MyButton type="submit" value="Sing Up" />
             </Modal>
         </>
     );

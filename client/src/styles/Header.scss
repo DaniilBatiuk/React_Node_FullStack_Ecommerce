@@ -52,6 +52,19 @@
   &__link:hover {
     text-decoration: underline;
   }
+
+  &__link-border {
+    border: 2px solid black;
+    padding: 0px 10px;
+    border-radius: 7px;
+    transition: 0.3s;
+
+    &:hover {
+      color: white;
+      background-color: black;
+      text-decoration: none;
+    }
+  }
 }
 
 .cart-header {
