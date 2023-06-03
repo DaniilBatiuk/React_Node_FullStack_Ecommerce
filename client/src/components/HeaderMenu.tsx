@@ -6,6 +6,8 @@ import { ScrollUp } from "../utils/functions";
 import Modal from "./UI/Modal/Modal";
 import MyInput from "./UI/Modal/Input/MyInput";
 import MyButton from "./UI/Modal/Button/MyButton";
+import Login from "./Login";
+import "../styles/Login.scss";
 
 const HeaderMenu: React.FC = () => {
 
@@ -52,14 +54,7 @@ const HeaderMenu: React.FC = () => {
                     </div>
                 </div>
             </header>
-            <Modal active={modalSignInActive} setActive={setModalSignInActive}>
-                <div className="modal__title title">Sign In</div>
-                <div className="modal__label">Email adress</div>
-                <MyInput type="text" placeholder="Enter email" />
-                <div className="modal__label">Password</div>
-                <MyInput type="text" placeholder="Enter password" />
-                <MyButton type="submit" value="Sing In" />
-            </Modal>
+            <Login active={modalSignInActive} setActive={setModalSignInActive} />
             <Modal active={modalSignUpActive} setActive={setModalSignUpActive}>
                 <div className="modal__title title">Sign Up</div>
                 <div className="modal__label">Full name</div>
@@ -70,10 +65,10 @@ const HeaderMenu: React.FC = () => {
                 <MyInput type="text" placeholder="Enter password" />
                 <div className="modal__label">Confirm Password</div>
                 <MyInput type="text" placeholder="Enter password" />
-                <MyButton type="submit" value="Sing Up" />
+                <MyButton type="button" value="Sing Up" />
             </Modal>
         </>
     );
-}
 
+}
 export default HeaderMenu;

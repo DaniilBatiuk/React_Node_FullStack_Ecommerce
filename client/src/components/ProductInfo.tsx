@@ -36,8 +36,8 @@ const ProductInfo: React.FC = () => {
                             <div className="photos__all">
                                 {(product?.img.length !== 0) && (
                                     product?.img.map((elem) => (
-                                        <div className="photos__litle-photo">
-                                            <img src={`http://localhost:4000${elem}`} alt="" key={elem} onClick={() => setMainPhoto(`http://localhost:4000${elem}`)} />
+                                        <div className="photos__litle-photo" key={elem}>
+                                            <img src={`http://localhost:4000${elem}`} alt="" onClick={() => setMainPhoto(`http://localhost:4000${elem}`)} />
                                         </div>
                                     ))
                                 )}
@@ -49,7 +49,7 @@ const ProductInfo: React.FC = () => {
                             <div className="characteristic__text">Characteristic</div>
                             {(product?.img.length !== 0) && (
                                 product?.characteristic.map((elem) => (
-                                    <div className="characteristic__item">
+                                    <div className="characteristic__item" key={elem.title}>
                                         <div>{elem.title}:</div>
                                         <div className="characteristic__description">{elem.description}</div>
                                     </div>

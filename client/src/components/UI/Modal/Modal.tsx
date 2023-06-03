@@ -1,7 +1,7 @@
 import React from "react";
 import "./Modal.scss";
 
-interface ModalProps {
+export interface ModalProps {
     active: boolean;
     setActive: (isActive: boolean) => void;
     children: React.ReactNode;

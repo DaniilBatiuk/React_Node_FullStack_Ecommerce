@@ -1,9 +1,9 @@
 import React, { ButtonHTMLAttributes } from "react";
 import "./MyButton.scss";
 
-interface MyInputProps extends ButtonHTMLAttributes<HTMLInputElement> { }
+interface MyButtonProps extends ButtonHTMLAttributes<HTMLInputElement> { }
 
-const MyButton: React.FC<MyInputProps> = (props: MyInputProps) => {
+const MyButton: React.FC<MyButtonProps> = (props: MyButtonProps) => {
     return <input className="my-button" {...props} />;
 };
 
