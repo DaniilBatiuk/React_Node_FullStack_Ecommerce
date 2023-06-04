@@ -1,41 +1,51 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../axios';
+import { IFormValues } from '../../components/UI/Modal/Input/MyInput';
+import { RootState } from '../store';
 
 
-export const fetchUserData = createAsyncThunk<AuthState>('auth/fetchUserData', async (login, password) => {
-    const { data } = await axios.post<AuthState>('/auth/login', login, password);
+export const fetchAuth = createAsyncThunk<AuthState, IFormValues>('auth/fetchAuth', async ({ email, password }: IFormValues) => {
+    const { data } = await axios.post<AuthState>('/auth/login', { email, password });
     return data;
 });
 
 export interface AuthState {
     email: string;
-    passwordHash: string;
+    fullName: string;
 }
 
 const initialState: AuthState = {
     email: "",
-    passwordHash: "",
+    fullName: "",
 }
 
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
+        signout: (state) => {
+            state.email = ""
+            state.fullName = ""
+        },
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchUserData.pending, (state) => {
+        builder.addCase(fetchAuth.pending, (state) => {
             state.email = "";
-            state.passwordHash = "";
+            state.fullName = "";
         });
-        builder.addCase(fetchUserData.fulfilled, (state, action) => {
+        builder.addCase(fetchAuth.fulfilled, (state, action) => {
             state.email = action.payload.email;
-            state.passwordHash = action.payload.passwordHash;
+            state.fullName = action.payload.fullName;
         });
-        builder.addCase(fetchUserData.rejected, (state) => {
+        builder.addCase(fetchAuth.rejected, (state) => {
             state.email = "";
-            state.passwordHash = "";
+            state.fullName = "";
         });
     },
 });
 
+export const selectIsAuth = (state: RootState) => Boolean(state.auth.email && state.auth.fullName);
+
 export default authSlice.reducer;
+
+export const { signout } = authSlice.actions;

@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/photos/logo.jpg";
 import { Link } from "react-router-dom";
 import "../styles/Header.scss";
 import { ScrollUp } from "../utils/functions";
-import Modal from "./UI/Modal/Modal";
-import MyInput from "./UI/Modal/Input/MyInput";
-import MyButton from "./UI/Modal/Button/MyButton";
 import Login from "./Login";
 import "../styles/Login.scss";
+import Register from "./Register";
+import { useSelector } from "react-redux";
+import { signout, selectIsAuth } from "../redux/slices/auth";
+import { useAppDispatch } from "../redux/store";
 
 const HeaderMenu: React.FC = () => {
+    const dispatch = useAppDispatch();
 
     const ShowMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
         const targetItem = e.target as Element;
@@ -20,6 +22,11 @@ const HeaderMenu: React.FC = () => {
 
     const [modalSignInActive, setModalSignInActive] = useState(false);
     const [modalSignUpActive, setModalSignUpActive] = useState(false);
+    const isAuth = useSelector(selectIsAuth);
+
+    useEffect(() => {
+        if (isAuth) setModalSignInActive(false);
+    }, [isAuth]);
 
     return (
         <>
@@ -35,12 +42,21 @@ const HeaderMenu: React.FC = () => {
                                     <li>
                                         <Link to="/Categories" className="menu__link" onClick={ScrollUp}>Categories</Link>
                                     </li>
-                                    <li>
-                                        <div className="menu__link" onClick={() => setModalSignInActive(true)}>Sign In</div>
-                                    </li>
-                                    <li>
-                                        <div className="menu__link menu__link-border" onClick={() => setModalSignUpActive(true)}>Sign Up</div>
-                                    </li>
+                                    {!isAuth &&
+                                        <>
+                                            <li>
+                                                <div className="menu__link" onClick={() => setModalSignInActive(true)}>Sign In</div>
+                                            </li>
+                                            <li>
+                                                <div className="menu__link menu__link-border" onClick={() => setModalSignUpActive(true)}>Sign Up</div>
+                                            </li>
+                                        </>
+                                    }
+                                    {isAuth &&
+                                        <li>
+                                            <button className="menu__link menu__link-border" onClick={() => dispatch(signout())}>Sign Out</button>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         </nav>
@@ -55,18 +71,7 @@ const HeaderMenu: React.FC = () => {
                 </div>
             </header>
             <Login active={modalSignInActive} setActive={setModalSignInActive} />
-            <Modal active={modalSignUpActive} setActive={setModalSignUpActive}>
-                <div className="modal__title title">Sign Up</div>
-                <div className="modal__label">Full name</div>
-                <MyInput type="text" placeholder="Enter full name" />
-                <div className="modal__label">Email adress</div>
-                <MyInput type="text" placeholder="Enter email" />
-                <div className="modal__label">Password</div>
-                <MyInput type="text" placeholder="Enter password" />
-                <div className="modal__label">Confirm Password</div>
-                <MyInput type="text" placeholder="Enter password" />
-                <MyButton type="button" value="Sing Up" />
-            </Modal>
+            <Register active={modalSignUpActive} setActive={setModalSignUpActive} />
         </>
     );
 
