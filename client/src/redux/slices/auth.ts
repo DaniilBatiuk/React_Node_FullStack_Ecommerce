@@ -1,12 +1,22 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../axios';
-import { IFormValues } from '../../components/UI/Modal/Input/MyInput';
+import { IFormValues, IFormValues2 } from '../../components/UI/Modal/Input/MyInput';
 import { RootState } from '../store';
 
 
 export const fetchAuth = createAsyncThunk<AuthState, IFormValues>('auth/fetchAuth', async ({ email, password }: IFormValues) => {
     const { data } = await axios.post<AuthState>('/auth/login', { email, password });
     return data;
+});
+
+export const fetchRegister = createAsyncThunk<AuthState, IFormValues2>('auth/fetchRegister', async ({ fullName, email, password }: IFormValues2, { rejectWithValue }) => {
+    try {
+        const { data } = await axios.post<AuthState>('/auth/register', { fullName, email, password });
+        return data;
+    }
+    catch (err: any) {
+        return rejectWithValue(err.response.data);
+    }
 });
 
 export interface AuthState {
@@ -38,6 +48,18 @@ export const authSlice = createSlice({
             state.fullName = action.payload.fullName;
         });
         builder.addCase(fetchAuth.rejected, (state) => {
+            state.email = "";
+            state.fullName = "";
+        });
+        builder.addCase(fetchRegister.pending, (state) => {
+            state.email = "";
+            state.fullName = "";
+        });
+        builder.addCase(fetchRegister.fulfilled, (state, action) => {
+            state.email = action.payload.email;
+            state.fullName = action.payload.fullName;
+        });
+        builder.addCase(fetchRegister.rejected, (state) => {
             state.email = "";
             state.fullName = "";
         });

@@ -22,10 +22,11 @@ const HeaderMenu: React.FC = () => {
 
     const [modalSignInActive, setModalSignInActive] = useState(false);
     const [modalSignUpActive, setModalSignUpActive] = useState(false);
+
     const isAuth = useSelector(selectIsAuth);
 
     useEffect(() => {
-        if (isAuth) setModalSignInActive(false);
+        if (isAuth) setModalSignInActive(false); setModalSignUpActive(false);
     }, [isAuth]);
 
     return (
@@ -42,7 +43,7 @@ const HeaderMenu: React.FC = () => {
                                     <li>
                                         <Link to="/Categories" className="menu__link" onClick={ScrollUp}>Categories</Link>
                                     </li>
-                                    {!isAuth &&
+                                    {(!isAuth) ?
                                         <>
                                             <li>
                                                 <div className="menu__link" onClick={() => setModalSignInActive(true)}>Sign In</div>
@@ -51,10 +52,9 @@ const HeaderMenu: React.FC = () => {
                                                 <div className="menu__link menu__link-border" onClick={() => setModalSignUpActive(true)}>Sign Up</div>
                                             </li>
                                         </>
-                                    }
-                                    {isAuth &&
+                                        :
                                         <li>
-                                            <button className="menu__link menu__link-border" onClick={() => dispatch(signout())}>Sign Out</button>
+                                            <button className="menu__link menu__link-border" onClick={() => { dispatch(signout()); }}>Sign Out</button>
                                         </li>
                                     }
                                 </ul>

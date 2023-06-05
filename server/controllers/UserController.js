@@ -40,9 +40,12 @@ export const register = async (req, res) => {
 
     } catch (err) {
         console.log(err);
-        res.status(500).json({
-            message: 'Can not register',
-        });
+        return res.status(500).json([
+            {
+                msg: 'Email is already registered',
+            }
+        ]
+        );
     }
 };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/Login.scss";
 import MyInput, { IFormValues } from "./UI/Modal/Input/MyInput";
 import MyButton from "./UI/Modal/Button/MyButton";
@@ -15,18 +15,20 @@ export interface LoginProps {
 
 const Login: React.FC<LoginProps> = ({ active, setActive }: LoginProps) => {
     const dispatch = useAppDispatch();
+    const [error, setError] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm<IFormValues>();
-    const onSubmit: SubmitHandler<IFormValues> = (data: IFormValues) => dispatch(fetchAuth(data));
-
+    const onSubmit: SubmitHandler<IFormValues> = (data: IFormValues) => dispatch(fetchAuth(data)).then((response) => {
+        (response.payload === undefined) ? setError(true) : setError(false)
+    });
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <Modal active={active} setActive={setActive}>
                 <div className="modal__title title">Sign In</div>
-                {(errors.email || errors.password) && (
+                {(errors.email || errors.password || error) && (
                     <div className="alert alert-danger" role="alert">
                         <div>
-                            Incorrect email or password.
+                            Incorrect email or password
                         </div>
                     </div>
                 )}

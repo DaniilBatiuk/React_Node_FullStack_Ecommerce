@@ -6,6 +6,5 @@ export default (req, res, next) => {
         console.log(errors.array());
         return res.status(400).json(errors.array());
     }
-
     next();
 }
