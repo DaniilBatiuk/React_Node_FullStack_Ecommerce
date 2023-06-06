@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "../styles/Login.scss";
-import MyInput, { IFormValues } from "./UI/Modal/Input/MyInput";
+import MyInput from "./UI/Modal/Input/MyInput";
 import MyButton from "./UI/Modal/Button/MyButton";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Modal from "./UI/Modal/Modal";
 import { useAppDispatch } from "../redux/store";
 import { fetchAuth } from "../redux/slices/auth";
+import { IFormValues } from "../types/types";
 
 export interface LoginProps {
     active: boolean;
@@ -17,9 +18,11 @@ const Login: React.FC<LoginProps> = ({ active, setActive }: LoginProps) => {
     const dispatch = useAppDispatch();
     const [error, setError] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm<IFormValues>();
-    const onSubmit: SubmitHandler<IFormValues> = (data: IFormValues) => dispatch(fetchAuth(data)).then((response) => {
-        (response.payload === undefined) ? setError(true) : setError(false)
-    });
+    const onSubmit: SubmitHandler<IFormValues> = (data: IFormValues) => {
+        dispatch(fetchAuth(data)).then((response) => {
+            (response.payload === undefined) ? setError(true) : setError(false)
+        });
+    }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>

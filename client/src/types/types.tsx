@@ -32,3 +32,16 @@ export interface Characteristic {
     title: string,
     description: string,
 }
+
+
+export interface IFormValues {
+    email: string;
+    password: string;
+}
+
+export interface IFormValues2 {
+    fullName: string;
+    email: string;
+    password: string;
+    passwordConfirm: string;
+}

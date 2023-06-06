@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../axios';
-import { IFormValues, IFormValues2 } from '../../components/UI/Modal/Input/MyInput';
 import { RootState } from '../store';
+import { IFormValues, IFormValues2 } from '../../types/types';
 
 
 export const fetchAuth = createAsyncThunk<AuthState, IFormValues>('auth/fetchAuth', async ({ email, password }: IFormValues) => {
@@ -19,14 +19,21 @@ export const fetchRegister = createAsyncThunk<AuthState, IFormValues2>('auth/fet
     }
 });
 
+export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
+    const { data } = await axios.get<AuthState>('/auth/me');
+    return data;
+});
+
 export interface AuthState {
     email: string;
     fullName: string;
+    token: string;
 }
 
 const initialState: AuthState = {
     email: "",
     fullName: "",
+    token: "",
 }
 
 export const authSlice = createSlice({
@@ -36,6 +43,7 @@ export const authSlice = createSlice({
         signout: (state) => {
             state.email = ""
             state.fullName = ""
+            window.localStorage.removeItem('token');
         },
     },
     extraReducers: (builder) => {
@@ -46,6 +54,7 @@ export const authSlice = createSlice({
         builder.addCase(fetchAuth.fulfilled, (state, action) => {
             state.email = action.payload.email;
             state.fullName = action.payload.fullName;
+            window.localStorage.setItem('token', action.payload.token);
         });
         builder.addCase(fetchAuth.rejected, (state) => {
             state.email = "";
@@ -58,8 +67,21 @@ export const authSlice = createSlice({
         builder.addCase(fetchRegister.fulfilled, (state, action) => {
             state.email = action.payload.email;
             state.fullName = action.payload.fullName;
+            window.localStorage.setItem('token', action.payload.token);
         });
         builder.addCase(fetchRegister.rejected, (state) => {
+            state.email = "";
+            state.fullName = "";
+        });
+        builder.addCase(fetchAuthMe.pending, (state) => {
+            state.email = "";
+            state.fullName = "";
+        });
+        builder.addCase(fetchAuthMe.fulfilled, (state, action) => {
+            state.email = action.payload.email;
+            state.fullName = action.payload.fullName;
+        });
+        builder.addCase(fetchAuthMe.rejected, (state) => {
             state.email = "";
             state.fullName = "";
         });

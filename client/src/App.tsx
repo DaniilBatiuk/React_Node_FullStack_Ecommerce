@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import { useAppDispatch } from "./redux/store";
 import { fetchProducts } from "./redux/slices/products";
 import { fetchTypes } from "./redux/slices/types";
+import { fetchAuthMe } from "./redux/slices/auth";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -13,6 +14,7 @@ function App() {
   useEffect(() => {
     dispatch(fetchProducts());
     dispatch(fetchTypes());
+    dispatch(fetchAuthMe());
   }, [dispatch]);
 
 

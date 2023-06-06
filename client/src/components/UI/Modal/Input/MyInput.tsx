@@ -1,18 +1,7 @@
 import React from "react";
 import "./MyInput.scss";
 import { Path, UseFormRegister } from "react-hook-form";
-
-export interface IFormValues {
-    email: string;
-    password: string;
-}
-
-export interface IFormValues2 {
-    fullName: string;
-    email: string;
-    password: string;
-    passwordConfirm: string;
-}
+import { IFormValues, IFormValues2 } from "../../../../types/types";
 
 type InputProps = {
     label: Path<IFormValues> | Path<IFormValues2>;

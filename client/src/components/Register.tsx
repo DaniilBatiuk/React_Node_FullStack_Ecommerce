@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "../styles/Login.scss";
-import MyInput, { IFormValues2 } from "./UI/Modal/Input/MyInput";
+import MyInput from "./UI/Modal/Input/MyInput";
 import MyButton from "./UI/Modal/Button/MyButton";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Modal from "./UI/Modal/Modal";
 import { fetchRegister } from "../redux/slices/auth";
 import { useAppDispatch } from "../redux/store";
+import { IFormValues2 } from "../types/types";
 
 export interface RegisterProps {
     active: boolean;
@@ -47,13 +48,11 @@ const Register: React.FC<RegisterProps> = ({ active, setActive }: RegisterProps)
                     </div>
                 )}
                 {(error) && (
-                    <>
-                        <div className="alert alert-danger" role="alert">
-                            <div>
-                                {errorMessage}
-                            </div>
+                    <div className="alert alert-danger" role="alert">
+                        <div>
+                            {errorMessage}
                         </div>
-                    </>
+                    </div>
                 )}
                 <div className="modal__label">Full name</div>
                 <MyInput type="text" placeholder="Enter full name" label="fullName" register={register} required />
