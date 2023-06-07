@@ -9,6 +9,7 @@ import Register from "./Register";
 import { useSelector } from "react-redux";
 import { signout, selectIsAuth } from "../redux/slices/auth";
 import { useAppDispatch } from "../redux/store";
+import Basket from "./Basket";
 
 const HeaderMenu: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -22,6 +23,7 @@ const HeaderMenu: React.FC = () => {
 
     const [modalSignInActive, setModalSignInActive] = useState(false);
     const [modalSignUpActive, setModalSignUpActive] = useState(false);
+    const [basketActive, setBasketActive] = useState(false);
 
     const isAuth = useSelector(selectIsAuth);
 
@@ -60,10 +62,10 @@ const HeaderMenu: React.FC = () => {
                                 </ul>
                             </div>
                         </nav>
-                        <a href="" className="header__cart cart-header">
-                            <span className="cart-header__text">Cart</span>
+                        <div className="header__cart cart-header">
+                            <button className="cart-header__text" onClick={() => setBasketActive(true)}>Basket</button>
                             <span className="cart-header__quantity">0</span>
-                        </a>
+                        </div>
                         <button className="icon-menu" onClick={ShowMenu} type="button">
                             <span></span>
                         </button>
@@ -72,6 +74,7 @@ const HeaderMenu: React.FC = () => {
             </header>
             <Login active={modalSignInActive} setActive={setModalSignInActive} />
             <Register active={modalSignUpActive} setActive={setModalSignUpActive} />
+            <Basket active={basketActive} setActive={setBasketActive} />
         </>
     );
 
