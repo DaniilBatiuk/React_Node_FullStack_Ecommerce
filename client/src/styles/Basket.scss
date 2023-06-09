@@ -18,7 +18,7 @@
 
 
     &__content {
-        padding: 30px;
+        padding: 15px;
         background-color: white;
         border-top-left-radius: 16px;
         border-bottom-left-radius: 16px;
@@ -40,6 +40,22 @@
     &__content.active {
         opacity: 1;
         right: 0;
+    }
+
+    &__header {
+        display: flex;
+        margin-bottom: 40px;
+        font-size: $titleFontSize - 2px;
+        justify-content: space-between;
+        @media (max-width:558.98px) {
+            margin-bottom: 20px;
+        }
+
+        & svg {
+            flex: 0 0 40px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
     }
 
     &__list {
@@ -75,9 +91,8 @@
     &__photo {
         position: relative;
         background-color: lightgray;
-        padding: 40px 0px 20% 60px;
+        padding: 100px 0px 5% 110px;
         margin: 0px 0px 0px 0px;
-        width: 30%;
         height: 100%;
     }
 
@@ -91,11 +106,7 @@
     }
 
     &__title {
-        margin-bottom: 40px;
-
-        @media (max-width:558.98px) {
-            margin-bottom: 20px;
-        }
+        font-size: $titleFontSize - 2px;
     }
 
 
@@ -110,13 +121,16 @@
         display: flex;
 
         & svg {
-            flex: 0 0 32px;
+            flex: 0 0 auto;
+            cursor: pointer;
+            transition: 0.3s;
         }
     }
 
     &__item-name {
         height: 30px;
         overflow: hidden;
+        flex: 1 1 auto;
     }
 
     &__price-quantity {
@@ -188,4 +202,13 @@
     &__text {}
 
     &__price {}
+}
+
+
+#IconChangeColor:hover {
+    background-color: #000000;
+}
+
+#IconChangeColor:hover path {
+    fill: #ffffff;
 }

@@ -3,9 +3,23 @@
 .modal {
     font-size: $CommonFontSize;
 
+    &__header {
+        display: flex;
+        position: relative;
+
+        & svg {
+            position: absolute;
+            right: 0;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+    }
+
     &__title {
         text-align: center;
         margin-bottom: 40px;
+        flex: 1 1 auto;
     }
 
     &__label {
