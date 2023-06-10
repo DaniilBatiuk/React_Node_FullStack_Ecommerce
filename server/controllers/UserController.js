@@ -110,3 +110,27 @@ export const getMe = async (req, res) => {
         });
     }
 };
+
+
+export const updateBasket = async (req, res) => {
+    try {
+        const user = await UserModel.findById(req.userId);
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found",
+            });
+        }
+
+        user.basket = req.body.basket;
+        await user.save();
+        const userRes = await UserModel.findById(req.userId).populate('basket').exec();
+
+        res.json(userRes);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: "Error updating basket",
+        });
+    }
+};
+

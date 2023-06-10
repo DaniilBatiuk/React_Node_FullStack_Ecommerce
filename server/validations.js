@@ -24,3 +24,8 @@ export const loginValidation = [
     body('password', 'password error').isLength({ min: 5 }).isString(),
 ]
 
+export const basketUpdateValidation = [
+    body('basket', 'basket error').isArray(),
+]
+
+

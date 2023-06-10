@@ -14,6 +14,14 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    basket: {
+        type: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product',
+        }],
+        default: [],
+        required: true
+    },
 },
     {
         timestamps: true,
