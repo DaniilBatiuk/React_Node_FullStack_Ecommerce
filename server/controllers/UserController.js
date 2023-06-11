@@ -51,7 +51,7 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
-        const user = await UserModel.findOne({ email: req.body.email });
+        const user = await UserModel.findOne({ email: req.body.email }).populate('basket').exec();
 
         if (!user) {
             return res.status(404).json({
@@ -93,7 +93,7 @@ export const login = async (req, res) => {
 
 export const getMe = async (req, res) => {
     try {
-        const user = await UserModel.findById(req.userId);
+        const user = await UserModel.findById(req.userId).populate('basket').exec();
 
         if (!user) {
             return res.status(404).json({
@@ -112,6 +112,29 @@ export const getMe = async (req, res) => {
 };
 
 
+export const addToBasket = async (req, res) => {
+    try {
+        const user = await UserModel.findById(req.userId);
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found",
+            });
+        }
+
+        user.basket.push(req.body.productId);
+        await user.save();
+        const userRes = await UserModel.findById(req.userId).populate('basket').exec();
+
+        res.json(userRes);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: "Error adding basket",
+        });
+    }
+};
+
+
 export const updateBasket = async (req, res) => {
     try {
         const user = await UserModel.findById(req.userId);
@@ -121,7 +144,7 @@ export const updateBasket = async (req, res) => {
             });
         }
 
-        user.basket = req.body.basket;
+        user.basket.pull(req.body.productId);
         await user.save();
         const userRes = await UserModel.findById(req.userId).populate('basket').exec();
 

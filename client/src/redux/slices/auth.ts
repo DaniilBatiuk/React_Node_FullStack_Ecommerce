@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../axios';
 import { RootState } from '../store';
-import { IFormValues, IFormValues2 } from '../../types/types';
+import { IFormValues, IFormValues2, Product } from '../../types/types';
 
 
 export const fetchAuth = createAsyncThunk<AuthState, IFormValues>('auth/fetchAuth', async ({ email, password }: IFormValues) => {
     const { data } = await axios.post<AuthState>('/auth/login', { email, password });
+    console.log(data);
     return data;
 });
 
@@ -27,6 +28,7 @@ export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
 export interface AuthState {
     email: string;
     fullName: string;
+    basket: Product[];
     token: string;
 }
 
@@ -34,6 +36,7 @@ const initialState: AuthState = {
     email: "",
     fullName: "",
     token: "",
+    basket: [],
 }
 
 export const authSlice = createSlice({
@@ -44,46 +47,56 @@ export const authSlice = createSlice({
             state.email = ""
             state.fullName = ""
             window.localStorage.removeItem('token');
+            state.basket = []
         },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchAuth.pending, (state) => {
             state.email = "";
             state.fullName = "";
+            state.basket = [];
         });
         builder.addCase(fetchAuth.fulfilled, (state, action) => {
             state.email = action.payload.email;
             state.fullName = action.payload.fullName;
             window.localStorage.setItem('token', action.payload.token);
+            state.basket = action.payload.basket;
         });
         builder.addCase(fetchAuth.rejected, (state) => {
             state.email = "";
             state.fullName = "";
+            state.basket = [];
         });
         builder.addCase(fetchRegister.pending, (state) => {
             state.email = "";
             state.fullName = "";
+            state.basket = [];
         });
         builder.addCase(fetchRegister.fulfilled, (state, action) => {
             state.email = action.payload.email;
             state.fullName = action.payload.fullName;
             window.localStorage.setItem('token', action.payload.token);
+            state.basket = action.payload.basket;
         });
         builder.addCase(fetchRegister.rejected, (state) => {
             state.email = "";
             state.fullName = "";
+            state.basket = [];
         });
         builder.addCase(fetchAuthMe.pending, (state) => {
             state.email = "";
             state.fullName = "";
+            state.basket = [];
         });
         builder.addCase(fetchAuthMe.fulfilled, (state, action) => {
             state.email = action.payload.email;
             state.fullName = action.payload.fullName;
+            state.basket = action.payload.basket;
         });
         builder.addCase(fetchAuthMe.rejected, (state) => {
             state.email = "";
             state.fullName = "";
+            state.basket = [];
         });
     },
 });
