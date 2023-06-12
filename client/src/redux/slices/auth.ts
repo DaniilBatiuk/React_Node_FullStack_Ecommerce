@@ -6,7 +6,6 @@ import { IFormValues, IFormValues2, Product } from '../../types/types';
 
 export const fetchAuth = createAsyncThunk<AuthState, IFormValues>('auth/fetchAuth', async ({ email, password }: IFormValues) => {
     const { data } = await axios.post<AuthState>('/auth/login', { email, password });
-    console.log(data);
     return data;
 });
 
@@ -25,10 +24,33 @@ export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
     return data;
 });
 
+export const fetchAddToBasket = createAsyncThunk<AuthState, IBasketAdd>('auth/fetchAddToBasket', async ({ id, quantity }: IBasketAdd) => {
+    const { data } = await axios.post<AuthState>('/auth/addToBasket', { id, quantity });
+    return data;
+});
+
+export const fetchDeleteFromBasket = createAsyncThunk<AuthState, IBasketDel>('auth/fetchDeleteFromBasket', async ({ id }: IBasketDel) => {
+    const { data } = await axios.patch<AuthState>('/auth/updateBasket', { id });
+    return data;
+});
+
+
+export interface IBasketAdd {
+    id: string;
+    quantity: number;
+}
+
+export interface IBasketDel {
+    id: string;
+}
+
 export interface AuthState {
     email: string;
     fullName: string;
-    basket: Product[];
+    basket: {
+        product: Product,
+        quantity: number,
+    }[];
     token: string;
 }
 
@@ -96,6 +118,21 @@ export const authSlice = createSlice({
         builder.addCase(fetchAuthMe.rejected, (state) => {
             state.email = "";
             state.fullName = "";
+            state.basket = [];
+        });
+        builder.addCase(fetchAddToBasket.pending, (state) => {
+            state.basket = [];
+        });
+        builder.addCase(fetchAddToBasket.fulfilled, (state, action) => {
+            state.basket = action.payload.basket;
+        });
+        builder.addCase(fetchAddToBasket.rejected, (state) => {
+            state.basket = [];
+        });
+        builder.addCase(fetchDeleteFromBasket.fulfilled, (state, action) => {
+            state.basket = action.payload.basket;
+        });
+        builder.addCase(fetchDeleteFromBasket.rejected, (state) => {
             state.basket = [];
         });
     },

@@ -6,7 +6,7 @@ import cors from 'cors';
 
 dotenv.config();
 
-import { productCreateValidation, typeCreateValidation, basketValidation, registerValidation, loginValidation } from './validations.js';
+import { productCreateValidation, typeCreateValidation, basketAddValidation,basketPatchValidation, registerValidation, loginValidation } from './validations.js';
 
 import { checkAuthMiddleware, handlerValidationErrorsMiddleware } from './middleware/index.js'
 
@@ -39,8 +39,8 @@ app.use('/uploads', express.static('uploads'));
 app.post('/auth/login', loginValidation, handlerValidationErrorsMiddleware, UserController.login);
 app.post('/auth/register', registerValidation, handlerValidationErrorsMiddleware, UserController.register);
 app.get('/auth/me', checkAuthMiddleware, UserController.getMe);
-app.post('/auth/addToBasket', checkAuthMiddleware, basketValidation, handlerValidationErrorsMiddleware, UserController.addToBasket);
-app.patch('/auth/updateBasket', checkAuthMiddleware, basketValidation, handlerValidationErrorsMiddleware, UserController.updateBasket);
+app.post('/auth/addToBasket', checkAuthMiddleware, basketAddValidation, handlerValidationErrorsMiddleware, UserController.addToBasket);
+app.patch('/auth/updateBasket', checkAuthMiddleware, basketPatchValidation, handlerValidationErrorsMiddleware, UserController.updateBasket);
 
 
 app.get('/type', TypeController.getAll);

@@ -3,8 +3,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../styles/ProductInfo.scss";
 import { Product } from '../types/types';
+import { useAppDispatch } from '../redux/store';
+import { fetchAddToBasket } from '../redux/slices/auth';
 
 const ProductInfo: React.FC = () => {
+    const dispatch = useAppDispatch();
+
     const [product, setProduct] = useState<Product>();
     const [count, setCount] = useState(1);
     const [sum, setSum] = useState(0);
@@ -66,7 +70,7 @@ const ProductInfo: React.FC = () => {
                             <div className="quantity__price">{sum}$</div>
                         </div>
                         <div className="description__buttons">
-                            <button className="description__button-add">ADD TO CART</button>
+                            <button className="description__button-add" onClick={() => { if (product?._id) { dispatch(fetchAddToBasket({ id: product._id, quantity: count })); } }}>ADD TO CARD</button>
                             <button className="description__button-buy-now">BUY NOW</button>
                         </div>
                     </div>

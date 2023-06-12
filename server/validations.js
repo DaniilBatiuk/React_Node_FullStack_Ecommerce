@@ -25,8 +25,11 @@ export const loginValidation = [
 ]
 
 
-export const basketValidation = [
-    body('productId', 'productId error').isString(),
+export const basketAddValidation = [
+    body('id', 'id error').isString(),
+    body('quantity', 'quantity error').isInt({ min: 1 }),
 ]
 
-
+export const basketPatchValidation = [
+    body('id', 'id error').isString(),
+]

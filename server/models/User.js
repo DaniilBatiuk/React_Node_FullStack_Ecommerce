@@ -15,12 +15,20 @@ const UserSchema = new mongoose.Schema({
         required: true,
     },
     basket: {
-        type: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Product',
-        }],
+        type: [
+            {
+                product: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: 'Product',
+                },
+                quantity: {
+                    type: Number,
+                    default: 0,
+                },
+            },
+        ],
         default: [],
-        required: true
+        required: true,
     },
 },
     {

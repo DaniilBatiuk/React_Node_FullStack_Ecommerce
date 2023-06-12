@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/Basket.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
@@ -10,7 +10,18 @@ export interface BasketProps {
 
 const Basket: React.FC<BasketProps> = ({ active, setActive }: BasketProps) => {
     const { basket } = useSelector((state: RootState) => state.auth);
-    console.log(basket);
+    const [sum, setSum] = useState(0);
+
+    useEffect(() => {
+        let totalPrice = 0;
+        basket.forEach(item => {
+            const { quantity, product } = item;
+            const itemTotal = quantity * product.price;
+            totalPrice += itemTotal;
+        });
+        setSum(totalPrice);
+    }, [basket]);
+
     return (
         <div className={active ? "basket active" : "basket"} onClick={() => setActive(false)}>
             <div className={active ? "basket__content active" : "basket__content"} onClick={e => e.stopPropagation()}>
@@ -21,14 +32,14 @@ const Basket: React.FC<BasketProps> = ({ active, setActive }: BasketProps) => {
                 <div className="basket__list">
                     {(basket.length !== 0) && (
                         basket.map((elem) => (
-                            <BasketElem product={elem} key={elem._id} />
+                            <BasketElem item={elem} key={elem.product._id} />
                         ))
                     )}
                 </div>
                 <div className="basket__footer">
                     <div className="basket__subtotal subtotal">
                         <div className="subtotal__text">Subtotal</div>
-                        <div className="subtotal__price">45.00$</div>
+                        <div className="subtotal__price">{sum}$</div>
                     </div>
                 </div>
             </div>
