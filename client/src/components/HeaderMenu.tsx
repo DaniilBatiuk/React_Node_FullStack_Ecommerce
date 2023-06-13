@@ -8,7 +8,7 @@ import "../styles/Login.scss";
 import Register from "./Register";
 import { useSelector } from "react-redux";
 import { signout, selectIsAuth } from "../redux/slices/auth";
-import { useAppDispatch } from "../redux/store";
+import { RootState, useAppDispatch } from "../redux/store";
 import Basket from "./Basket";
 
 const HeaderMenu: React.FC = () => {
@@ -24,7 +24,8 @@ const HeaderMenu: React.FC = () => {
     const [modalSignInActive, setModalSignInActive] = useState(false);
     const [modalSignUpActive, setModalSignUpActive] = useState(false);
     const [basketActive, setBasketActive] = useState(false);
-
+    const { basket } = useSelector((state: RootState) => state.auth);
+    
     const isAuth = useSelector(selectIsAuth);
 
     useEffect(() => {
@@ -64,7 +65,7 @@ const HeaderMenu: React.FC = () => {
                         </nav>
                         <div className="header__cart cart-header">
                             <button className="cart-header__text" onClick={() => setBasketActive(true)}>Basket</button>
-                            <span className="cart-header__quantity">0</span>
+                            <span className="cart-header__quantity" style={{ backgroundColor: basket.length === 0 ? "rgba(97, 97, 104, 0.3)" : "rgba(201, 3, 3, 0.89)", color: basket.length === 0 ? "black" : "white"}}>{basket.length}</span>
                         </div>
                         <button className="icon-menu" onClick={ShowMenu} type="button">
                             <span></span>

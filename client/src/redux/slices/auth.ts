@@ -120,9 +120,6 @@ export const authSlice = createSlice({
             state.fullName = "";
             state.basket = [];
         });
-        builder.addCase(fetchAddToBasket.pending, (state) => {
-            state.basket = [];
-        });
         builder.addCase(fetchAddToBasket.fulfilled, (state, action) => {
             state.basket = action.payload.basket;
         });
