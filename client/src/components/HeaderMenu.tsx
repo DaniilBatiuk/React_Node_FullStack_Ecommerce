@@ -14,18 +14,17 @@ import Basket from "./Basket";
 const HeaderMenu: React.FC = () => {
     const dispatch = useAppDispatch();
 
-    const ShowMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const targetItem = e.target as Element;
-        if (targetItem.closest('.icon-menu')) {
-            document.documentElement.classList.toggle('menu-open');
-        }
+    const ShowMenu = () => {
+        document.documentElement.classList.toggle('menu-open');
+        SetIsMenuActive((prev) => !prev);
     }
 
     const [modalSignInActive, setModalSignInActive] = useState(false);
     const [modalSignUpActive, setModalSignUpActive] = useState(false);
     const [basketActive, setBasketActive] = useState(false);
+    const [isMenuActive, SetIsMenuActive] = useState(false);
     const { basket } = useSelector((state: RootState) => state.auth);
-    
+
     const isAuth = useSelector(selectIsAuth);
 
     useEffect(() => {
@@ -44,20 +43,20 @@ const HeaderMenu: React.FC = () => {
                             <div className="menu__body">
                                 <ul className="menu__list">
                                     <li>
-                                        <Link to="/Categories" className="menu__link" onClick={ScrollUp}>Categories</Link>
+                                        <Link to="/Categories" className="menu__link" onClick={() => { ScrollUp(); if (isMenuActive) { ShowMenu(); } }}>Categories</Link>
                                     </li>
                                     {(!isAuth) ?
                                         <>
                                             <li>
-                                                <div className="menu__link" onClick={() => setModalSignInActive(true)}>Sign In</div>
+                                                <button className="menu__link" onClick={() => { setModalSignInActive(true); if (isMenuActive) { ShowMenu(); } }}>Sign In</button>
                                             </li>
                                             <li>
-                                                <div className="menu__link menu__link-border" onClick={() => setModalSignUpActive(true)}>Sign Up</div>
+                                                <button className="menu__link menu__link-border" onClick={(e) => { setModalSignUpActive(true); if (isMenuActive) { ShowMenu(); } }}>Sign Up</button>
                                             </li>
                                         </>
                                         :
                                         <li>
-                                            <button className="menu__link menu__link-border" onClick={() => { dispatch(signout()); }}>Sign Out</button>
+                                            <button className="menu__link menu__link-border" onClick={() => { dispatch(signout()); if (isMenuActive) { ShowMenu(); } }}>Sign Out</button>
                                         </li>
                                     }
                                 </ul>
@@ -65,7 +64,7 @@ const HeaderMenu: React.FC = () => {
                         </nav>
                         <div className="header__cart cart-header">
                             <button className="cart-header__text" onClick={() => setBasketActive(true)}>Basket</button>
-                            <span className="cart-header__quantity" style={{ backgroundColor: basket.length === 0 ? "rgba(97, 97, 104, 0.3)" : "rgba(201, 3, 3, 0.89)", color: basket.length === 0 ? "black" : "white"}}>{basket.length}</span>
+                            <span className="cart-header__quantity" style={{ backgroundColor: basket.length === 0 ? "rgba(97, 97, 104, 0.3)" : "rgba(201, 3, 3, 0.89)", color: basket.length === 0 ? "black" : "white" }}>{basket.length}</span>
                         </div>
                         <button className="icon-menu" onClick={ShowMenu} type="button">
                             <span></span>

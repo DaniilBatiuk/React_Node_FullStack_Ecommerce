@@ -14,9 +14,9 @@ const ProductInfo: React.FC = () => {
     const [count, setCount] = useState(1);
     const [sum, setSum] = useState(0);
     const [mainPhoto, setMainPhoto] = useState("");
+    const [errorText, setErrorText] = useState("");
     const { id } = useParams();
     const { basket } = useSelector((state: RootState) => state.auth);
-    const [errorText, setErrorText] = useState("");
     const isAuth = useSelector(selectIsAuth);
 
     useEffect(() => {

@@ -39,7 +39,13 @@
     column-gap: 35px;
     row-gap: 3px;
     justify-content: flex-end;
+    padding: 0px;
     margin-bottom: 0px;
+
+    li {
+      display: flex;
+      justify-content: center;
+    }
   }
 
   &__link {
@@ -53,16 +59,18 @@
     text-decoration: underline;
   }
 
-  &__link-border {
-    border: 2px solid black;
-    padding: 0px 10px;
-    border-radius: 7px;
-    transition: 0.3s;
+  @media (min-width:767.98px) {
+    &__link-border {
+      border: 2px solid black;
+      padding: 0px 10px;
+      border-radius: 7px;
+      transition: 0.3s;
 
-    &:hover {
-      color: white;
-      background-color: black;
-      text-decoration: none;
+      &:hover {
+        color: white;
+        background-color: black;
+        text-decoration: none;
+      }
     }
   }
 }
