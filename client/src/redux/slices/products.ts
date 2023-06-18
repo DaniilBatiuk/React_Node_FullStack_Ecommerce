@@ -12,6 +12,15 @@ export const fetchProductsByType = createAsyncThunk<Product[], string>('product/
   return data;
 });
 
+export const fetchCreateProduct = createAsyncThunk<Product, Product>('product/fetchProducts', async ({ title, price }: Product, { rejectWithValue }) => {
+  try {
+    const { data } = await axios.post<Product>('/product');
+    return data;
+  }
+  catch (err: any) {
+    return rejectWithValue(err.response.data);
+  }
+});
 
 export interface ProductsState {
   products: Product[];

@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { signout, selectIsAuth } from "../redux/slices/auth";
 import { RootState, useAppDispatch } from "../redux/store";
 import Basket from "./Basket";
+import CreateProduct from "./CreateProduct";
 
 const HeaderMenu: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -21,6 +22,7 @@ const HeaderMenu: React.FC = () => {
 
     const [modalSignInActive, setModalSignInActive] = useState(false);
     const [modalSignUpActive, setModalSignUpActive] = useState(false);
+    const [modalCreateProductActive, setModalCreateProductActive] = useState(false);
     const [basketActive, setBasketActive] = useState(false);
     const [isMenuActive, SetIsMenuActive] = useState(false);
     const { basket } = useSelector((state: RootState) => state.auth);
@@ -44,6 +46,9 @@ const HeaderMenu: React.FC = () => {
                                 <ul className="menu__list">
                                     <li>
                                         <Link to="/Categories" className="menu__link" onClick={() => { ScrollUp(); if (isMenuActive) { ShowMenu(); } }}>Categories</Link>
+                                    </li>
+                                    <li>
+                                        <button className="menu__link" onClick={() => { setModalCreateProductActive(true); if (isMenuActive) { ShowMenu(); } }}>Create Product</button>
                                     </li>
                                     {(!isAuth) ?
                                         <>
@@ -75,6 +80,7 @@ const HeaderMenu: React.FC = () => {
             <Login active={modalSignInActive} setActive={setModalSignInActive} />
             <Register active={modalSignUpActive} setActive={setModalSignUpActive} />
             <Basket active={basketActive} setActive={setBasketActive} />
+            <CreateProduct active={modalCreateProductActive} setActive={setModalCreateProductActive} />
         </>
     );
 

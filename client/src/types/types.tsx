@@ -14,6 +14,7 @@ export interface Product {
     price: number;
     rating: number;
     img: string[];
+    type: string;
     characteristic: Characteristic[];
 }
 
