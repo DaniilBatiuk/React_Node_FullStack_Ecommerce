@@ -10,6 +10,7 @@
     transition: 0.3s;
     font-size: inherit;
     line-height: 27px;
+
     &:hover {
         border: 3px solid black;
     }
@@ -21,5 +22,63 @@
     &:focus {
         border-color: inherit;
         box-shadow: none;
+    }
+}
+
+.my-form-control {
+    width: 100%;
+    padding: 5px 10px;
+    margin: 5px 0px;
+    border: 3px solid rgb(192, 192, 192);
+    transition: border 0.3s ease-in-out;
+    border-radius: 7px;
+    transition: 0.3s;
+    font-size: inherit;
+    line-height: 27px;
+
+    &:hover {
+        border: 3px solid black;
+    }
+
+    &:active {
+        border: 3px solid black;
+    }
+
+    &:focus {
+        border-color: inherit;
+        box-shadow: none;
+    }
+}
+
+
+.modal {
+    &__main {
+        @media (min-width: 767.98px) {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    &__main-left {
+        @media (min-width: 767.98px) {
+            width: 40%;
+        }
+    }
+
+    &__main-right {
+        @media (min-width: 767.98px) {
+            width: 58%;
+        }
+    }
+
+    &__characteristic {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__characteristic-MyInput {
+        width: 44%;
+        margin-right: 2px;
     }
 }

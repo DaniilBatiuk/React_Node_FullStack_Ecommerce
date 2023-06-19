@@ -18,6 +18,10 @@ export interface Product {
     characteristic: Characteristic[];
 }
 
+export interface Characteristic {
+    title: string,
+    description: string,
+}
 
 export interface TitleText {
     titleText: string;
@@ -28,12 +32,6 @@ export interface ProductAndTitleText {
     product: Product[];
     titleText: TitleText;
 }
-
-export interface Characteristic {
-    title: string,
-    description: string,
-}
-
 
 export interface IFormValues {
     email: string;

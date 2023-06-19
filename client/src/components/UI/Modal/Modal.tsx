@@ -4,13 +4,14 @@ import "./Modal.scss";
 export interface ModalProps {
     active: boolean;
     children: React.ReactNode;
+    maxDivWidth: string;
 }
 
-const Modal: React.FC<ModalProps> = ({ active, children }: ModalProps) => {
+const Modal: React.FC<ModalProps> = ({ active, children, maxDivWidth }: ModalProps) => {
 
     return (
         <div className={active ? "modal active" : "modal"}>
-            <div className={active ? "modal__content active" : "modal__content"}>{children}</div>
+            <div className={active ? "modal__content active" : "modal__content"} style={{ maxWidth: maxDivWidth }}>{children}</div>
         </div>
     );
 }

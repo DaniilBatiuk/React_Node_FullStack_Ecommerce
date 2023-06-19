@@ -21,10 +21,13 @@
         padding: 30px;
         background-color: white;
         border-radius: 16px;
-        max-width: 400px;
         opacity: 0;
         transform: translateY(-100%);
         transition: 0.4s;
+
+        @media (min-width: 525.98px) {
+            margin: 0px 10%;
+        }
     }
 
     &__content.active {
