@@ -14,7 +14,9 @@ function App() {
   useEffect(() => {
     dispatch(fetchProducts());
     dispatch(fetchTypes());
-    dispatch(fetchAuthMe());
+    if (window.localStorage.getItem('token')) {
+      dispatch(fetchAuthMe());
+    }
   }, [dispatch]);
 
 

@@ -1,5 +1,9 @@
 @import "Variables.scss";
 
+.no-scroll {
+  overflow: hidden;
+}
+
 .header {
   width: 100%;
   background-color: white;

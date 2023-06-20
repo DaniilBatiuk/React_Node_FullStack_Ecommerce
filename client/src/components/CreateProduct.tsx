@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/CreateProduct.scss";
 import MyInput from "./UI/Modal/Input/MyInput";
 import MyButton from "./UI/Modal/Button/MyButton";
@@ -8,6 +8,7 @@ import { Product } from "../types/types";
 import { fetchCreateProduct } from "../redux/slices/products";
 import { RootState, useAppDispatch } from "../redux/store";
 import { useSelector } from "react-redux";
+import axios from "../axios";
 
 export interface CreateProductProps {
     active: boolean;
@@ -20,7 +21,8 @@ const CreateProduct: React.FC<CreateProductProps> = ({ active, setActive }: Crea
     const { types } = useSelector((state: RootState) => state.type);
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const { register, handleSubmit, control, formState: { errors } } = useForm<Product>();
+    const { register, handleSubmit, control, watch, formState: { errors } } = useForm<Product>();
+    const [imgLinks, setImgLinks] = useState<string[]>([]);
     const onSubmit: SubmitHandler<Product> = (data: Product) => {
         console.log(data);
         // dispatch(fetchCreateProduct(data))
@@ -38,6 +40,46 @@ const CreateProduct: React.FC<CreateProductProps> = ({ active, setActive }: Crea
         name: 'characteristic',
         control
     });
+
+    useEffect(() => {
+        append({ title: "", description: "" });
+    }, []);
+
+    const changeImg = watch("img");
+
+    useEffect(() => {
+        const uploadImage = async () => {
+            try {
+                let images: string[] = [];
+                for (let i = 0; i < changeImg.length; i++) {
+                    const formData = new FormData();
+                    formData.append('image', changeImg[i]);
+                    const { data } = await axios.post('upload', formData);
+                    images.push(data.url);
+                }
+                setImgLinks(images);
+            } catch (err) {
+                console.warn(err);
+            }
+        };
+        if (changeImg?.length === 3) {
+            uploadImage();
+        }
+    }, [changeImg]);
+
+    console.log(imgLinks);
+    console.log(imgLinks.length);
+    // const changeImg = async (event: any) => {
+    //     try {
+    //         const formData = new FormData();
+    //         const files = event.target.files;
+    //         formData.append('image', files);
+    //         const {data} = await axios.post('upload',formData);
+    //         console.log(data);
+    //     } catch (err) {
+    //         console.warn(err);
+    //     }
+    // }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -75,6 +117,15 @@ const CreateProduct: React.FC<CreateProductProps> = ({ active, setActive }: Crea
                         </select>
                         <label className="modal__label">Images</label>
                         <input id="inputFile" className="my-form-control form-control" type="file" {...register("img")} required multiple accept="image/*" />
+                        <div className="photos__all">
+                            {(imgLinks?.length === 3) && (
+                                imgLinks?.map((elem) => (
+                                    <div className="photos__litle-photo" key={elem}>
+                                        <img src={`http://localhost:4000${elem}`} alt="" />
+                                    </div>
+                                ))
+                            )}
+                        </div>
                     </div>
                     <div className="modal__main-right">
                         <label className="modal__label">Characteristic</label>
@@ -95,7 +146,9 @@ const CreateProduct: React.FC<CreateProductProps> = ({ active, setActive }: Crea
                             )
                             )
                         }
-                        <button type="button" onClick={() => append({ title: "", description: "" })}>Add Characteristic</button>
+                        <div className="modal__button-div">
+                            <MyButton type="button" onClick={() => append({ title: "", description: "" })} value="Add Characteristic" style={{ width: "250px" }} />
+                        </div>
                     </div>
                 </div>
 

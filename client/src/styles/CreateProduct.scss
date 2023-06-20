@@ -81,4 +81,14 @@
         width: 44%;
         margin-right: 2px;
     }
+
+    &__button-div{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+svg{
+    cursor: pointer;
 }

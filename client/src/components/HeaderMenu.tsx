@@ -26,8 +26,16 @@ const HeaderMenu: React.FC = () => {
     const [basketActive, setBasketActive] = useState(false);
     const [isMenuActive, SetIsMenuActive] = useState(false);
     const { basket } = useSelector((state: RootState) => state.auth);
-
     const isAuth = useSelector(selectIsAuth);
+
+    useEffect(() => {
+        if (basketActive === true || modalCreateProductActive === true || modalSignUpActive === true || modalSignInActive === true) {
+            document.body.classList.add('no-scroll');
+        }
+        else {
+            document.body.classList.remove('no-scroll');
+        }
+    }, [basketActive, modalCreateProductActive, modalSignUpActive, modalSignInActive]);
 
     useEffect(() => {
         if (isAuth) setModalSignInActive(false); setModalSignUpActive(false);
