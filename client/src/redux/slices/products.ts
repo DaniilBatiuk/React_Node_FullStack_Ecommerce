@@ -12,9 +12,10 @@ export const fetchProductsByType = createAsyncThunk<Product[], string>('product/
   return data;
 });
 
-export const fetchCreateProduct = createAsyncThunk<Product, Product>('product/fetchProducts', async ({ title, price }: Product, { rejectWithValue }) => {
+export const fetchCreateProduct = createAsyncThunk<Product, Product>('product/fetchCreateProduct', async ({ title, price, characteristic, img, type }: Product, { rejectWithValue }) => {
   try {
-    const { data } = await axios.post<Product>('/product');
+    const { data } = await axios.post<Product>('/product', { title, price, characteristic, img, type });
+    console.log(data);
     return data;
   }
   catch (err: any) {
@@ -33,8 +34,7 @@ const initialState: ProductsState = {
 export const productSlice = createSlice({
   name: 'product',
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.pending, (state) => {
       state.products = [];
@@ -53,6 +53,9 @@ export const productSlice = createSlice({
     });
     builder.addCase(fetchProductsByType.rejected, (state) => {
       state.products = [];
+    });
+    builder.addCase(fetchCreateProduct.fulfilled, (state, action) => {
+      state.products = [...state.products, action.payload];
     });
   },
 });

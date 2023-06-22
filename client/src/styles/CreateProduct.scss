@@ -52,25 +52,6 @@
 
 
 .modal {
-    &__main {
-        @media (min-width: 767.98px) {
-            display: flex;
-            justify-content: space-between;
-        }
-    }
-
-    &__main-left {
-        @media (min-width: 767.98px) {
-            width: 40%;
-        }
-    }
-
-    &__main-right {
-        @media (min-width: 767.98px) {
-            width: 58%;
-        }
-    }
-
     &__characteristic {
         display: flex;
         justify-content: space-between;
@@ -82,13 +63,13 @@
         margin-right: 2px;
     }
 
-    &__button-div{
+    &__button-div {
         width: 100%;
         display: flex;
         justify-content: center;
     }
 }
 
-svg{
+svg {
     cursor: pointer;
 }

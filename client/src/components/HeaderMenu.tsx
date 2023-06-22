@@ -11,6 +11,7 @@ import { signout, selectIsAuth } from "../redux/slices/auth";
 import { RootState, useAppDispatch } from "../redux/store";
 import Basket from "./Basket";
 import CreateProduct from "./CreateProduct";
+import cart from '../assets/photos/cart.png';
 
 const HeaderMenu: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -76,7 +77,7 @@ const HeaderMenu: React.FC = () => {
                             </div>
                         </nav>
                         <div className="header__cart cart-header">
-                            <button className="cart-header__text" onClick={() => setBasketActive(true)}>Basket</button>
+                            <img src={cart} alt="" onClick={() => setBasketActive(true)} className="cart-header__cart-icon" />
                             <span className="cart-header__quantity" style={{ backgroundColor: basket.length === 0 ? "rgba(97, 97, 104, 0.3)" : "rgba(201, 3, 3, 0.89)", color: basket.length === 0 ? "black" : "white" }}>{basket.length}</span>
                         </div>
                         <button className="icon-menu" onClick={ShowMenu} type="button">
