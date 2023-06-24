@@ -40,12 +40,7 @@ export const register = async (req, res) => {
 
     } catch (err) {
         console.log(err);
-        return res.status(500).json([
-            {
-                msg: 'Email is already registered',
-            }
-        ]
-        );
+        return res.status(500).json([{ msg: "Error : email is already registered" }]);
     }
 };
 
@@ -54,18 +49,11 @@ export const login = async (req, res) => {
         const user = await UserModel.findOne({ email: req.body.email }).populate('basket.product').exec();
 
         if (!user) {
-            return res.status(404).json({
-                message: "error login",
-            });
+            return res.status(404).json([{ msg: "Error : error in password or email" }]);
         }
 
         const isValidPass = await bcrypt.compare(req.body.password, user._doc.passwordHash);
 
-        if (!isValidPass) {
-            return res.status(400).json({
-                message: "error login or password",
-            });
-        }
 
         const token = jwt.sign(
             {
@@ -85,9 +73,7 @@ export const login = async (req, res) => {
         });
     } catch (err) {
         console.log(err);
-        res.status(500).json({
-            message: 'Can not login',
-        });
+        return res.status(500).json([{ msg: "Error : can not login" }]);
     }
 };
 

@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../axios';
 import { Product } from '../../types/types';
+import { error } from 'console';
 
 export const fetchProducts = createAsyncThunk<Product[]>('product/fetchProducts', async () => {
   const { data } = await axios.get<Product[]>('/product');
@@ -15,20 +16,29 @@ export const fetchProductsByType = createAsyncThunk<Product[], string>('product/
 export const fetchCreateProduct = createAsyncThunk<Product, Product>('product/fetchCreateProduct', async ({ title, price, characteristic, img, type }: Product, { rejectWithValue }) => {
   try {
     const { data } = await axios.post<Product>('/product', { title, price, characteristic, img, type });
-    console.log(data);
     return data;
   }
   catch (err: any) {
-    return rejectWithValue(err.response.data);
+    return rejectWithValue(err.response.data.map((error: { msg: any; }) => error.msg));
   }
 });
 
 export interface ProductsState {
   products: Product[];
+  errors: {
+    fetchProductsErrors: string[],
+    fetchProductsByTypeErrors: string[],
+    fetchCreateProductErrors: string[],
+  };
 }
 
 const initialState: ProductsState = {
   products: [],
+  errors: {
+    fetchProductsErrors: [],
+    fetchProductsByTypeErrors: [],
+    fetchCreateProductErrors: [],
+  },
 }
 
 export const productSlice = createSlice({
@@ -56,6 +66,10 @@ export const productSlice = createSlice({
     });
     builder.addCase(fetchCreateProduct.fulfilled, (state, action) => {
       state.products = [...state.products, action.payload];
+      state.errors.fetchCreateProductErrors = [];
+    });
+    builder.addCase(fetchCreateProduct.rejected, (state, action) => {
+      state.errors.fetchCreateProductErrors = action.payload as string[];
     });
   },
 });

@@ -14,16 +14,15 @@ export const typeCreateValidation = [
 ]
 
 export const registerValidation = [
-    body('fullName', 'fullName error').isLength({ min: 3 }).isString(),
-    body('email', 'email error').isEmail(),
-    body('password', 'password error').isLength({ min: 5 }).isString(),
+    body('fullName', 'Error : fullName length must be min 3').isLength({ min: 3 }).isString(),
+    body('email', 'Error : email is not exist').isEmail(),
+    body('password', 'Error : password length must be min 5').isLength({ min: 5 }).isString(),
 ]
 
 export const loginValidation = [
-    body('email', 'Email error').isEmail(),
-    body('password', 'password error').isLength({ min: 5 }).isString(),
+    body('email', 'Error : email is not exist').isEmail(),
+    body('password', 'Error : password length must be min 5').isLength({ min: 5 }).isString(),
 ]
-
 
 export const basketAddValidation = [
     body('id', 'id error').isString(),

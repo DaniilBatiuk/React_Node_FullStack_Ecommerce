@@ -4,9 +4,14 @@ import { RootState } from '../store';
 import { IFormValues, IFormValues2, Product } from '../../types/types';
 
 
-export const fetchAuth = createAsyncThunk<AuthState, IFormValues>('auth/fetchAuth', async ({ email, password }: IFormValues) => {
-    const { data } = await axios.post<AuthState>('/auth/login', { email, password });
-    return data;
+export const fetchAuth = createAsyncThunk<AuthState, IFormValues>('auth/fetchAuth', async ({ email, password }: IFormValues, { rejectWithValue }) => {
+    try {
+        const { data } = await axios.post<AuthState>('/auth/login', { email, password });
+        return data;
+    }
+    catch (err: any) {
+        return rejectWithValue(err.response.data.map((error: { msg: any; }) => error.msg));
+    }
 });
 
 export const fetchRegister = createAsyncThunk<AuthState, IFormValues2>('auth/fetchRegister', async ({ fullName, email, password }: IFormValues2, { rejectWithValue }) => {
@@ -15,7 +20,7 @@ export const fetchRegister = createAsyncThunk<AuthState, IFormValues2>('auth/fet
         return data;
     }
     catch (err: any) {
-        return rejectWithValue(err.response.data);
+        return rejectWithValue(err.response.data.map((error: { msg: any; }) => error.msg));
     }
 });
 
@@ -51,6 +56,10 @@ export interface AuthState {
         product: Product,
         quantity: number,
     }[];
+    errors: {
+        fetchRegisterErrors: string[],
+        fetchAuthErrors: string[],
+    };
     token: string;
 }
 
@@ -58,6 +67,10 @@ const initialState: AuthState = {
     email: "",
     fullName: "",
     token: "",
+    errors: {
+        fetchRegisterErrors: [],
+        fetchAuthErrors: [],
+    },
     basket: [],
 }
 
@@ -81,13 +94,15 @@ export const authSlice = createSlice({
         builder.addCase(fetchAuth.fulfilled, (state, action) => {
             state.email = action.payload.email;
             state.fullName = action.payload.fullName;
-            window.localStorage.setItem('token', action.payload.token);
             state.basket = action.payload.basket;
+            window.localStorage.setItem('token', action.payload.token);
+            state.errors.fetchAuthErrors = [];
         });
-        builder.addCase(fetchAuth.rejected, (state) => {
+        builder.addCase(fetchAuth.rejected, (state, action) => {
             state.email = "";
             state.fullName = "";
             state.basket = [];
+            state.errors.fetchAuthErrors = action.payload as string[];
         });
         builder.addCase(fetchRegister.pending, (state) => {
             state.email = "";
@@ -97,13 +112,15 @@ export const authSlice = createSlice({
         builder.addCase(fetchRegister.fulfilled, (state, action) => {
             state.email = action.payload.email;
             state.fullName = action.payload.fullName;
-            window.localStorage.setItem('token', action.payload.token);
             state.basket = action.payload.basket;
+            window.localStorage.setItem('token', action.payload.token);
+            state.errors.fetchRegisterErrors = [];
         });
-        builder.addCase(fetchRegister.rejected, (state) => {
+        builder.addCase(fetchRegister.rejected, (state, action) => {
             state.email = "";
             state.fullName = "";
             state.basket = [];
+            state.errors.fetchRegisterErrors = action.payload as string[];
         });
         builder.addCase(fetchAuthMe.pending, (state) => {
             state.email = "";
