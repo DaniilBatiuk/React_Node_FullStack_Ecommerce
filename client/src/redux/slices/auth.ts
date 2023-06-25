@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../axios';
 import { RootState } from '../store';
 import { IFormValues, IFormValues2, Product } from '../../types/types';
+import { AxiosError } from 'axios';
 
 
 export const fetchAuth = createAsyncThunk<AuthState, IFormValues>('auth/fetchAuth', async ({ email, password }: IFormValues, { rejectWithValue }) => {
@@ -10,7 +11,7 @@ export const fetchAuth = createAsyncThunk<AuthState, IFormValues>('auth/fetchAut
         return data;
     }
     catch (err: any) {
-        return rejectWithValue(err.response.data.map((error: { msg: any; }) => error.msg));
+        return rejectWithValue(err.response.data.map((error: { msg: string; }) => error.msg));
     }
 });
 
@@ -20,7 +21,7 @@ export const fetchRegister = createAsyncThunk<AuthState, IFormValues2>('auth/fet
         return data;
     }
     catch (err: any) {
-        return rejectWithValue(err.response.data.map((error: { msg: any; }) => error.msg));
+        return rejectWithValue(err.response.data.map((error: { msg: string; }) => error.msg));
     }
 });
 

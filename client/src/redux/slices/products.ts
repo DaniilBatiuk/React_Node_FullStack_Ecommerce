@@ -19,7 +19,7 @@ export const fetchCreateProduct = createAsyncThunk<Product, Product>('product/fe
     return data;
   }
   catch (err: any) {
-    return rejectWithValue(err.response.data.map((error: { msg: any; }) => error.msg));
+    return rejectWithValue(err.response.data.map((error: { msg: string; }) => error.msg));
   }
 });
 

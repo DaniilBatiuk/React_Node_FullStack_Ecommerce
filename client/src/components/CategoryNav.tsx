@@ -10,7 +10,7 @@ const CategoryNav: React.FC = () => {
     const dispatch = useAppDispatch();
     const { types } = useSelector((state: RootState) => state.type);
     const { typeName } = useSelector((state: RootState) => state.type);
-    
+
     const SelectByType = (type: Type) => {
         dispatch(setTypeName(type.name));
         dispatch(fetchProductsByType(type._id));
@@ -24,10 +24,13 @@ const CategoryNav: React.FC = () => {
                     <div className="category-nav__title title" >{typeName}</div>
                 </div>
                 <div className="category-nav__list navigation-list">
-                    <button className="navigation-list__item" onClick={() => { dispatch(setTypeName("All")); dispatch(fetchProducts());}}>All</button>
+                    <Link to="/Categories/All" className="navigation-list__item" onClick={() => { dispatch(setTypeName("All")); dispatch(fetchProducts()); }}>All</Link>
                     {(types.length !== 0) && (
                         types.map((type) => (
-                            <button className="navigation-list__item" key={type._id} onClick={() => SelectByType(type)}> {type.name} </button>))
+                            <Link to={`/categories/${type.name}`} key={type._id} className="navigation-list__item" onClick={() => SelectByType(type)}>
+                                {type.name}
+                            </Link>
+                        ))
                     )}
                 </div>
             </div>

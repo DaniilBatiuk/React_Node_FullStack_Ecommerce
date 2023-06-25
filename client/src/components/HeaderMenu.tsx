@@ -13,21 +13,24 @@ import Basket from "./Basket";
 import CreateProduct from "./CreateProduct";
 import cart from '../assets/photos/cart.png';
 
-const HeaderMenu: React.FC = () => {
-    const dispatch = useAppDispatch();
 
-    const ShowMenu = () => {
-        document.documentElement.classList.toggle('menu-open');
-        SetIsMenuActive((prev) => !prev);
-    }
+const HeaderMenu: React.FC = () => {
+
+    const dispatch = useAppDispatch();
 
     const [modalSignInActive, setModalSignInActive] = useState(false);
     const [modalSignUpActive, setModalSignUpActive] = useState(false);
     const [modalCreateProductActive, setModalCreateProductActive] = useState(false);
     const [basketActive, setBasketActive] = useState(false);
     const [isMenuActive, SetIsMenuActive] = useState(false);
+
     const { basket } = useSelector((state: RootState) => state.auth);
     const isAuth = useSelector(selectIsAuth);
+
+    const ShowMenu = () => {
+        document.documentElement.classList.toggle('menu-open');
+        SetIsMenuActive((prev) => !prev);
+    }
 
     useEffect(() => {
         if (basketActive === true || modalCreateProductActive === true || modalSignUpActive === true || modalSignInActive === true) {
@@ -54,10 +57,7 @@ const HeaderMenu: React.FC = () => {
                             <div className="menu__body">
                                 <ul className="menu__list">
                                     <li>
-                                        <Link to="/Categories" className="menu__link" onClick={() => { ScrollUp(); if (isMenuActive) { ShowMenu(); } }}>Categories</Link>
-                                    </li>
-                                    <li>
-                                        <button className="menu__link" onClick={() => { setModalCreateProductActive(true); if (isMenuActive) { ShowMenu(); } }}>Create Product</button>
+                                        <Link to="/Categories/All" className="menu__link" onClick={() => { ScrollUp(); if (isMenuActive) { ShowMenu(); } }}>Categories</Link>
                                     </li>
                                     {(!isAuth) ?
                                         <>
@@ -69,9 +69,15 @@ const HeaderMenu: React.FC = () => {
                                             </li>
                                         </>
                                         :
-                                        <li>
-                                            <button className="menu__link menu__link-border" onClick={() => { dispatch(signout()); if (isMenuActive) { ShowMenu(); } }}>Sign Out</button>
-                                        </li>
+                                        <>
+                                            <li>
+                                                <button className="menu__link" onClick={() => { setModalCreateProductActive(true); if (isMenuActive) { ShowMenu(); } }}>Create Product</button>
+                                            </li>
+                                            <li>
+                                                <button className="menu__link menu__link-border" onClick={() => { dispatch(signout()); if (isMenuActive) { ShowMenu(); } }}>Sign Out</button>
+                                            </li>
+                                        </>
+
                                     }
                                 </ul>
                             </div>
