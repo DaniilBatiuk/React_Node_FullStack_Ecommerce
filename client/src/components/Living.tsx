@@ -18,7 +18,7 @@ const Living: React.FC<LivingProps> = ({ livingInfo }: LivingProps) => {
                     <div className="living__text">
                         <div className="living__title title">{livingInfo.title}</div>
                         <div className="living__decription">{livingInfo.description}</div>
-                        <Link to="/Categories" className="living__button" onClick={ScrollUp}>Show more</Link>
+                        <Link to="/Categories/All" className="living__button" onClick={ScrollUp}>Show more</Link>
                     </div>
                     <div className="living__image">
                         <img src={livingInfo.photo} alt="" />

@@ -2,31 +2,47 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { Provider } from 'react-redux'
-import Categories from './pages/Categories';
-import App from './App';
-import Home from './pages/Home';
-import ErrorPage from './pages/ErrorPage';
 import { store } from './redux/store';
-import ProductSelect from './pages/ProductSelect';
+
+const App = React.lazy(() => import('./App'));
+const Home = React.lazy(() => import('./pages/Home'));
+const Categories = React.lazy(() => import('./pages/Categories'));
+const ProductSelect = React.lazy(() => import('./pages/ProductSelect'));
+const ErrorPage = React.lazy(() => import('./pages/ErrorPage'));
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
-    errorElement: <ErrorPage />,
+    element:
+      <React.Suspense>
+        <App />
+      </React.Suspense>,
+    errorElement:
+      <React.Suspense>
+        <ErrorPage />
+      </React.Suspense>,
     children: [
       {
         path: "/",
-        element: <Home />,
+        element:
+          <React.Suspense>
+            <Home />
+          </React.Suspense>,
       },
       {
         path: "/Categories/:category",
-        element: <Categories />,
+        element:
+          <React.Suspense>
+            <Categories />
+          </React.Suspense>,
       }
       ,
       {
         path: "/Product/:id",
-        element: <ProductSelect />,
+        element:
+          <React.Suspense>
+            <ProductSelect />
+          </React.Suspense>,
       }
     ]
   }
