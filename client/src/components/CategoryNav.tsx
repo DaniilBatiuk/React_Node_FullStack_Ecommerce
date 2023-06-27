@@ -7,7 +7,9 @@ import { Type, setTypeName } from "../redux/slices/types";
 import { fetchProducts, fetchProductsByType } from "../redux/slices/products";
 
 const CategoryNav: React.FC = () => {
+
     const dispatch = useAppDispatch();
+    
     const { types } = useSelector((state: RootState) => state.type);
     const { typeName } = useSelector((state: RootState) => state.type);
 

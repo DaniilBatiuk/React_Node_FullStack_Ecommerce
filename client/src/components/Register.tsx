@@ -17,6 +17,7 @@ export interface RegisterProps {
 
 const Register: React.FC<RegisterProps> = ({ active, setActive }: RegisterProps) => {
     const dispatch = useAppDispatch();
+    
     const { fetchRegisterErrors } = useSelector((state: RootState) => state.auth.errors);
 
     const [error, setError] = useState(false);

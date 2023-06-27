@@ -9,6 +9,7 @@ import { fetchCreateProduct } from "../redux/slices/products";
 import { RootState, useAppDispatch } from "../redux/store";
 import { useSelector } from "react-redux";
 import axios from "../axios";
+import { useNavigate } from "react-router-dom";
 
 export interface CreateProductProps {
     active: boolean;
@@ -19,6 +20,8 @@ export interface CreateProductProps {
 const CreateProduct: React.FC<CreateProductProps> = ({ active, setActive }: CreateProductProps) => {
 
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
     const { types } = useSelector((state: RootState) => state.type);
     const { fetchCreateProductErrors } = useSelector((state: RootState) => state.product.errors);
 
@@ -32,7 +35,12 @@ const CreateProduct: React.FC<CreateProductProps> = ({ active, setActive }: Crea
     const onSubmit: SubmitHandler<Product> = (data: Product) => {
         data.img = imgLinks;
         if (data.type === "") data.type = types[0]?.name;
-        dispatch(fetchCreateProduct(data));
+        dispatch(fetchCreateProduct(data)).then((res) => {
+            if ((res.payload as Product)._id) {
+                setActive(false);
+                navigate(`/Product/${(res.payload as Product)._id}`);
+            }
+        });
     };
 
     const { fields, append, remove } = useFieldArray({

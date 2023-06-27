@@ -7,6 +7,8 @@ import { RootState } from "../redux/store";
 
 const Trending: React.FC = () => {
 
+    const { products } = useSelector((state: RootState) => state.product);
+    
     useEffect(() => {
         const scrollConteiner = document.getElementById("scrollConteiner") as HTMLDivElement;
         const scrollLeftButton = document.getElementById("scrollLeftButton") as HTMLButtonElement;
@@ -24,7 +26,6 @@ const Trending: React.FC = () => {
             });
         }
     }, []);
-    const { products } = useSelector((state: RootState) => state.product);
 
     return (
         <section className="trending">

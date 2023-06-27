@@ -17,6 +17,7 @@ export interface LoginProps {
 
 const Login: React.FC<LoginProps> = ({ active, setActive }: LoginProps) => {
     const dispatch = useAppDispatch();
+    
     const { fetchAuthErrors } = useSelector((state: RootState) => state.auth.errors);
 
     const { register, handleSubmit, formState: { errors } } = useForm<IFormValues>();

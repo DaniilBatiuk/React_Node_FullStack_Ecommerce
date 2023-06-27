@@ -8,6 +8,7 @@ import { RootState } from "../redux/store";
 
 
 const ProductsList: React.FC = () => {
+    
     const { products } = useSelector((state: RootState) => state.product);
 
     return (

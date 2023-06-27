@@ -15,7 +15,9 @@ const ProductInfo: React.FC = () => {
     const [sum, setSum] = useState(0);
     const [mainPhoto, setMainPhoto] = useState("");
     const [errorText, setErrorText] = useState("");
+
     const { id } = useParams();
+
     const { basket } = useSelector((state: RootState) => state.auth);
     const isAuth = useSelector(selectIsAuth);
 
@@ -34,7 +36,6 @@ const ProductInfo: React.FC = () => {
     useEffect(() => {
         setErrorText("");
     }, [isAuth]);
-
 
     const AddToBasket = () => {
         if (!isAuth) {

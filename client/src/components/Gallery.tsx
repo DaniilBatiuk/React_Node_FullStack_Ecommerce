@@ -21,8 +21,10 @@ const galleryImages = [
 
 
 const Gallery: React.FC = () => {
-  const { types } = useSelector((state: RootState) => state.type);
+
   const dispatch = useAppDispatch();
+  
+  const { types } = useSelector((state: RootState) => state.type);
 
   const SelectByType = (type: Type) => {
     dispatch(fetchProductsByType(type._id));

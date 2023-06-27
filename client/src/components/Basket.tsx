@@ -9,7 +9,9 @@ export interface BasketProps {
 }
 
 const Basket: React.FC<BasketProps> = ({ active, setActive }: BasketProps) => {
+
     const { basket } = useSelector((state: RootState) => state.auth);
+
     const [sum, setSum] = useState(0);
 
     useEffect(() => {
