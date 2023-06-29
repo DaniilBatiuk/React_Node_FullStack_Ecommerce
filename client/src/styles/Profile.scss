@@ -1,0 +1,160 @@
+@import "Variables.scss";
+
+.profile {
+    margin: $marginButtomNotPhone 0px;
+
+    &__user {
+        width: 170px;
+
+        @media (max-width:767.98px) {
+            width: 150px;
+        }
+    }
+
+    &__container {}
+
+    &__email {
+        font-size: $titleFontSize;
+        font-weight: 700;
+
+        @media (max-width: 575.98px) {
+            font-size: $titleFontSizePhone - 2px;
+        }
+    }
+
+    &__title {
+        text-align: center;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-around;
+        margin-top: $marginButtomPhone;
+
+        @media (max-width:767.98px) {
+            flex-direction: column;
+            row-gap: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    &__icon {}
+
+    &__header-info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    &__activity {
+        font-size: $CommonFontSize + 2;
+        font-weight: 500;
+        display: flex;
+        margin-top: 20px;
+        column-gap: 20px;
+
+        @media (max-width: 575.98px) {
+            font-size: $CommonFontSize;
+        }
+    }
+
+    &__seled,
+    &__active,
+    &__denied {
+        display: flex;
+        column-gap: 5px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__seled-count {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(42, 143, 42);
+        color: white;
+    }
+
+    &__seled-text {}
+
+    &__active {}
+
+    &__active-count {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(197, 197, 3);
+        color: white;
+    }
+
+    &__active-text {}
+
+    &__denied {}
+
+    &__denied-count {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(161, 40, 40);
+        color: white;
+    }
+
+    &__denied-text {}
+
+
+    &__list {
+        display: flex;
+        column-gap: 30px;
+    }
+
+    &__link {
+        font-size: $CommonFontSize;
+    }
+
+    &__link:hover,
+    &__link.active {
+        text-decoration: underline;
+        text-decoration-line: underline;
+        text-decoration-thickness: 5px;
+        text-underline-offset: 10px;
+    }
+
+    hr {
+        margin-top: 30px;
+    }
+
+    &__nav {
+        margin-bottom: 50px;
+    }
+
+    &__information {
+        font-size: $CommonFontSize;
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        margin: 0 auto;
+    }
+
+    &__info {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__characteristic {}
+
+    &__text {}
+}
+
+.title {}

@@ -51,12 +51,14 @@ export interface IBasketDel {
 }
 
 export interface AuthState {
+    _id: string;
     email: string;
     fullName: string;
     basket: {
         product: Product,
         quantity: number,
     }[];
+    createdAt: string;
     errors: {
         fetchRegisterErrors: string[],
         fetchAuthErrors: string[],
@@ -65,8 +67,10 @@ export interface AuthState {
 }
 
 const initialState: AuthState = {
+    _id: "",
     email: "",
     fullName: "",
+    createdAt: new Date(500000000000).toISOString().split('T')[0],
     token: "",
     errors: {
         fetchRegisterErrors: [],
@@ -80,63 +84,83 @@ export const authSlice = createSlice({
     initialState,
     reducers: {
         signout: (state) => {
-            state.email = ""
-            state.fullName = ""
+            state._id = "";
+            state.email = "";
+            state.fullName = "";
             window.localStorage.removeItem('token');
             state.basket = []
+            state.createdAt = new Date(500000000000).toISOString().split('T')[0]
         },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchAuth.pending, (state) => {
+            state._id = "";
             state.email = "";
             state.fullName = "";
             state.basket = [];
+            state.createdAt = new Date(500000000000).toISOString().split('T')[0];
         });
         builder.addCase(fetchAuth.fulfilled, (state, action) => {
+            state._id = action.payload._id;
             state.email = action.payload.email;
             state.fullName = action.payload.fullName;
             state.basket = action.payload.basket;
+            state.createdAt = action.payload.createdAt.toString().split('T')[0];
             window.localStorage.setItem('token', action.payload.token);
             state.errors.fetchAuthErrors = [];
         });
         builder.addCase(fetchAuth.rejected, (state, action) => {
+            state._id = "";
             state.email = "";
             state.fullName = "";
             state.basket = [];
+            state.createdAt = new Date(500000000000).toISOString().split('T')[0];
             state.errors.fetchAuthErrors = action.payload as string[];
         });
         builder.addCase(fetchRegister.pending, (state) => {
+            state._id = "";
             state.email = "";
             state.fullName = "";
             state.basket = [];
+            state.createdAt = new Date(500000000000).toISOString().split('T')[0];
         });
         builder.addCase(fetchRegister.fulfilled, (state, action) => {
+            state._id = action.payload._id;
             state.email = action.payload.email;
             state.fullName = action.payload.fullName;
             state.basket = action.payload.basket;
+            state.createdAt = action.payload.createdAt.toString().split('T')[0];
             window.localStorage.setItem('token', action.payload.token);
             state.errors.fetchRegisterErrors = [];
         });
         builder.addCase(fetchRegister.rejected, (state, action) => {
+            state._id = "";
             state.email = "";
             state.fullName = "";
             state.basket = [];
+            state.createdAt = new Date(500000000000).toISOString().split('T')[0];
             state.errors.fetchRegisterErrors = action.payload as string[];
         });
         builder.addCase(fetchAuthMe.pending, (state) => {
+            state._id = "";
             state.email = "";
             state.fullName = "";
             state.basket = [];
+            state.createdAt = new Date(500000000000).toISOString().split('T')[0];
         });
         builder.addCase(fetchAuthMe.fulfilled, (state, action) => {
+            state._id = action.payload._id;
             state.email = action.payload.email;
             state.fullName = action.payload.fullName;
             state.basket = action.payload.basket;
+            state.createdAt = action.payload.createdAt.toString().split('T')[0];
         });
         builder.addCase(fetchAuthMe.rejected, (state) => {
+            state._id = "";
             state.email = "";
             state.fullName = "";
             state.basket = [];
+            state.createdAt = new Date(500000000000).toISOString().split('T')[0];
         });
         builder.addCase(fetchAddToBasket.fulfilled, (state, action) => {
             state.basket = action.payload.basket;

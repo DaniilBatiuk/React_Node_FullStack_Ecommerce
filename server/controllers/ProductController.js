@@ -28,7 +28,7 @@ export const create = async (req, res) => {
 
 export const getAll = async (req, res) => {
     try {
-        const products = await ProductModel.find().populate(['user', 'type']).exec();
+        const products = await ProductModel.find().populate(['type']).exec();
 
         res.json(products);
 

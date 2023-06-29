@@ -9,6 +9,7 @@ const Home = React.lazy(() => import('./pages/Home'));
 const Categories = React.lazy(() => import('./pages/Categories'));
 const ProductSelect = React.lazy(() => import('./pages/ProductSelect'));
 const ErrorPage = React.lazy(() => import('./pages/ErrorPage'));
+const Profile = React.lazy(() => import('./pages/Profile'));
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,14 @@ const router = createBrowserRouter([
         element:
           <Suspense>
             <ProductSelect />
+          </Suspense>,
+      }
+      ,
+      {
+        path: "/Profile",
+        element:
+          <Suspense>
+            <Profile />
           </Suspense>,
       }
     ]

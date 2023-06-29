@@ -16,6 +16,7 @@ export interface Product {
     img: string[];
     type: string;
     characteristic: Characteristic[];
+    user: string;
 }
 
 export interface Characteristic {
