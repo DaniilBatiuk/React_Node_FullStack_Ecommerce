@@ -4,6 +4,8 @@ import user from '../assets/photos/user.png';
 import { RootState, useAppDispatch } from '../redux/store';
 import { useSelector } from 'react-redux';
 import { fetchProducts } from '../redux/slices/products';
+import { filterMyProductSelector } from '../redux/Selectors';
+import ProductCard from '../components/ProductCard';
 
 const Profile = () => {
 
@@ -15,6 +17,8 @@ const Profile = () => {
 
     const { auth } = useSelector((state: RootState) => state);
     const { products } = useSelector((state: RootState) => state.product);
+
+    const myProducts = useSelector(filterMyProductSelector(auth._id));
 
     useEffect(() => {
         dispatch(fetchProducts());
@@ -88,8 +92,17 @@ const Profile = () => {
                         </li>
                     </ul>
                 </nav>
+                {isActive1 &&
+                    <section className="profile__items">
+                        {(myProducts.length !== 0) && (
+                            myProducts.map((elem) => (
+                                <ProductCard key={elem._id} product={elem} />
+                            ))
+                        )}
+                    </section>
+                }
                 {isActive2 &&
-                    <div className="profile__information">
+                    <section className="profile__information">
                         <div className="profile__info">
                             <div className="profile__characteristic">
                                 Full Name:
@@ -114,8 +127,7 @@ const Profile = () => {
                                 {auth.createdAt}
                             </div>
                         </div>
-                    </div>
-
+                    </section>
                 }
             </div>
         </section>
