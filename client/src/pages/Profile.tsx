@@ -22,13 +22,14 @@ const Profile = () => {
 
     useEffect(() => {
         dispatch(fetchProducts());
+    }, []);
 
+    useEffect(() => {
         setActiveCount(products.reduce((acc, value) => {
             if (value.user === auth._id) return acc + 1;
             return acc;
         }, 0));
-    }, []);
-
+    }, [products]);
 
     const handleClick1 = () => {
         setIsActive1(!isActive1);
@@ -96,7 +97,7 @@ const Profile = () => {
                     <section className="profile__items">
                         {(myProducts.length !== 0) && (
                             myProducts.map((elem) => (
-                                <ProductCard key={elem._id} product={elem} />
+                                <ProductCard key={elem._id} product={elem} myProfileProduct={true} />
                             ))
                         )}
                     </section>

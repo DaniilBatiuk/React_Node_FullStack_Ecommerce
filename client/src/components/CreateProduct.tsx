@@ -28,7 +28,7 @@ const CreateProduct: React.FC<CreateProductProps> = ({ active, setActive }: Crea
     const [mainPhoto, setMainPhoto] = useState("");
     const [imgLinks, setImgLinks] = useState<string[]>([]);
 
-    const { register, handleSubmit, control, watch, formState: { errors } } = useForm<Product>();
+    const { register, handleSubmit, control, watch, reset, formState: { errors } } = useForm<Product>();
     const changeImg = watch("img");
 
 
@@ -38,6 +38,9 @@ const CreateProduct: React.FC<CreateProductProps> = ({ active, setActive }: Crea
         dispatch(fetchCreateProduct(data)).then((res) => {
             if ((res.payload as Product)._id) {
                 setActive(false);
+                reset();
+                setMainPhoto("");
+                setImgLinks([]);
                 navigate(`/Product/${(res.payload as Product)._id}`);
             }
         });

@@ -1,10 +1,12 @@
 @import "Variables.scss";
 
 .products-card {
+
   &__item {
     padding: 10px;
     border: 3px solid rgb(240, 236, 236);
     transition: border 0.3s ease-in-out;
+    position: relative;
   }
 
   &__item:hover {
@@ -37,5 +39,11 @@
   &__price {
     font-size: 28px;
     font-weight: 900;
+  }
+
+  &__svg-trash {
+    position: absolute;
+    top: 10px;
+    right: 10px;
   }
 }
