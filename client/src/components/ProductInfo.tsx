@@ -2,7 +2,7 @@ import axios from '../axios';
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../styles/ProductInfo.scss";
-import { Product } from '../types/types';
+import { IProduct } from '../types/types';
 import { RootState, useAppDispatch } from '../redux/store';
 import { fetchAddToBasket, selectIsAuth } from '../redux/slices/auth';
 import { useSelector } from 'react-redux';
@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 const ProductInfo: React.FC = () => {
     const dispatch = useAppDispatch();
 
-    const [product, setProduct] = useState<Product>();
+    const [product, setProduct] = useState<IProduct>();
     const [count, setCount] = useState(1);
     const [sum, setSum] = useState(0);
     const [mainPhoto, setMainPhoto] = useState("");
@@ -53,7 +53,7 @@ const ProductInfo: React.FC = () => {
     return (
         <section className="product">
             <div className="product__container">
-                <div className="product__title title" >{product?.title}</div>
+                <h2 className="product__title title" >{product?.title}</h2>
                 <div className="product__main">
                     <div className="product__photos photos">
                         <div className="photos__main">

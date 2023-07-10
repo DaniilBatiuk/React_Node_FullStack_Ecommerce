@@ -4,7 +4,7 @@ import Trending from "../components/Trending";
 import Living from "../components/Living";
 import living1 from '../assets/photos/living1.jpg';
 import living2 from '../assets/photos/living2.jpg';
-import { LivingInfo } from "../types/types";
+import { ILivingInfo } from "../types/types";
 import ProductsProud from "../components/ProductsProud";
 import { useAppDispatch } from "../redux/store";
 import { setTypeName } from "../redux/slices/types";
@@ -13,7 +13,7 @@ import { fetchProducts } from "../redux/slices/products";
 
 const Home: React.FC = () => {
 
-    const livingList: LivingInfo[] = [
+    const livingList: ILivingInfo[] = [
         {
             photo: living1,
             title: "Creative harmonious living",
@@ -41,7 +41,7 @@ const Home: React.FC = () => {
         dispatch(fetchProducts());
     }, [dispatch]);
 
-    
+
     return (
         <>
             <Gallery></Gallery>

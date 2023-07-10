@@ -1,23 +1,23 @@
 import React from "react";
 import "../styles/BasketElem.scss";
-import { Product } from "../types/types";
+import { IProduct } from "../types/types";
 import { fetchDeleteFromBasket } from "../redux/slices/auth";
 import { useAppDispatch } from "../redux/store";
 
 
-export interface BasketElemProps {
+export interface IBasketElemProps {
     item: {
-        product: Product,
+        product: IProduct,
         quantity: number,
     };
 }
 
-const BasketElem: React.FC<BasketElemProps> = ({ item }: BasketElemProps) => {
-    
+const BasketElem: React.FC<IBasketElemProps> = ({ item }: IBasketElemProps) => {
+
     const dispatch = useAppDispatch();
 
     return (
-        <div className="basket-elem">
+        <article className="basket-elem">
             <div className="basket-elem__photo">
                 <img src={`http://localhost:4000${item.product.img[0]}`} alt="" />
             </div>
@@ -35,7 +35,7 @@ const BasketElem: React.FC<BasketElemProps> = ({ item }: BasketElemProps) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </article>
     );
 }
 

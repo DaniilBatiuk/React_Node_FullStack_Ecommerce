@@ -106,7 +106,6 @@ export const remove = async (req, res) => {
 
 export const update = async (req, res) => {
     try {
-
         const productId = req.params.id;
         const product = await ProductModel.updateOne(
             {
@@ -118,8 +117,7 @@ export const update = async (req, res) => {
                 rating: req.body.rating,
                 img: req.body.img,
                 characteristic: req.body.characteristic,
-                type: req.typeId,
-                user: req.userId,
+                type: req.body.type
             }
         );
         if (!product) {

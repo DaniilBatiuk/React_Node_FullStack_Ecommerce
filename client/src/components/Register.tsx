@@ -64,13 +64,13 @@ const Register: React.FC<RegisterProps> = ({ active, setActive }: RegisterProps)
                         </div>
                     </div>
                 )}
-                <div className="modal__label">Full name</div>
+                <label className="modal__label">Full name</label>
                 <MyInput type="text" placeholder="Enter full name" label="fullName" register={register} required />
-                <div className="modal__label">Email adress</div>
+                <label className="modal__label">Email adress</label>
                 <MyInput type="text" placeholder="Enter email" label="email" register={register} required />
-                <div className="modal__label">Password</div>
+                <label className="modal__label">Password</label>
                 <MyInput type="password" placeholder="Enter password" label="password" register={register} required />
-                <div className="modal__label">Confirm Password</div>
+                <label className="modal__label">Confirm Password</label>
                 <MyInput type="password" placeholder="Enter password" label="passwordConfirm" register={register} required />
                 <MyButton type="submit" value="Sing Up" />
             </Modal>

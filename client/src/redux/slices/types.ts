@@ -1,25 +1,21 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from '../../axios';
+import { IType } from '../../types/types';
 
-export const fetchTypes = createAsyncThunk<Type[]>('type/fetchTypes', async () => {
-  const { data } = await axios.get<Type[]>('/type');
+export const fetchTypes = createAsyncThunk<IType[]>('type/fetchTypes', async () => {
+  const { data } = await axios.get<IType[]>('/type');
   return data;
 });
 
 
-export interface Type {
-  _id: string;
-  name: string;
-  __v: number;
-}
 
-export interface TypesState {
-  types: Type[];
+export interface ITypesState {
+  types: IType[];
   typeName: string;
 }
 
 
-const initialState: TypesState = {
+const initialState: ITypesState = {
   types: [],
   typeName: "All",
 }

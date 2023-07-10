@@ -12,7 +12,7 @@ const ProductsProud: React.FC = () => {
     return (
         <section className="products-proud">
             <div className="products-proud__container">
-                <div className="title products-proud__title">Products we are proud of</div>
+                <h2 className="title products-proud__title">Products we are proud of</h2>
                 <div className="products-proud__items">
                     {(products.length !== 0) && (
                         [...products].sort((a, b) => b.rating - a.rating).slice(0, 8).map((elem) => (

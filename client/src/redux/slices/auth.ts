@@ -1,13 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../axios';
 import { RootState } from '../store';
-import { IFormValues, IFormValues2, Product } from '../../types/types';
-import { AxiosError } from 'axios';
+import { IFormValues, IFormValues2, IProduct } from '../../types/types';
 
 
-export const fetchAuth = createAsyncThunk<AuthState, IFormValues>('auth/fetchAuth', async ({ email, password }: IFormValues, { rejectWithValue }) => {
+export const fetchAuth = createAsyncThunk<IAuthState, IFormValues>('auth/fetchAuth', async ({ email, password }: IFormValues, { rejectWithValue }) => {
     try {
-        const { data } = await axios.post<AuthState>('/auth/login', { email, password });
+        const { data } = await axios.post<IAuthState>('/auth/login', { email, password });
         return data;
     }
     catch (err: any) {
@@ -15,9 +14,9 @@ export const fetchAuth = createAsyncThunk<AuthState, IFormValues>('auth/fetchAut
     }
 });
 
-export const fetchRegister = createAsyncThunk<AuthState, IFormValues2>('auth/fetchRegister', async ({ fullName, email, password }: IFormValues2, { rejectWithValue }) => {
+export const fetchRegister = createAsyncThunk<IAuthState, IFormValues2>('auth/fetchRegister', async ({ fullName, email, password }: IFormValues2, { rejectWithValue }) => {
     try {
-        const { data } = await axios.post<AuthState>('/auth/register', { fullName, email, password });
+        const { data } = await axios.post<IAuthState>('/auth/register', { fullName, email, password });
         return data;
     }
     catch (err: any) {
@@ -26,17 +25,17 @@ export const fetchRegister = createAsyncThunk<AuthState, IFormValues2>('auth/fet
 });
 
 export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
-    const { data } = await axios.get<AuthState>('/auth/me');
+    const { data } = await axios.get<IAuthState>('/auth/me');
     return data;
 });
 
-export const fetchAddToBasket = createAsyncThunk<AuthState, IBasketAdd>('auth/fetchAddToBasket', async ({ id, quantity }: IBasketAdd) => {
-    const { data } = await axios.post<AuthState>('/auth/addToBasket', { id, quantity });
+export const fetchAddToBasket = createAsyncThunk<IAuthState, IBasketAdd>('auth/fetchAddToBasket', async ({ id, quantity }: IBasketAdd) => {
+    const { data } = await axios.post<IAuthState>('/auth/addToBasket', { id, quantity });
     return data;
 });
 
-export const fetchDeleteFromBasket = createAsyncThunk<AuthState, IBasketDel>('auth/fetchDeleteFromBasket', async ({ id }: IBasketDel) => {
-    const { data } = await axios.patch<AuthState>('/auth/updateBasket', { id });
+export const fetchDeleteFromBasket = createAsyncThunk<IAuthState, IBasketDel>('auth/fetchDeleteFromBasket', async ({ id }: IBasketDel) => {
+    const { data } = await axios.patch<IAuthState>('/auth/updateBasket', { id });
     return data;
 });
 
@@ -50,12 +49,12 @@ export interface IBasketDel {
     id: string;
 }
 
-export interface AuthState {
+export interface IAuthState {
     _id: string;
     email: string;
     fullName: string;
     basket: {
-        product: Product,
+        product: IProduct,
         quantity: number,
     }[];
     createdAt: string;
@@ -66,7 +65,7 @@ export interface AuthState {
     token: string;
 }
 
-const initialState: AuthState = {
+const initialState: IAuthState = {
     _id: "",
     email: "",
     fullName: "",

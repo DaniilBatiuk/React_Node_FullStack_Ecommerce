@@ -8,9 +8,10 @@ import "../styles/Gallery.scss";
 import { Link } from "react-router-dom";
 import { RootState, useAppDispatch } from "../redux/store";
 import { fetchProductsByType } from "../redux/slices/products";
-import { Type, setTypeName } from "../redux/slices/types";
+import { setTypeName } from "../redux/slices/types";
 import { useSelector } from "react-redux";
 import { ScrollUp } from "../utils/functions";
+import { IType } from "../types/types";
 
 const galleryImages = [
   gallery0,
@@ -26,7 +27,7 @@ const Gallery: React.FC = () => {
   
   const { types } = useSelector((state: RootState) => state.type);
 
-  const SelectByType = (type: Type) => {
+  const SelectByType = (type: IType) => {
     dispatch(fetchProductsByType(type._id));
     dispatch(setTypeName(type.name));
   }
@@ -38,18 +39,18 @@ const Gallery: React.FC = () => {
           {(types.length !== 0) && (
             <Link to="/Categories/All" className="gallery__item gallery__item_big" onClick={() => { ScrollUp(); dispatch(setTypeName("All")); }}>
               <img src={gallery} alt="" />
-              <div className="gallery__image-text">
+              <h1 className="gallery__image-text">
                 Live Comfortably
-              </div>
+              </h1>
             </Link>
           )}
           {(types.length !== 0) && (
             types.slice(0, 4).map((type, i) => (
               <Link to={`/Categories/${type.name}`} className="gallery__item gallery__item" key={type._id} onClick={() => { ScrollUp(); SelectByType(type); }}>
                 <img src={galleryImages[i]} alt="" />
-                <div className="gallery__image-text">
+                <h2 className="gallery__image-text">
                   {type.name}
-                </div>
+                </h2>
               </Link>
             ))
           )}

@@ -10,9 +10,9 @@ export interface ModalProps {
 const Modal: React.FC<ModalProps> = ({ active, children, maxDivWidth }: ModalProps) => {
 
     return (
-        <div className={active ? "modal active" : "modal"}>
+        <section className={active ? "modal active" : "modal"}>
             <div className={active ? "modal__content active" : "modal__content"} style={{ maxWidth: maxDivWidth }}>{children}</div>
-        </div>
+        </section>
     );
 }
 

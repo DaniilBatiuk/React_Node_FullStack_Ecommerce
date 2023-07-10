@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { LivingInfo } from "../types/types";
+import { ILivingInfo } from "../types/types";
 import "../styles/Living.scss";
 import { ScrollUp } from "../utils/functions";
 
 
-interface LivingProps {
-    livingInfo: LivingInfo;
+interface ILivingProps {
+    livingInfo: ILivingInfo;
 }
 
-const Living: React.FC<LivingProps> = ({ livingInfo }: LivingProps) => {
+const Living: React.FC<ILivingProps> = ({ livingInfo }: ILivingProps) => {
 
     return (
         <section className="living">

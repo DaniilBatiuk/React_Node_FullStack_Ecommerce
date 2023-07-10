@@ -9,6 +9,14 @@ export const productCreateValidation = [
     body('characteristic', 'Error : there must be min 3 characteristic').isArray({ min: 3 }),
 ]
 
+export const productUpdateValidation = [
+    body('title', 'Error : title length must be min 3').isLength({ min: 3 }).isString(),
+    body('price', 'Error : price must be a number').isDecimal(),
+    body('rating', 'rating error').optional().isInt(),
+    body('img', 'Error : there must be 3 images').isArray({ min: 3, max: 3 }),
+    body('characteristic', 'Error : there must be min 3 characteristic').isArray({ min: 3 }),
+]
+
 export const typeCreateValidation = [
     body('name', 'name error').isLength({ min: 3 }).isString(),
 ]

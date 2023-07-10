@@ -31,7 +31,7 @@ const Trending: React.FC = () => {
         <section className="trending">
             <div className="trending__container">
                 <div className="trending__title-buttons">
-                    <div className="trending__title title">Trending Now</div>
+                    <h2 className="trending__title title">Trending Now</h2>
                     <div className="trending__buttons">
                         <button className="trending__button" id="scrollLeftButton">
                             <svg className="strelka-left-4" viewBox="0 0 100 85">

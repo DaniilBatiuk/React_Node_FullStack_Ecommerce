@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { IProductCreate } from "../types/types";
-import { fetchCreateProduct } from "../redux/slices/products";
+import React, { useState } from "react";
+import { IProduct } from "../types/types";
+import { fetchUpdateProduct } from "../redux/slices/products";
 import { RootState, useAppDispatch } from "../redux/store";
 import { useSelector } from "react-redux";
 import { SubmitHandler, useForm, useFieldArray } from "react-hook-form";
@@ -14,30 +14,40 @@ import useImages from "../hooks/useImages";
 export interface ICreateProductProps {
     active: boolean;
     setActive: (isActive: boolean) => void;
+    product: IProduct;
 }
 
-const CreateProduct: React.FC<ICreateProductProps> = ({ active, setActive }: ICreateProductProps) => {
+const UpdateProduct: React.FC<ICreateProductProps> = ({ active, setActive, product }: ICreateProductProps) => {
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     const { types } = useSelector((state: RootState) => state.type);
-    const { fetchCreateProductErrors } = useSelector((state: RootState) => state.product.errors);
+    const { fetchUpdateProductErrors } = useSelector((state: RootState) => state.product.errors);
+    const [selected, setSelected] = useState(product.type._id);
 
-    const { register, handleSubmit, control, watch, reset, formState: { errors } } = useForm<IProductCreate>();
+    const { register, handleSubmit, control, watch, reset, formState: { errors } } = useForm<IProduct>({
+        defaultValues: {
+            _id: product._id,
+            price: product.price,
+            title: product.title,
+            type: product.type,
+            characteristic: product.characteristic,
+        },
+    })
+
     const changeImg = watch("img");
 
-    const { mainPhoto, setMainPhoto, imgLinks, clearPhoto } = useImages([], changeImg);
+    const { mainPhoto, setMainPhoto, imgLinks, clearPhoto } = useImages(product.img, changeImg);
 
-    const onSubmit: SubmitHandler<IProductCreate> = (data: IProductCreate) => {
+    const onSubmit: SubmitHandler<IProduct> = (data: IProduct) => {
         data.img = imgLinks;
-        if (data.type === "") data.type = types[0]?.name;
-        dispatch(fetchCreateProduct(data)).then((res) => {
-            if ((res.payload as IProductCreate)._id) {
+        dispatch(fetchUpdateProduct(data)).then((res) => {
+            if ((res.payload as any).success) {
                 setActive(false);
                 reset();
                 clearPhoto();
-                navigate(`/Product/${(res.payload as IProductCreate)._id}`);
+                navigate(`/Product/${product._id}`);
             }
         });
     };
@@ -47,27 +57,23 @@ const CreateProduct: React.FC<ICreateProductProps> = ({ active, setActive }: ICr
         control
     });
 
-    useEffect(() => {
-        append({ title: "", description: "" });
-    }, []);
-
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} noValidate encType="multipart/form-data">
+        <form onSubmit={handleSubmit(onSubmit)} noValidate encType="multipart/form-data" onClick={(e) => e.preventDefault()}>
             <Modal active={active} maxDivWidth="600px">
                 <div className="modal__header">
-                    <h2 className="modal__title title">Create Product</h2>
+                    <h2 className="modal__title title">Update Product</h2>
                     <svg onClick={() => setActive(false)} xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" className="bi bi-x" viewBox="0 0 16 16" id="IconChangeColor"> <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" id="mainIconPathAttribute" fill="#000000"></path> </svg>
                 </div>
-                {((errors.title || errors.price || errors.characteristic || errors.img || errors.type) && fetchCreateProductErrors.length === 0) && (
+                {((errors.title || errors.price || errors.characteristic || errors.img || errors.type) && fetchUpdateProductErrors.length === 0) && (
                     <div className="alert alert-danger" role="alert">
                         <div>
                             All fields must be filled
                         </div>
                     </div>
                 )}
-                {(fetchCreateProductErrors.length !== 0) && (
-                    fetchCreateProductErrors.map((error) => (
+                {(fetchUpdateProductErrors.length !== 0) && (
+                    fetchUpdateProductErrors.map((error) => (
                         <div className="alert alert-danger" role="alert" key={error}>
                             <div>
                                 {error}
@@ -81,15 +87,16 @@ const CreateProduct: React.FC<ICreateProductProps> = ({ active, setActive }: ICr
                     <label className="modal__label">Price</label>
                     <MyInput type="text" placeholder="Enter price" label="price" register={register} required />
                     <label className="modal__label">Gender Selection</label>
-                    <select {...register("type")} className="form-select">
-                        {(types.length !== 0) && (
+                    <select {...register("type")} className="form-select" value={selected} onChange={(e) => setSelected(e.target.value)}>
+                        {types.length !== 0 &&
                             types.map((type) => (
-                                <option key={type._id} value={type.name}>{type.name}</option>)
-                            )
-                        )}
+                                <option key={type._id} value={type._id} >
+                                    {type.name}
+                                </option>
+                            ))}
                     </select>
                     <label className="modal__label">Images</label>
-                    <input id="inputFile" className="my-form-control form-control" type="file" {...register("img")} required multiple accept="image/*" />
+                    <input onClick={(e) => e.stopPropagation()} id="inputFile" className="my-form-control form-control" type="file" {...register("img")} required multiple accept="image/*" />
                     <div className="photos__main">
                         {(imgLinks?.length === 3) && (
                             <div className="photos__main-photo">
@@ -128,10 +135,10 @@ const CreateProduct: React.FC<ICreateProductProps> = ({ active, setActive }: ICr
                         <MyButton type="button" onClick={() => append({ title: "", description: "" })} value="Add Characteristic" style={{ width: "250px" }} />
                     </div>
                 </div>
-                <MyButton type="submit" value="Create Product" />
+                <MyButton type="submit" value="Update Product" onClick={(e) => e.stopPropagation()} />
             </Modal>
         </form>
     );
 };
 
-export default CreateProduct;
+export default UpdateProduct;

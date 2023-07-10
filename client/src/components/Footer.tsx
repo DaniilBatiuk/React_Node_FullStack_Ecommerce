@@ -7,11 +7,11 @@ const Footer: React.FC = () => {
             <div className="footer__container">
                 <div className="footer__main main-footer">
                     <div className="main-footer__column">
-                        <div className="main-footer__label label">ABOUT PROJECT</div>
-                        <div className="main-footer__text">This online store was created to train my programming skills in FuullStack applications. It provides a comfortable design for browsing products and adding products to the cart. The user can add, delete and change his products. I tried to use the most popular technologies today. I only learn and don't know much so I will be glad to your advice.</div>
+                        <h2 className="main-footer__label label">ABOUT PROJECT</h2>
+                        <p className="main-footer__text">This online store was created to train my programming skills in FuullStack applications. It provides a comfortable design for browsing products and adding products to the cart. The user can add, delete and change his products. I tried to use the most popular technologies today. I only learn and don't know much so I will be glad to your advice.</p>
                     </div>
                     <div className="main-footer__column">
-                        <div className="main-footer__label label">SKILL USE</div>
+                        <h2 className="main-footer__label label">SKILL USE</h2>
                         <div className="main-footer__skills">
                             <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" className="main-footer__skills-img" /> </a>
                             <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" className="main-footer__skills-img" /> </a>
@@ -25,8 +25,8 @@ const Footer: React.FC = () => {
                         </div>
                     </div>
                     <div className="main-footer__column">
-                        <div className="main-footer__label label">CONTACT</div>
-                        <div className="main-footer__contacts contacts">
+                        <h2 className="main-footer__label label">CONTACT</h2>
+                        <address className="main-footer__contacts contacts">
                             <div className="contacts__contact fa fa-home"> Kremenchug, UA</div>
                             <div className="contacts__contact fa fa-envelope"> example@gmail.com</div>
                             <div className="contacts__contact fa fa-phone"> +38-(068)-905-06-93</div>
@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
                                 <a href="https://www.linkedin.com/in/daniil-batiuk-59a923271/" target="_blank" rel="noreferrer" className="fa fa-linkedin-square" />
                                 <a href="https://www.instagram.com/danil_batyuk/" target="_blank" rel="noreferrer" className="fa fa-instagram" />
                             </div>
-                        </div>
+                        </address>
                     </div>
                 </div>
                 <div className="footer__bottom">Built with love.</div>

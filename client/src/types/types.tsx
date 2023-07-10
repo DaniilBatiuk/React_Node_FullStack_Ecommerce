@@ -1,4 +1,5 @@
-export interface LivingInfo {
+
+export interface ILivingInfo {
     photo: string;
     title: string;
     description: string;
@@ -8,30 +9,38 @@ export interface LivingInfo {
 }
 
 
-export interface Product {
+export interface IProduct {
+    _id: string;
+    title: string;
+    price: number;
+    rating: number;
+    img: string[];
+    type: IType;
+    characteristic: ICharacteristic[];
+    user: string;
+}
+
+export interface IProductCreate {
     _id: string;
     title: string;
     price: number;
     rating: number;
     img: string[];
     type: string;
-    characteristic: Characteristic[];
+    characteristic: ICharacteristic[];
     user: string;
 }
 
-export interface Characteristic {
+export interface IType {
+    _id: string;
+    name: string;
+    __v: number;
+}
+
+
+export interface ICharacteristic {
     title: string,
     description: string,
-}
-
-export interface TitleText {
-    titleText: string;
-    classNames: string;
-}
-
-export interface ProductAndTitleText {
-    product: Product[];
-    titleText: TitleText;
 }
 
 export interface IFormValues {

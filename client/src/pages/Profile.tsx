@@ -7,7 +7,7 @@ import { fetchProducts } from '../redux/slices/products';
 import { filterMyProductSelector } from '../redux/Selectors';
 import ProductCard from '../components/ProductCard';
 
-const Profile = () => {
+const Profile: React.FC = () => {
 
     const dispatch = useAppDispatch();
 
@@ -45,7 +45,7 @@ const Profile = () => {
     return (
         <section className="profile">
             <div className="profile__container">
-                <div className="title profile__title">Profile</div>
+                <h2 className="title profile__title">Profile</h2>
                 <div className="profile__header">
                     <div className="profile__icon">
                         <img className='profile__user' src={user}></img>
