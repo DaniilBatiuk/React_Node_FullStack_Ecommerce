@@ -11,9 +11,15 @@
     opacity: 0;
     pointer-events: none;
     transition: 0.4s;
+
     &.active {
         opacity: 1;
         pointer-events: all;
+    }
+
+    &__message {
+        line-height: 1.2;
+        text-align: center;
     }
 
     &__content {
@@ -25,9 +31,11 @@
         transition: 0.4s;
         overflow-y: auto;
         max-height: calc(100vh - 60px);
+
         @media (min-width: 525.98px) {
             margin: 0px 10%;
         }
+
         &::-webkit-scrollbar {
             display: block;
             width: 5px;

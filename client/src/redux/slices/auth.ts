@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from '../../axios';
 import { RootState } from '../store';
 import { IFormValues, IFormValues2, IProduct } from '../../types/types';
@@ -99,7 +99,7 @@ export const authSlice = createSlice({
             state.basket = [];
             state.createdAt = new Date(500000000000).toISOString().split('T')[0];
         });
-        builder.addCase(fetchAuth.fulfilled, (state, action) => {
+        builder.addCase(fetchAuth.fulfilled, (state, action: PayloadAction<IAuthState>) => {
             state._id = action.payload._id;
             state.email = action.payload.email;
             state.fullName = action.payload.fullName;
@@ -123,7 +123,7 @@ export const authSlice = createSlice({
             state.basket = [];
             state.createdAt = new Date(500000000000).toISOString().split('T')[0];
         });
-        builder.addCase(fetchRegister.fulfilled, (state, action) => {
+        builder.addCase(fetchRegister.fulfilled, (state, action: PayloadAction<IAuthState>) => {
             state._id = action.payload._id;
             state.email = action.payload.email;
             state.fullName = action.payload.fullName;
@@ -147,7 +147,7 @@ export const authSlice = createSlice({
             state.basket = [];
             state.createdAt = new Date(500000000000).toISOString().split('T')[0];
         });
-        builder.addCase(fetchAuthMe.fulfilled, (state, action) => {
+        builder.addCase(fetchAuthMe.fulfilled, (state, action: PayloadAction<IAuthState>) => {
             state._id = action.payload._id;
             state.email = action.payload.email;
             state.fullName = action.payload.fullName;
@@ -161,13 +161,13 @@ export const authSlice = createSlice({
             state.basket = [];
             state.createdAt = new Date(500000000000).toISOString().split('T')[0];
         });
-        builder.addCase(fetchAddToBasket.fulfilled, (state, action) => {
+        builder.addCase(fetchAddToBasket.fulfilled, (state, action: PayloadAction<IAuthState>) => {
             state.basket = action.payload.basket;
         });
         builder.addCase(fetchAddToBasket.rejected, (state) => {
             state.basket = [];
         });
-        builder.addCase(fetchDeleteFromBasket.fulfilled, (state, action) => {
+        builder.addCase(fetchDeleteFromBasket.fulfilled, (state, action: PayloadAction<IAuthState>) => {
             state.basket = action.payload.basket;
         });
         builder.addCase(fetchDeleteFromBasket.rejected, (state) => {

@@ -32,7 +32,7 @@ export const typeSlice = createSlice({
     builder.addCase(fetchTypes.pending, (state) => {
       state.types = [];
     });
-    builder.addCase(fetchTypes.fulfilled, (state, action) => {
+    builder.addCase(fetchTypes.fulfilled, (state, action: PayloadAction<IType[]>) => {
       state.types = action.payload;
     });
     builder.addCase(fetchTypes.rejected, (state) => {

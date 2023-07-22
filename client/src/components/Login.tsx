@@ -17,7 +17,7 @@ export interface LoginProps {
 
 const Login: React.FC<LoginProps> = ({ active, setActive }: LoginProps) => {
     const dispatch = useAppDispatch();
-    
+
     const { fetchAuthErrors } = useSelector((state: RootState) => state.auth.errors);
 
     const { register, handleSubmit, formState: { errors } } = useForm<IFormValues>();
@@ -55,6 +55,7 @@ const Login: React.FC<LoginProps> = ({ active, setActive }: LoginProps) => {
                 <label className="modal__label">Password</label>
                 <MyInput type="password" placeholder="Enter password" label="password" register={register} required />
                 <MyButton type="submit" value="Sign In" />
+                <MyButton type="button" value="Demo" onClick={() => dispatch(fetchAuth({ email: "sportak50@gmail.com", password: "0975695007Dan" }))} />
             </Modal>
         </form>
     );

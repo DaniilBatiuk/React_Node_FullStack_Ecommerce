@@ -17,7 +17,17 @@ export interface IProduct {
     img: string[];
     type: IType;
     characteristic: ICharacteristic[];
-    user: string;
+    user: IUser;
+}
+export interface IUser {
+    _id: string;
+    email: string;
+    fullName: string;
+    basket: {
+        product: IProduct,
+        quantity: number,
+    }[];
+    createdAt: string;
 }
 
 export interface IProductCreate {

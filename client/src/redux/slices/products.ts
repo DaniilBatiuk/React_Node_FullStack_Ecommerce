@@ -1,7 +1,6 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from '../../axios';
 import { IProductCreate, IProduct } from '../../types/types';
-import { error } from 'console';
 
 export const fetchProducts = createAsyncThunk<IProduct[]>('product/fetchProducts', async () => {
   const { data } = await axios.get<IProduct[]>('/product');
@@ -61,7 +60,7 @@ export const productSlice = createSlice({
     builder.addCase(fetchProducts.pending, (state) => {
       state.products = [];
     });
-    builder.addCase(fetchProducts.fulfilled, (state, action) => {
+    builder.addCase(fetchProducts.fulfilled, (state, action: PayloadAction<IProduct[]>) => {
       state.products = action.payload;
     });
     builder.addCase(fetchProducts.rejected, (state) => {
@@ -70,20 +69,20 @@ export const productSlice = createSlice({
     builder.addCase(fetchProductsByType.pending, (state) => {
       state.products = [];
     });
-    builder.addCase(fetchProductsByType.fulfilled, (state, action) => {
+    builder.addCase(fetchProductsByType.fulfilled, (state, action: PayloadAction<IProduct[]>) => {
       state.products = action.payload;
     });
     builder.addCase(fetchProductsByType.rejected, (state) => {
       state.products = [];
     });
-    builder.addCase(fetchCreateProduct.fulfilled, (state, action) => {
+    builder.addCase(fetchCreateProduct.fulfilled, (state, action: PayloadAction<IProduct>) => {
       state.products = [...state.products, action.payload];
       state.errors.fetchCreateProductErrors = [];
     });
     builder.addCase(fetchCreateProduct.rejected, (state, action) => {
       state.errors.fetchCreateProductErrors = action.payload as string[];
     });
-    builder.addCase(fetchUpdateProduct.fulfilled, (state, action) => {
+    builder.addCase(fetchUpdateProduct.fulfilled, (state, action: PayloadAction<IProduct>) => {
       state.errors.fetchUpdateProductErrors = [];
     });
     builder.addCase(fetchUpdateProduct.rejected, (state, action) => {

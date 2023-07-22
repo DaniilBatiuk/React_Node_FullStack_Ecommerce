@@ -19,14 +19,13 @@ const Profile: React.FC = () => {
     const { products } = useSelector((state: RootState) => state.product);
 
     const myProducts = useSelector(filterMyProductSelector(auth._id));
-
     useEffect(() => {
         dispatch(fetchProducts());
     }, []);
 
     useEffect(() => {
         setActiveCount(products.reduce((acc, value) => {
-            if (value.user === auth._id) return acc + 1;
+            if (value.user._id === auth._id) return acc + 1;
             return acc;
         }, 0));
     }, [products]);
@@ -93,14 +92,16 @@ const Profile: React.FC = () => {
                         </li>
                     </ul>
                 </nav>
-                {isActive1 &&
-                    <section className="profile__items">
-                        {(myProducts.length !== 0) && (
-                            myProducts.map((elem) => (
+                {isActive1 && (
+                    myProducts.length !== 0 ? (
+                        <section className="profile__items">
+                            {myProducts.map((elem) => (
                                 <ProductCard key={elem._id} product={elem} myProfileProduct={true} />
-                            ))
-                        )}
-                    </section>
+                            ))}
+                        </section>
+                    ) : (
+                        <h2 className="profile__error-text">No items</h2>
+                    ))
                 }
                 {isActive2 &&
                     <section className="profile__information">

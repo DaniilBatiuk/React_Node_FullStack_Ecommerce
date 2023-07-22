@@ -82,7 +82,7 @@ const HeaderMenu: React.FC = () => {
                             </div>
                         </nav>
                         <div className="header__cart cart-header">
-                            <svg onClick={() => { if (!isAuth) { setModalSignUpActive(true); } else { setBasketActive(true); } if (isMenuActive) { ShowMenu(); } }} xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-basket" width="40" height="40" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                            <svg onClick={() => { if (!isAuth) { setModalSignInActive(true); } else { setBasketActive(true); } if (isMenuActive) { ShowMenu(); } }} xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-basket" width="40" height="40" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                 <path d="M7 10l5 -6l5 6"></path>
                                 <path d="M21 10l-2 8a2 2.5 0 0 1 -2 2h-10a2 2.5 0 0 1 -2 -2l-2 -8z"></path>
@@ -91,7 +91,7 @@ const HeaderMenu: React.FC = () => {
                             <span className="cart-header__quantity" style={{ backgroundColor: basket.length === 0 ? "rgba(97, 97, 104, 0.3)" : "rgba(201, 3, 3, 0.89)", color: basket.length === 0 ? "black" : "white" }}>{basket.length}</span>
                             <Link to="/Profile" onClick={(e) => {
                                 if (!isAuth) {
-                                    setModalSignUpActive(true);
+                                    setModalSignInActive(true);
                                     e.preventDefault();
                                 } else {
                                     ScrollUp();

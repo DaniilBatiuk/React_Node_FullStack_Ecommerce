@@ -28,7 +28,7 @@ export const create = async (req, res) => {
 
 export const getAll = async (req, res) => {
     try {
-        const products = await ProductModel.find().populate(['type']).exec();
+        const products = await ProductModel.find().populate(['user', 'type']).exec();
 
         res.json(products);
 
@@ -63,7 +63,7 @@ export const getAllByType = async (req, res) => {
 export const getOne = async (req, res) => {
     try {
         const productId = req.params.id;
-        const product = await ProductModel.findOne({ _id: productId });
+        const product = await ProductModel.findOne({ _id: productId }).populate(['user', 'type']).exec();;
         if (!product) {
             return res.status(404).json({
                 message: 'Can not get product by id',

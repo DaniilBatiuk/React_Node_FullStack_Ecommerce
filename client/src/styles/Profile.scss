@@ -183,6 +183,13 @@
             grid-template-columns: repeat(4, 1fr);
         }
     }
+
+    &__error-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: $titleFontSize;
+    }
 }
 
 .title {}

@@ -54,6 +54,9 @@ export const login = async (req, res) => {
 
         const isValidPass = await bcrypt.compare(req.body.password, user._doc.passwordHash);
 
+        if (!isValidPass) {
+            return res.status(404).json([{ msg: "Error : error in password or email" }]);
+        }
 
         const token = jwt.sign(
             {
