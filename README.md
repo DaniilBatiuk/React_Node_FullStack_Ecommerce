@@ -14,11 +14,19 @@ __Product Page__
 
 __SignIn Page__
 
-![](/client//src//assets/photos/SignInPage.PNG)
+![](/client//src//assets/photos/SignInPage.jpeg)
 
 __SignUp Page__
 
-![](/client//src//assets/photos/SignUpPage.PNG)
+![](/client//src//assets/photos/SignUpPage.jpeg)
+
+__Profile Page__
+
+![](/client//src//assets/photos/ProfilePage.jpeg)
+
+__CreateProduct Page__
+
+![](/client//src//assets/photos/CreateProductPage.PNG)
 
 __Main Page On Phone__
 
@@ -27,4 +35,8 @@ __Main Page On Phone__
 __Product Page On Phone__
 
 ![](/client//src//assets/photos/ProductPagePhone.jpeg)
+
+__Profile Page On Phone__
+
+![](/client//src//assets/photos/ProfilePageOnPhone.jpeg)
 
