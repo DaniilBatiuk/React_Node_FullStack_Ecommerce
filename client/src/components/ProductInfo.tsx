@@ -16,8 +16,8 @@ const ProductInfo: React.FC = () => {
     const [sum, setSum] = useState(0);
     const [mainPhoto, setMainPhoto] = useState("");
     const [errorText, setErrorText] = useState("");
+    const [successTextActive, setSuccessTextActive] = useState(false);
     const [messageModalActive, setMessageModalActive] = useState(false);
-
     const { id } = useParams();
 
     const { basket, _id } = useSelector((state: RootState) => state.auth);
@@ -42,18 +42,32 @@ const ProductInfo: React.FC = () => {
     const AddToBasket = () => {
         if (!isAuth) {
             setErrorText("You are not sing in");
+            setSuccessTextActive(false);
         }
         else if (_id === product?.user._id) {
             setErrorText("You can not add your product in your backet");
+            setSuccessTextActive(false);
         }
         else if (product?._id && !basket.some(item => item.product._id === product._id)) {
             dispatch(fetchAddToBasket({ id: product._id, quantity: count }));
             setErrorText("");
+            setSuccessTextActive(true);
         }
         else {
             setErrorText("This product is already exist in your basket");
+            setSuccessTextActive(false);
         }
     }
+
+    useEffect(() => {
+        const scrollConteiner = document.getElementById("scrollConteiner") as HTMLDivElement;
+        if (scrollConteiner) {
+            scrollConteiner.addEventListener("wheel", (e) => {
+                e.preventDefault();
+                scrollConteiner.scrollLeft += e.deltaY;
+            });
+        }
+    }, []);
 
     return (
         <>
@@ -66,7 +80,7 @@ const ProductInfo: React.FC = () => {
                                 <div className="photos__main-photo">
                                     <img src={mainPhoto} alt="" className="img-fluid" />
                                 </div>
-                                <div className="photos__all">
+                                <div className="photos__all" id="scrollConteiner">
                                     {(product?.img.length !== 0) && (
                                         product?.img.map((elem) => (
                                             <div className="photos__litle-photo" key={elem}>
@@ -89,7 +103,7 @@ const ProductInfo: React.FC = () => {
                                     ))
                                 )}
                             </div>
-                            <div className="description__quantity quantity" style={{ marginBottom: errorText !== "" ? "20px" : "50px" }}>
+                            <div className="description__quantity quantity" style={{ marginBottom: (errorText !== "" || successTextActive === true) ? "20px" : "50px" }}>
                                 <div className="quantity__name">Quantity</div>
                                 <div className="quantity__block">
                                     <button className="quantity__button" onClick={() => { if (count > 1) { setCount(prev => prev - 1); setSum(prev => prev - product!.price) } }}>-</button>
@@ -102,6 +116,13 @@ const ProductInfo: React.FC = () => {
                                 <div className="alert alert-danger" role="alert">
                                     <div>
                                         {errorText}
+                                    </div>
+                                </div>
+                            )}
+                            {(successTextActive === true) && (
+                                <div className="alert alert-success" role="alert">
+                                    <div>
+                                        This product has successfully added to your basket
                                     </div>
                                 </div>
                             )}

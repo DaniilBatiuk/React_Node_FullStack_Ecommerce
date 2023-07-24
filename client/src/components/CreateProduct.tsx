@@ -51,6 +51,15 @@ const CreateProduct: React.FC<ICreateProductProps> = ({ active, setActive }: ICr
         append({ title: "", description: "" });
     }, []);
 
+    useEffect(() => {
+        const scrollConteiner = document.getElementById("scrollConteiner") as HTMLDivElement;
+        if (scrollConteiner) {
+            scrollConteiner.addEventListener("wheel", (e) => {
+                e.preventDefault();
+                scrollConteiner.scrollLeft += e.deltaY;
+            });
+        }
+    }, []);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} noValidate encType="multipart/form-data">
@@ -91,13 +100,13 @@ const CreateProduct: React.FC<ICreateProductProps> = ({ active, setActive }: ICr
                     <label className="modal__label">Images</label>
                     <input id="inputFile" className="my-form-control form-control" type="file" {...register("img")} required multiple accept="image/*" />
                     <div className="photos__main">
-                        {(imgLinks?.length === 3) && (
+                        {(imgLinks?.length >= 3) && (
                             <div className="photos__main-photo">
                                 <img src={`http://localhost:4000${mainPhoto}`} alt="" />
                             </div>
                         )}
-                        <div className="photos__all">
-                            {(imgLinks?.length === 3) && (
+                        <div className="photos__all" id="scrollConteiner">
+                            {(imgLinks?.length >= 3) && (
                                 imgLinks?.map((elem) => (
                                     <div className="photos__litle-photo" key={elem}>
                                         <img src={`http://localhost:4000${elem}`} alt="" onClick={() => setMainPhoto(elem)} />

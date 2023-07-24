@@ -16,7 +16,7 @@
         margin: $marginButtomPhone 0px;
         display: flex;
 
-        @media (max-width: 575.98px) {
+        @media (max-width: 634.98px) {
             margin-bottom: $marginButtomPhone;
             margin-top: $marginButtomPhone;
             flex-wrap: wrap;
@@ -32,7 +32,7 @@
             margin-right: 5%;
         }
 
-        @media (max-width: 575.98px) {
+        @media (max-width: 634.98px) {
             width: 100%;
             margin-right: 0%;
         }
@@ -42,7 +42,7 @@
         width: 50%;
         margin-top: $marginButtomPhone;
 
-        @media (max-width: 575.98px) {
+        @media (max-width: 634.98px) {
             width: 100%;
             margin-top: $marginButtomPhone;
         }
@@ -66,10 +66,26 @@
         justify-content: space-between;
         width: 100%;
         margin: 0 auto;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar-thumb {
+            background: gray;
+        }
+
+        &::-webkit-scrollbar {
+            display: block;
+            width: 10px;
+            /* Set 'overflow' to 'auto' for smaller screens (horizontal scrolling enabled) */
+            overflow: auto;
+            height: 5px;
+            background-color: lightgray;
+        }
     }
 
     &__litle-photo {
-        width: 33%;
+        min-width: 33.33%;
         border: 3px solid rgb(240, 236, 236);
         transition: border 0.3s ease-in-out;
 

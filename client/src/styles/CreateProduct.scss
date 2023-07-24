@@ -90,11 +90,27 @@ svg {
         justify-content: space-between;
         width: 100%;
         margin: 0 auto;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar-thumb {
+            background: gray;
+        }
+
+        &::-webkit-scrollbar {
+            display: block;
+            width: 10px;
+            /* Set 'overflow' to 'auto' for smaller screens (horizontal scrolling enabled) */
+            overflow: auto;
+            height: 5px;
+            background-color: lightgray;
+        }
     }
 
     &__litle-photo {
 
-        width: 33%;
+        min-width: 33.33%;
         border: 3px solid rgb(240, 236, 236);
         transition: border 0.3s ease-in-out;
 

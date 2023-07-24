@@ -22,7 +22,7 @@ export default function useImages(productImage: string[], changeImg: string[]) {
                 console.warn(err);
             }
         };
-        if (changeImg?.length === 3) {
+        if (changeImg?.length >= 3) {
             uploadImage();
         }
     }, [changeImg]);
