@@ -10,6 +10,7 @@ import MyInput from "./UI/Modal/Input/MyInput";
 import MyButton from "./UI/Modal/Button/MyButton";
 import Modal from "./UI/Modal/Modal";
 import useImages from "../hooks/useImages";
+import { scroll } from "../utils/functions";
 
 export interface ICreateProductProps {
     active: boolean;
@@ -52,13 +53,8 @@ const CreateProduct: React.FC<ICreateProductProps> = ({ active, setActive }: ICr
     }, []);
 
     useEffect(() => {
-        const scrollConteiner = document.getElementById("scrollConteiner") as HTMLDivElement;
-        if (scrollConteiner) {
-            scrollConteiner.addEventListener("wheel", (e) => {
-                e.preventDefault();
-                scrollConteiner.scrollLeft += e.deltaY;
-            });
-        }
+        const scrollCreateConteiner = document.getElementById("scrollCreateConteiner") as HTMLDivElement;
+        scroll(scrollCreateConteiner);
     }, []);
 
     return (
@@ -105,7 +101,7 @@ const CreateProduct: React.FC<ICreateProductProps> = ({ active, setActive }: ICr
                                 <img src={`http://localhost:4000${mainPhoto}`} alt="" />
                             </div>
                         )}
-                        <div className="photos__all" id="scrollConteiner">
+                        <div className="photos__all" id="scrollCreateConteiner">
                             {(imgLinks?.length >= 3) && (
                                 imgLinks?.map((elem) => (
                                     <div className="photos__litle-photo" key={elem}>

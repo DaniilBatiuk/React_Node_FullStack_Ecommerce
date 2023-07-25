@@ -15,6 +15,7 @@
     &.active {
         opacity: 1;
         pointer-events: all;
+        cursor:auto;
     }
 
     &__message {

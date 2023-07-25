@@ -77,7 +77,6 @@
         &::-webkit-scrollbar {
             display: block;
             width: 10px;
-            /* Set 'overflow' to 'auto' for smaller screens (horizontal scrolling enabled) */
             overflow: auto;
             height: 5px;
             background-color: lightgray;

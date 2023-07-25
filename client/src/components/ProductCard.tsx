@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IProduct } from "../types/types";
 import "../styles/ProductCard.scss";
 import { Link } from "react-router-dom";
@@ -17,7 +17,7 @@ const ProductCard: React.FC<IProductProps> = ({ product, myProfileProduct }: IPr
 
     const dispatch = useAppDispatch();
 
-    const [modalUpdateProductActive, setModalUpdateProductActive] = useState(false);
+    const [modalUpdateProductActive, setModalUpdateProductActive] = useState<boolean>(false);
 
     const DeleteProduct = () => {
         axios
@@ -34,6 +34,15 @@ const ProductCard: React.FC<IProductProps> = ({ product, myProfileProduct }: IPr
         e.preventDefault();
         DeleteProduct();
     };
+
+    useEffect(() => {
+        if (modalUpdateProductActive === true) {
+            document.body.classList.add('no-scroll');
+        }
+        else {
+            document.body.classList.remove('no-scroll');
+        }
+    }, [modalUpdateProductActive]);
 
     return (
         <Link to={`/Product/${product._id}`} className="products-card__item" onClick={ScrollUp}>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IProduct } from "../types/types";
 import { fetchUpdateProduct } from "../redux/slices/products";
 import { RootState, useAppDispatch } from "../redux/store";
@@ -10,6 +10,7 @@ import MyInput from "./UI/Modal/Input/MyInput";
 import MyButton from "./UI/Modal/Button/MyButton";
 import Modal from "./UI/Modal/Modal";
 import useImages from "../hooks/useImages";
+import { scroll } from "../utils/functions";
 
 export interface ICreateProductProps {
     active: boolean;
@@ -58,6 +59,11 @@ const UpdateProduct: React.FC<ICreateProductProps> = ({ active, setActive, produ
     });
 
 
+    useEffect(() => {
+        const scrollUpdateConteiner = document.getElementById("scrollUpdateConteiner") as HTMLDivElement;
+        scroll(scrollUpdateConteiner);
+    }, []);
+
     return (
         <form onSubmit={handleSubmit(onSubmit)} noValidate encType="multipart/form-data" onClick={(e) => e.preventDefault()}>
             <Modal active={active} maxDivWidth="600px">
@@ -98,13 +104,13 @@ const UpdateProduct: React.FC<ICreateProductProps> = ({ active, setActive, produ
                     <label className="modal__label">Images</label>
                     <input onClick={(e) => e.stopPropagation()} id="inputFile" className="my-form-control form-control" type="file" {...register("img")} required multiple accept="image/*" />
                     <div className="photos__main">
-                        {(imgLinks?.length === 3) && (
+                        {(imgLinks?.length >= 3) && (
                             <div className="photos__main-photo">
                                 <img src={`http://localhost:4000${mainPhoto}`} alt="" />
                             </div>
                         )}
-                        <div className="photos__all">
-                            {(imgLinks?.length === 3) && (
+                        <div className="photos__all" id="scrollUpdateConteiner">
+                            {(imgLinks?.length >= 3) && (
                                 imgLinks?.map((elem) => (
                                     <div className="photos__litle-photo" key={elem}>
                                         <img src={`http://localhost:4000${elem}`} alt="" onClick={() => setMainPhoto(elem)} />

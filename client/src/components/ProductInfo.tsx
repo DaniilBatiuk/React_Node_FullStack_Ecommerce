@@ -7,6 +7,7 @@ import { RootState, useAppDispatch } from '../redux/store';
 import { fetchAddToBasket, selectIsAuth } from '../redux/slices/auth';
 import { useSelector } from 'react-redux';
 import Message from './Message';
+import { scroll } from '../utils/functions';
 
 const ProductInfo: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -39,6 +40,11 @@ const ProductInfo: React.FC = () => {
         setErrorText("");
     }, [isAuth]);
 
+    useEffect(() => {
+        const scrollInfoConteiner = document.getElementById("scrollInfoConteiner") as HTMLDivElement;
+        scroll(scrollInfoConteiner);
+    }, []);
+
     const AddToBasket = () => {
         if (!isAuth) {
             setErrorText("You are not sing in");
@@ -59,16 +65,6 @@ const ProductInfo: React.FC = () => {
         }
     }
 
-    useEffect(() => {
-        const scrollConteiner = document.getElementById("scrollConteiner") as HTMLDivElement;
-        if (scrollConteiner) {
-            scrollConteiner.addEventListener("wheel", (e) => {
-                e.preventDefault();
-                scrollConteiner.scrollLeft += e.deltaY;
-            });
-        }
-    }, []);
-
     return (
         <>
             <section className="product">
@@ -80,7 +76,7 @@ const ProductInfo: React.FC = () => {
                                 <div className="photos__main-photo">
                                     <img src={mainPhoto} alt="" className="img-fluid" />
                                 </div>
-                                <div className="photos__all" id="scrollConteiner">
+                                <div className="photos__all" id="scrollInfoConteiner" >
                                     {(product?.img.length !== 0) && (
                                         product?.img.map((elem) => (
                                             <div className="photos__litle-photo" key={elem}>
