@@ -58,11 +58,10 @@ const UpdateProduct: React.FC<ICreateProductProps> = ({ active, setActive, produ
         control
     });
 
-
     useEffect(() => {
-        const scrollUpdateConteiner = document.getElementById("scrollUpdateConteiner") as HTMLDivElement;
+        const scrollUpdateConteiner = document.getElementById(`scrollUpdateConteiner${product._id}`) as HTMLDivElement;
         scroll(scrollUpdateConteiner);
-    }, []);
+    }, [product]);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} noValidate encType="multipart/form-data" onClick={(e) => e.preventDefault()}>
@@ -109,7 +108,7 @@ const UpdateProduct: React.FC<ICreateProductProps> = ({ active, setActive, produ
                                 <img src={`http://localhost:4000${mainPhoto}`} alt="" />
                             </div>
                         )}
-                        <div className="photos__all" id="scrollUpdateConteiner">
+                        <div className="photos__all" id={`scrollUpdateConteiner${product._id}`}>
                             {(imgLinks?.length >= 3) && (
                                 imgLinks?.map((elem) => (
                                     <div className="photos__litle-photo" key={elem}>
