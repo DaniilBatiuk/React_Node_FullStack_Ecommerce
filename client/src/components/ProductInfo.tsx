@@ -28,7 +28,7 @@ const ProductInfo: React.FC = () => {
         axios.get(`/product/${id}`)
             .then((res) => {
                 setProduct(res.data);
-                setMainPhoto(`http://localhost:4000${res.data?.img[0]}`);
+                setMainPhoto(`https://ecommerce-qttp.onrender.com${res.data?.img[0]}`);
                 setSum(res.data?.price);
             })
             .catch((err) => {
@@ -80,7 +80,7 @@ const ProductInfo: React.FC = () => {
                                     {(product?.img.length !== 0) && (
                                         product?.img.map((elem) => (
                                             <div className="photos__litle-photo" key={elem}>
-                                                <img src={`http://localhost:4000${elem}`} alt="" className="img-fluid" onClick={() => setMainPhoto(`http://localhost:4000${elem}`)} />
+                                                <img src={`https://ecommerce-qttp.onrender.com${elem}`} alt="" className="img-fluid" onClick={() => setMainPhoto(`https://ecommerce-qttp.onrender.com${elem}`)} />
                                             </div>
                                         ))
                                     )}

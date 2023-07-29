@@ -19,7 +19,7 @@ const BasketElem: React.FC<IBasketElemProps> = ({ item }: IBasketElemProps) => {
     return (
         <article className="basket-elem">
             <div className="basket-elem__photo">
-                <img src={`http://localhost:4000${item.product.img[0]}`} alt="" />
+                <img src={`https://ecommerce-qttp.onrender.com${item.product.img[0]}`} alt="" />
             </div>
             <div className="basket-elem__info">
                 <div className="basket-elem__info-close">

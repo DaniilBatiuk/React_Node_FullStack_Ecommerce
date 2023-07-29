@@ -98,14 +98,14 @@ const CreateProduct: React.FC<ICreateProductProps> = ({ active, setActive }: ICr
                     <div className="photos__main">
                         {(imgLinks?.length >= 3) && (
                             <div className="photos__main-photo">
-                                <img src={`http://localhost:4000${mainPhoto}`} alt="" />
+                                <img src={`https://ecommerce-qttp.onrender.com${mainPhoto}`} alt="" />
                             </div>
                         )}
                         <div className="photos__all" id="scrollCreateConteiner">
                             {(imgLinks?.length >= 3) && (
                                 imgLinks?.map((elem) => (
                                     <div className="photos__litle-photo" key={elem}>
-                                        <img src={`http://localhost:4000${elem}`} alt="" onClick={() => setMainPhoto(elem)} />
+                                        <img src={`https://ecommerce-qttp.onrender.com${elem}`} alt="" onClick={() => setMainPhoto(elem)} />
                                     </div>
                                 ))
                             )}

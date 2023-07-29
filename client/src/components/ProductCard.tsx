@@ -47,7 +47,7 @@ const ProductCard: React.FC<IProductProps> = ({ product, myProfileProduct }: IPr
     return (
         <Link to={`/Product/${product._id}`} className="products-card__item" onClick={ScrollUp}>
             <div className="products-card__image">
-                <img src={`http://localhost:4000${product?.img[0]}`} alt="" className="img-fluid" />
+                <img src={`https://ecommerce-qttp.onrender.com${product?.img[0]}`} alt="" className="img-fluid" />
             </div>
             <div className="products-card__body">
                 <div className="products-card__name">{product?.title}</div>

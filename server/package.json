@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build": "npm i" 
+    "build": "node build --output public" 
   },
   "author": "",
   "license": "ISC",
