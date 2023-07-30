@@ -1,0 +1,29 @@
+@import "../../../../styles/Variables.scss";
+
+.spinner-center {
+    margin-top: 150px;
+
+    @media (max-width:767.98px) {
+        margin-top: 100px;
+    }
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner-body {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    font-size: $titleFontSizePhone;
+    font-weight: bold;
+    max-width: 600px;
+}
+
+.spinner-under-text {
+    font-size: $titleFontSizePhone - 6px;
+    font-weight: 400;
+    line-height: 1.1;
+}

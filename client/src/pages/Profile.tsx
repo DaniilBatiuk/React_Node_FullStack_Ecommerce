@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { fetchProducts } from '../redux/slices/products';
 import { filterMyProductSelector } from '../redux/Selectors';
 import ProductCard from '../components/ProductCard';
+import Loader from '../components/UI/Modal/Loader/Loader';
 
 const Profile: React.FC = () => {
 
@@ -40,7 +41,12 @@ const Profile: React.FC = () => {
         setIsActive1(false);
     };
 
-
+    if (myProducts.length === 0) {
+        return (
+            <Loader />
+        )
+    }
+    
     return (
         <section className="profile">
             <div className="profile__container">

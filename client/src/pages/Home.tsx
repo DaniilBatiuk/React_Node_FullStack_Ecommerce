@@ -6,9 +6,11 @@ import living1 from '../assets/photos/living1.jpg';
 import living2 from '../assets/photos/living2.jpg';
 import { ILivingInfo } from "../types/types";
 import ProductsProud from "../components/ProductsProud";
-import { useAppDispatch } from "../redux/store";
+import { RootState, useAppDispatch } from "../redux/store";
 import { setTypeName } from "../redux/slices/types";
 import { fetchProducts } from "../redux/slices/products";
+import { useSelector } from "react-redux";
+import Loader from "../components/UI/Modal/Loader/Loader";
 
 
 const Home: React.FC = () => {
@@ -36,10 +38,19 @@ const Home: React.FC = () => {
 
     const dispatch = useAppDispatch();
 
+    const { products } = useSelector((state: RootState) => state.product);
+
     useEffect(() => {
         dispatch(setTypeName("All"));
         dispatch(fetchProducts());
     }, [dispatch]);
+
+
+    if (products.length === 0) {
+        return (
+            <Loader />
+        )
+    }
 
 
     return (

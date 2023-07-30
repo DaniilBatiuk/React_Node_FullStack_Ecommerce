@@ -17,11 +17,13 @@
 
 .main {
   flex: 1 1 auto;
+  min-height: 600px;
 }
 
 .title {
   font-weight: 700;
   font-size: $titleFontSize;
+
   @media (max-width:558px) {
     font-size: $titleFontSizePhone;
   }

@@ -8,6 +8,7 @@ import { fetchAddToBasket, selectIsAuth } from '../redux/slices/auth';
 import { useSelector } from 'react-redux';
 import Message from './Message';
 import { scroll } from '../utils/functions';
+import Loader from './UI/Modal/Loader/Loader';
 
 const ProductInfo: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -65,6 +66,12 @@ const ProductInfo: React.FC = () => {
         }
     }
 
+    if (product === undefined) {
+        return (
+            <Loader />
+        )
+    }
+    
     return (
         <>
             <section className="product">

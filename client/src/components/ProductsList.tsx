@@ -11,6 +11,17 @@ const ProductsList: React.FC = () => {
     
     const { products } = useSelector((state: RootState) => state.product);
 
+    if (products.length === 0) {
+        return (
+            <div className="spinner-center">
+                <div className="spinner-body">
+                    <div className="spinner-border" style={{ width: "3rem", height: "3rem", margin: "0 auto" }} role="status"></div>
+                    <p className="spinner-text">Loading...</p>
+                </div>
+            </div>
+        )
+    }
+    
     return (
         <section className="products-proud">
             <div className="products-proud__container">
