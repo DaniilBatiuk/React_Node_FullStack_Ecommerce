@@ -12,19 +12,11 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const fetchData = () => {
-      dispatch(fetchProducts());
-      dispatch(fetchTypes());
-      if (window.localStorage.getItem('token')) {
-        dispatch(fetchAuthMe());
-      }
-    };
-
-    fetchData();
-
-    const intervalId = setInterval(fetchData, 3600000);
-
-    return () => clearInterval(intervalId);
+    dispatch(fetchProducts());
+    dispatch(fetchTypes());
+    if (window.localStorage.getItem('token')) {
+      dispatch(fetchAuthMe());
+    }
   }, [dispatch]);
 
 
