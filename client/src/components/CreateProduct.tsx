@@ -28,7 +28,7 @@ const CreateProduct: React.FC<ICreateProductProps> = ({ active, setActive }: ICr
     const { register, handleSubmit, control, watch, reset, formState: { errors } } = useForm<IProductCreate>();
     const changeImg = watch("img");
 
-    const { mainPhoto, setMainPhoto, imgLinks, clearPhoto } = useImages([], changeImg);
+    const { mainPhoto, setMainPhoto, imgLinks, clearPhoto, load } = useImages([], changeImg);
 
     const onSubmit: SubmitHandler<IProductCreate> = (data: IProductCreate) => {
         data.img = imgLinks;
@@ -96,13 +96,21 @@ const CreateProduct: React.FC<ICreateProductProps> = ({ active, setActive }: ICr
                     <label className="modal__label">Images</label>
                     <input id="inputFile" className="my-form-control form-control" type="file" {...register("img")} required multiple accept="image/*" />
                     <div className="photos__main">
-                        {(imgLinks?.length >= 3) && (
+                        {(load === true) && (
+                            <div className="spinner-center" style={{ marginTop: "50px" }}>
+                                <div className="spinner-body">
+                                    <div className="spinner-border" style={{ width: "3rem", height: "3rem", margin: "0 auto" }} role="status"></div>
+                                    <p className="spinner-text">Loading...</p>
+                                </div>
+                            </div>
+                        )}
+                        {(imgLinks?.length >= 3 && load === false) && (
                             <div className="photos__main-photo">
                                 <img src={`https://ecommerce-qttp.onrender.com${mainPhoto}`} alt="" />
                             </div>
                         )}
                         <div className="photos__all" id="scrollCreateConteiner">
-                            {(imgLinks?.length >= 3) && (
+                            {(imgLinks?.length >= 3 && load === false) && (
                                 imgLinks?.map((elem) => (
                                     <div className="photos__litle-photo" key={elem}>
                                         <img src={`https://ecommerce-qttp.onrender.com${elem}`} alt="" onClick={() => setMainPhoto(elem)} />

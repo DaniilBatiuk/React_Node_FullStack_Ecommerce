@@ -5,6 +5,7 @@ import axios from "../axios";
 export default function useImages(productImage: string[], changeImg: string[]) {
     const [mainPhoto, setMainPhoto] = useState(productImage[0]);
     const [imgLinks, setImgLinks] = useState<string[]>(productImage);
+    const [load, setLoad] = useState<boolean>(false);
 
     useEffect(() => {
         const uploadImage = async () => {
@@ -18,11 +19,13 @@ export default function useImages(productImage: string[], changeImg: string[]) {
                 }
                 setImgLinks(images);
                 setMainPhoto(images[0]);
+                setLoad(false);
             } catch (err) {
                 console.warn(err);
             }
         };
         if (changeImg?.length >= 3) {
+            setLoad(true);
             uploadImage();
         }
     }, [changeImg]);
@@ -37,6 +40,7 @@ export default function useImages(productImage: string[], changeImg: string[]) {
         mainPhoto,
         setMainPhoto,
         imgLinks,
-        clearPhoto
+        clearPhoto,
+        load
     }
 }

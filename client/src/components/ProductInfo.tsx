@@ -42,9 +42,8 @@ const ProductInfo: React.FC = () => {
     }, [isAuth]);
 
     useEffect(() => {
-        const scrollInfoConteiner = document.getElementById("scrollInfoConteiner") as HTMLDivElement;
-        scroll(scrollInfoConteiner);
-    }, []);
+        scroll(document.getElementById(`scrollInfoConteiner${id}`) as HTMLDivElement);
+    }, [product]);
 
     const AddToBasket = () => {
         if (!isAuth) {
@@ -71,7 +70,7 @@ const ProductInfo: React.FC = () => {
             <Loader />
         )
     }
-    
+
     return (
         <>
             <section className="product">
@@ -83,7 +82,7 @@ const ProductInfo: React.FC = () => {
                                 <div className="photos__main-photo">
                                     <img src={mainPhoto} alt="" className="img-fluid" />
                                 </div>
-                                <div className="photos__all" id="scrollInfoConteiner" >
+                                <div className="photos__all" id={`scrollInfoConteiner${id}`} >
                                     {(product?.img.length !== 0) && (
                                         product?.img.map((elem) => (
                                             <div className="photos__litle-photo" key={elem}>
